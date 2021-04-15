@@ -333,7 +333,7 @@
                  <li class="nav-item">
                  <a href="../bed-hedCurr/stem.php" class="nav-link">
                         <i class="fa fa-file-alt"> </i>
-                            <p> STEM</p>
+                            <p> STEM </p>
                     </a>
                 </li>
                 <li class="nav-item">
