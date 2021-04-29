@@ -50,6 +50,8 @@ $_SESSION['get-regID'] = $reg_id;
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper pt-4">
 
+                <!-- Smooth scroll button -->
+                <!-- <a href="#" id="scroll" style="display: none;"><span></span></a> -->
 
                 <!-- Main content -->
                 <section class="content">
