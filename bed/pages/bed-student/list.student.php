@@ -56,9 +56,11 @@ require '../../includes/bed-session.php';
                                             <div class="form-group row mb-3 mt-3">
                                                 <div class="input-group col-sm-5 mb-2 ml-auto mr-auto">
                                                     <div class="input-group-prepend">
-                                                    <button type="submit" name="look" class="btn bg-purple"><i class="fas fa-search"></i></button>
+                                                        <button type="submit" name="look" class="btn bg-navy"><i
+                                                                class="fas fa-search"></i></button>
                                                     </div>
-                                                    <input name="search" type="text" class="form-control" placeholder="Search for Student">
+                                                    <input name="search" type="text" class="form-control"
+                                                        placeholder="Search for Student">
 
                                                 </div>
                                             </div>
@@ -81,13 +83,13 @@ require '../../includes/bed-session.php';
                                                 <?php include '../../includes/bed-head.php';
 
                                                 if (isset($_GET['look'])) {
-                                                $_GET['search'] = addslashes($_GET['search']);    
-                                                $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_students.student_lname, ', ', tbl_students.student_fname, ' ', tbl_students.student_mname) AS fullname 
+                                                    $_GET['search'] = addslashes($_GET['search']);
+                                                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_students.student_lname, ', ', tbl_students.student_fname, ' ', tbl_students.student_mname) AS fullname 
                                                 FROM tbl_students
                                                 LEFT JOIN tbl_genders ON tbl_genders.gender_id = tbl_students.gender_id
                                                 WHERE (student_fname LIKE '%$_GET[search]%' OR student_mname LIKE '%$_GET[search]%' OR student_lname  LIKE '%$_GET[search]%' OR stud_no LIKE '%$_GET[search]%') ORDER BY stud_no DESC
                                                 ")  or die(mysqli_error($conn));
-                                                while ($row = mysqli_fetch_array($get_user)) {
+                                                    while ($row = mysqli_fetch_array($get_user)) {
                                                         $id = $row['student_id'];
                                                 ?>
                                                 <tr>
@@ -147,7 +149,8 @@ require '../../includes/bed-session.php';
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            <?php }} ?>
+                                                <?php }
+                                                } ?>
                                             </tbody>
                                         </table>
                                     </div>

@@ -156,12 +156,12 @@ if (isset($_POST['g1'])) {
                                             <tbody>
 
                                                 <?php if (empty($grd_lvl)) {
-                                                    $get_sub = mysqli_query($conn, "SELECT * FROM tbl_subjects LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_subjects.grade_level_id WHERE grade_level IN ('')");
+                                                    $get_sub = mysqli_query($conn, "SELECT * FROM tbl_subjects LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_subjects.grade_level_id WHERE grade_level LIKE '%$_POST[g1]%'");
                                                 } else {
 
                                                     $get_sub = mysqli_query($conn, "SELECT * FROM tbl_subjects LEFT JOIN
                                                 tbl_grade_levels ON tbl_grade_levels.grade_level_id =
-                                                tbl_subjects.grade_level_id WHERE grade_level IN ('$grd_lvl')");
+                                                tbl_subjects.grade_level_id WHERE grade_level IN ('$grd_lvl') OR grade_level");
                                                 } ?>
                                                 <tr>
                                                     <?php while ($row = mysqli_fetch_array($get_sub)) {

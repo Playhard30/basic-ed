@@ -159,7 +159,7 @@ if (isset($_POST['stem'])) {
                                                     LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_subjects_senior.semester_id
                                                     LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_subjects_senior.strand_id 
                                                     LEFT JOIN tbl_efacadyears ON tbl_efacadyears.efacadyear_id = tbl_subjects_senior.efacadyear_id
-                                                    WHERE tbl_strands.strand_name IN ('') AND tbl_efacadyears.efacadyear IN ('')");
+                                                    WHERE tbl_strands.strand_name LIKE '%sa%' OR tbl_efacadyears.efacadyear LIKE '%sasasr%' ORDER BY ");
                                                 } else {
                                                     $get_subjects = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior
                                                 LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_subjects_senior.grade_level_id
