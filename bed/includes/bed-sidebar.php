@@ -418,7 +418,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../bed-master_key/list.adviser.php" class="nav-link">
+                    <a href="../bed-principal/list.adviser.php" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Advisers List
@@ -426,7 +426,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../bed-master_key/list.teacher.php" class="nav-link">
+                    <a href="../bed-principal/list.teacher.php" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Teachers List
@@ -476,7 +476,7 @@
                     </ul>
                 
                 <li class="nav-header">ADD NEW USER</li>
-                    <a href="../bed-master_key/add.adviser.php" class="nav-link">
+                    <a href="../bed-principal/add.adviser.php" class="nav-link">
                         <i class="nav-icon fas fa-user-plus"></i>
                         <p>
                             Add Adviser
@@ -484,7 +484,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="../bed-master_key/add.teacher.php" class="nav-link">
+                    <a href="../bed-principal/add.teacher.php" class="nav-link">
                         <i class="nav-icon fas fa-user-plus"></i>
                         <p>
                             Add Teacher

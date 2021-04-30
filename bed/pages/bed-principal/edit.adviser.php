@@ -6,6 +6,11 @@ ob_start();
 require '../../includes/bed-session.php';
 
 $ad_id = $_GET['ad_id'];
+if ($_SESSION['role'] == "Adviser") {
+    if ($ad_id != $_SESSION['ad_id']) {
+        header('location: ../bed-404/page404.php');
+    }
+}
 $_SESSION['get-adID'] = $ad_id;
 ?>
 

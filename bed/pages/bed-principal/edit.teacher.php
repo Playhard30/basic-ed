@@ -6,6 +6,11 @@ ob_start();
 require '../../includes/bed-session.php';
 
 $teacher_id = $_GET['teacher_id'];
+if ($_SESSION['role'] == "Teacher") {
+    if ($teacher_id != $_SESSION['teacher_id']) {
+        header('location: ../bed-404/page404.php');
+    }
+}
 $_SESSION['get-teacherID'] = $teacher_id;
 ?>
 
