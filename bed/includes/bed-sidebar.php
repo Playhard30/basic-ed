@@ -433,22 +433,6 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">ADD NEW USER</li>
-                    <a href="../bed-master_key/add.adviser.php" class="nav-link">
-                        <i class="nav-icon fas fa-user-plus"></i>
-                        <p>
-                            Add Adviser
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="../bed-master_key/add.teacher.php" class="nav-link">
-                        <i class="nav-icon fas fa-user-plus"></i>
-                        <p>
-                            Add Teacher
-                        </p>
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-binoculars"></i>
@@ -490,9 +474,24 @@
                             </a>
                         </li>
                     </ul>
+                
+                <li class="nav-header">ADD NEW USER</li>
+                    <a href="../bed-master_key/add.adviser.php" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>
+                            Add Adviser
+                        </p>
+                    </a>
                 </li>
-
-                ';
+                <li class="nav-item">
+                    <a href="../bed-master_key/add.teacher.php" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>
+                            Add Teacher
+                        </p>
+                    </a>
+                </li>
+                </li>';
                 } elseif ($_SESSION['role'] == "Admission") {
                     echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
