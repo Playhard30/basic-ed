@@ -448,7 +448,51 @@
                             Add Teacher
                         </p>
                     </a>
-                </li>';
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-binoculars"></i>
+                        <p>
+                            View Subjects
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/abm.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> ABM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/gas.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> GAS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/humss.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> HUMSS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/stem.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> STEM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/tvl.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> TVL</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                ';
                 } elseif ($_SESSION['role'] == "Admission") {
                     echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
