@@ -736,6 +736,7 @@
             echo ' <a href="../bed-master_key/edit.principal.php?prin_id= ' . $prin_id . '"
             class="btn btn-link pos-right mr-1 text-gray" data-toggle="tooltip" data-placement="top"
             title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
+            // Hindi ko na alam ba't wala boi
         }        
         ?>
 
