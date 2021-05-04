@@ -115,9 +115,9 @@
                with font-awesome or any other icon font library -->
 
                 <!-- MASTER KEY SIDEBAR -->
-                <?php ?>
+                <?php
                 if ($_SESSION['role'] == "Master Key") {
-                echo '<li class="nav-item menu-open">
+                    echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -227,11 +227,11 @@
                 </li>';
 
 
-                // END OF MASTER KEY
+                    // END OF MASTER KEY
 
 
                 } elseif ($_SESSION['role'] == "Registrar") {
-                echo '<li class="nav-item menu-open">
+                    echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -407,7 +407,7 @@
 
 
                 elseif ($_SESSION['role'] == "Principal") {
-                echo '
+                    echo '
                 <li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -417,7 +417,7 @@
                     </a>
                 </li>';
                 } elseif ($_SESSION['role'] == "Admission") {
-                echo '<li class="nav-item menu-open">
+                    echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -426,7 +426,7 @@
                     </a>
                 </li>';
                 } elseif ($_SESSION['role'] == "Teacher") {
-                echo '<li class="nav-item menu-open">
+                    echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -435,7 +435,7 @@
                     </a>
                 </li>';
                 } elseif ($_SESSION['role'] == "Adviser") {
-                echo '<li class="nav-item menu-open">
+                    echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -564,9 +564,7 @@
                                 <i class="fa fa-user-plus nav-icon"></i>
                                 <p> Add Student</p>
                             </a>
-                        </li>
-                    </ul>
-                <li class="nav-item">
+                        </li>  <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fa fa-book-medical nav-icon"></i>
                         <p>
@@ -591,9 +589,11 @@
                 </li>
             </ul>
             </li>
+                    </ul>
+              
             ';
-            } elseif ($_SESSION['role'] == "Student") {
-            echo '
+                } elseif ($_SESSION['role'] == "Student") {
+                    echo '
             <li class="nav-item menu-open">
                 <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -618,10 +618,10 @@
                     </p>
                 </a>
             </li>';
-            }
+                }
 
-            // END STUDENT
-            ?>
+                // END STUDENT
+                ?>
 
 
             </ul>
