@@ -474,7 +474,6 @@
                     </ul>
                 </li>
                 <li class="nav-header">ADD NEW USER</li>
-                // To add new user...
                 <li class="nav-item">
                     <a href="../bed-principal/add.adviser.php" class="nav-link">
                         <i class="nav-icon fas fa-user-plus"></i>
@@ -734,12 +733,10 @@
         <a href="../bed-master_key/edit.adviser.php?ad_id= ' . $ad_id . '"
         class="btn btn-link pos-right mr-1 text-gray"><i class="fas fa-user-edit"></i></a>';
         } elseif ($_SESSION['role'] == "Principal") {
-            echo ' <a href="#" class="btn btn-link ml-2"><i class="fas fa-calendar-alt text-gray"></i></a>
-
-        <a href="../bed-principal/edit.principal.php" class="btn btn-link pos-right mr-2 text-gray" data-toggle="tooltip" data-placement="top" title="Edit Profile"><i
-                class="fas fa-user-edit"></i></a>';
+            echo ' <a href="../bed-master_key/edit.principal.php?prin_id= ' . $prin_id . '"
+            class="btn btn-link pos-right mr-1 text-gray" data-toggle="tooltip" data-placement="top"
+            title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
         }
-
         ?>
 
     </div>
