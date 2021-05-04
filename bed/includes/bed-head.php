@@ -41,7 +41,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .custom-file-label {

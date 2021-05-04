@@ -196,15 +196,17 @@ $_SESSION['get_subID'] = $sub_id;
                                 </div>
                                 <!-- /.card-body -->
 
-                                <div class="card-footer row">
-                                    <div class="col">
-                                        <button type="submit" name="submit" class="btn bg-purple"><i
-                                                class="fa fa-check"></i> Update</button>
-                                    </div>
-                                    <div class="justify-content-end mr-1">
-                                        <a href="list.subjectSH.php" class="btn bg-gray"><i
-                                                class="fa fa-arrow-circle-left"></i>
-                                            Back</a>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="submit" name="submit" class="btn bg-purple"><i
+                                                    class="fa fa-check"></i> Update</button>
+                                        </div>
+                                        <div class="justify-content-end mr-2">
+                                            <a href="list.subjectSH.php" class="btn bg-gray"><i
+                                                    class="fa fa-arrow-circle-left"></i>
+                                                Back</a>
+                                        </div>
                                     </div>
                                 </div>
                             </form>

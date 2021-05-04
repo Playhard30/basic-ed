@@ -48,31 +48,39 @@ require '../../includes/bed-session.php';
                             <div class="col-12">
                                 <div class="card shadow">
                                     <div class="card-header bg-navy p-3">
-                                        <h3 class="card-title text-lg">Students List</h3>
+                                        <h3 class="card-title text-lg">Students List </h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <form method="GET">
-                                            <div class="form-group row mb-3 mt-3">
-                                                <div class="input-group col-sm-5 mb-2 ml-auto mr-auto">
-                                                    <div class="input-group-prepend">
-                                                    <button type="submit" name="look" class="btn bg-purple"><i class="fas fa-search"></i></button>
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-4 mb-3 mt-2">
+                                                <form method="GET">
+                                                    <div class="input-group">
+                                                        <input type="search" class="form-control"
+                                                            placeholder="Search for (Student no. or Name)"
+                                                            name="search">
+                                                        <div class="input-group-append">
+                                                            <button type="submit" name="look" class="btn bg-navy"
+                                                                data-toggle="tooltip" data-placement="bottom"
+                                                                title="Search">
+                                                                <i class="fa fa-search"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <input name="search" type="text" class="form-control" placeholder="Search for Student">
-
-                                                </div>
+                                                </form>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="card-body">
+                                        </div>
+
+                                        <hr class="bg-navy">
+
                                         <table id="example2" class="table table-hover">
                                             <thead class="bg-gray-light">
                                                 <tr>
                                                     <th>Image</th>
+                                                    <th>Student ID</th>
                                                     <th>Fullname</th>
                                                     <th>Gender</th>
                                                     <th>Email</th>
-                                                    <th>Username</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -81,30 +89,44 @@ require '../../includes/bed-session.php';
                                                 <?php include '../../includes/bed-head.php';
 
                                                 if (isset($_GET['look'])) {
-                                                $_GET['search'] = addslashes($_GET['search']);    
-                                                $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_students.student_lname, ', ', tbl_students.student_fname, ' ', tbl_students.student_mname) AS fullname 
+
+                                                    $_GET['search'] = addslashes($_GET['search']);
+
+                                                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_students.student_lname, ', ', tbl_students.student_fname, ' ', tbl_students.student_mname) AS fullname 
                                                 FROM tbl_students
                                                 LEFT JOIN tbl_genders ON tbl_genders.gender_id = tbl_students.gender_id
-                                                WHERE (student_fname LIKE '%$_GET[search]%' OR student_mname LIKE '%$_GET[search]%' OR student_lname  LIKE '%$_GET[search]%' OR stud_no LIKE '%$_GET[search]%') ORDER BY stud_no DESC
-                                                ")  or die(mysqli_error($conn));
-                                                while ($row = mysqli_fetch_array($get_user)) {
+                                                WHERE (student_fname LIKE '%$_GET[search]%' 
+                                                OR student_mname LIKE '%$_GET[search]%'
+                                                OR student_lname  LIKE '%$_GET[search]%' 
+                                                OR stud_no LIKE '%$_GET[search]%')                         
+                                                ORDER BY student_id DESC
+                                                ") or die(mysqli_error($conn));
+                                                    while ($row = mysqli_fetch_array($get_user)) {
                                                         $id = $row['student_id'];
+                                                        $_SESSION['stud_no'] = $row['stud_no'];
                                                 ?>
                                                 <tr>
                                                     <td>
-                                                        <img src="data:image/jpeg;base64, <?php echo base64_encode($row['img']);  ?>"
-                                                            class="img zoom " alt="User image"
-                                                            style="height: 80px; width: 100px">
+                                                        <?php if (!empty(base64_encode($row['img']))) {
+                                                                    echo '
+                                                        <img src="data:image/jpeg;base64,'  . base64_encode($row['img']) . '"
+                                                        class="img zoom " alt="User image"
+                                                        style="height: 80px; width: 100px">';
+                                                                } else {
+                                                                    echo ' <img src="../../../assets/img/red_user.jpg" class="img zoom"
+                                                            alt="User image" style="height: 80px; width: 100px">';
+                                                                } ?>
                                                     </td>
+                                                    <td><?php echo $row['stud_no']; ?></td>
                                                     <td><?php echo $row['fullname']; ?></td>
                                                     <td><?php echo $row['gender_name']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
-                                                    <td><?php echo $row['username']; ?></td>
-                                                    <td><a href="edit.registrar.student.php<?php echo '?student_id=' . $id; ?>"
+
+                                                    <td><a href="edit.infoStud.php? <?php echo 'stud_id=' . $id ?>"
                                                             type="button"
                                                             class="btn bg-lightblue text-sm p-2 mb-md-2"><i
                                                                 class="fa fa-edit"></i>
-                                                            Update
+                                                            Edit Info
                                                         </a>
 
                                                         <!-- Button trigger modal -->
@@ -138,7 +160,7 @@ require '../../includes/bed-session.php';
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close</button>
-                                                                        <a href="userData/ctrl.del.registrar.student.php<?php echo '?student_id=' . $id; ?>"
+                                                                        <a href="userData/ctrl.delStud.php<?php echo '?student_id=' . $id; ?>"
                                                                             type="button"
                                                                             class="btn btn-danger">Delete</a>
                                                                     </div>
@@ -147,7 +169,8 @@ require '../../includes/bed-session.php';
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            <?php }} ?>
+                                                <?php }
+                                                } ?>
                                             </tbody>
                                         </table>
                                     </div>

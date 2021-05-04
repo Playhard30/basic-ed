@@ -14,7 +14,7 @@ require '../../includes/bed-session.php';
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Add Students</title>
+    <title>SFAC | Teacher Sign up </title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -28,7 +28,7 @@ require '../../includes/bed-session.php';
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link disabled text-light">Add Students</a>
+                    <a href="#" class="nav-link disabled text-light">Add Teacher</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link disabled text-light">Basic Education</a>
@@ -48,53 +48,77 @@ require '../../includes/bed-session.php';
                     <div class="container-fluid pl-5 pr-5 pb-3">
                         <div class="card card-info shadow-lg">
                             <div class="card-header">
-                                <h3 class="card-title">Student Sign up Form</h3>
+                                <h3 class="card-title">Teacher Sign up Form</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form action="userData/ctrl.addStud.php" enctype="multipart/form-data" method="POST">
+                            <form action="ctrl.data/ctrl.add.teacher.php" enctype="multipart/form-data" method="POST">
                                 <div class="card-body">
+                                    <div class="form-group mb-4">
+                                        <label for="exampleInputFile"></label>
 
-                                    <div class="row mb-4 mt-4 justify-content-center">
-                                        <div class="input-group col-sm-5 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
+
+                                        <div class="custom-file">
+                                            <div class="text-center">
+                                                <img class="img-fluid img-circle" src="../../../assets/img/user.png "
+                                                    alt="User profile picture" style="width: 145px; height: 145px;">
                                             </div>
-                                            <input type="text" class="form-control" name="studno"
-                                                placeholder="Student ID" required>
+
+
+                                            <div class="row">
+                                                <div class="form-group mr-auto ml-auto col-md-4">
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input type="file" name="image" required
+                                                                class="custom-file-input" id="customFile">
+                                                            <label class="custom-file-label" for="customFile">Choose
+                                                                image</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mb-4 mt-5">
+                                        <div class="input-group col-sm-4 mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="firstname"
+                                                placeholder="Firstname">
                                         </div>
 
 
-                                        <div class="input-group col-sm-5 mb-2">
+                                        <div class="input-group col-sm-4 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
+                                                <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="lrn"
-                                                placeholder="Learner Reference Number(LRN)" required>
+                                            <input type="text" class="form-control" name="lastname"
+                                                placeholder="Lastname">
                                         </div>
 
+                                        <div class="input-group col-sm-4 mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="midname"
+                                                placeholder="Middlename">
+                                        </div>
                                     </div>
 
 
                                     <div class="row mb-4">
-
-
-                                        <!-- <div class="form-group col-sm-6 mb-2">
+                                        <div class="input-group col-sm-6 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
-                                                <select class="form-control select2 select2-info"
-                                                    data-placeholder="Select Grade Level"
-                                                    data-dropdown-css-class="select2-info" style="width: 100%;">
-                                                    <option selected="selected">
-                                                        Select Grade Level
-                                                    </option>
-                                                </select>
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                             </div>
-                                        </div> -->
-                                        <!-- /.form-group -->
+                                            <input type="email" class="form-control" name="email"
+                                                placeholder="Email Address" required>
+                                        </div>
 
-
-                                        <div class="input-group col-sm-5 mb-2 ml-auto mr-auto">
+                                        <div class="input-group col-sm-6 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
@@ -104,8 +128,8 @@ require '../../includes/bed-session.php';
                                     </div>
 
 
-                                    <div class="row mb-4 justify-content-center">
-                                        <div class="input-group col-sm-5 mb-2">
+                                    <div class="row mb-4">
+                                        <div class="input-group col-sm-6 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                             </div>
@@ -114,7 +138,7 @@ require '../../includes/bed-session.php';
                                         </div>
 
 
-                                        <div class="input-group col-sm-5 mb-2">
+                                        <div class="input-group col-sm-6 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                             </div>
@@ -142,41 +166,6 @@ require '../../includes/bed-session.php';
 
             <!-- Footer and script -->
             <?php include '../../includes/bed-footer.php';  ?>
-            <?php if (isset($_SESSION['double-studno'])) {
-                echo "<script>
-$(function() {
-    var Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000
-    });
-    $('.swalDefaultError')
-    Toast.fire({
-        icon: 'error',
-        title:  'Student ID already exists.'
-    });
-});
-</script>";
-            } elseif (isset($_SESSION['double-lrn'])) {
-                echo "<script>
-$(function() {
-    var Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000
-    });
-    $('.swalDefaultError')
-    Toast.fire({
-        icon: 'error',
-        title:  'LRN already exists.'
-    });
-});
-</script>";
-            }
-            unset($_SESSION['double-lrn']);
-            unset($_SESSION['double-studno']); ?>
 
 
 

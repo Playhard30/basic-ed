@@ -4,34 +4,6 @@ session_start();
 ob_start();
 
 require '../../includes/bed-session.php';
-
-if (isset($_POST['g1'])) {
-    $grd_lvl = $_POST['g1'];
-} elseif (isset($_POST['g2'])) {
-    $grd_lvl = $_POST['g2'];
-} elseif (isset($_POST['g3'])) {
-    $grd_lvl = $_POST['g3'];
-} elseif (isset($_POST['g4'])) {
-    $grd_lvl = $_POST['g4'];
-} elseif (isset($_POST['g5'])) {
-    $grd_lvl = $_POST['g5'];
-} elseif (isset($_POST['g6'])) {
-    $grd_lvl = $_POST['g6'];
-} elseif (isset($_POST['g7'])) {
-    $grd_lvl = $_POST['g7'];
-} elseif (isset($_POST['g8'])) {
-    $grd_lvl = $_POST['g8'];
-} elseif (isset($_POST['g9'])) {
-    $grd_lvl = $_POST['g9'];
-} elseif (isset($_POST['g10'])) {
-    $grd_lvl = $_POST['g10'];
-} elseif (isset($_POST['nurs'])) {
-    $grd_lvl = $_POST['nurs'];
-} elseif (isset($_POST['pkdr'])) {
-    $grd_lvl = $_POST['pkdr'];
-} elseif (isset($_POST['kdr'])) {
-    $grd_lvl = $_POST['kdr'];
-}
 ?>
 
 
@@ -41,7 +13,7 @@ if (isset($_POST['g1'])) {
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Subjects List</title>
+    <title>SFAC | Adviser List</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -55,7 +27,7 @@ if (isset($_POST['g1'])) {
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link disabled text-light">Subjects List</a>
+                    <a href="#" class="nav-link disabled text-light">Adviser List</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link disabled text-light">Basic Education</a>
@@ -76,107 +48,42 @@ if (isset($_POST['g1'])) {
                             <div class="col-12">
                                 <div class="card shadow">
                                     <div class="card-header bg-navy p-3">
-                                        <h3 class="card-title text-lg">Primary and Junior High Subjects List</h3>
+                                        <h3 class="card-title text-lg">Adviser List</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <form action="list.subjectPJH.php" method="POST">
-
-                                            <div class="row justify-content-center">
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 1" name="g1">
-                                                    <i class="fas fa-list-alt"></i> Grade 1
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 2" name="g2">
-                                                    <i class="fas fa-list-alt"></i> Grade 2
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 3" name="g3">
-                                                    <i class="fas fa-list-alt"></i> Grade 3
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 4" name="g4">
-                                                    <i class="fas fa-list-alt"></i> Grade 4
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 5" name="g5">
-                                                    <i class="fas fa-list-alt"></i> Grade 5
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 6" name="g6">
-                                                    <i class="fas fa-list-alt"></i> Grade 6
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 7" name="g7">
-                                                    <i class="fas fa-list-alt"></i> Grade 7
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 8" name="g8">
-                                                    <i class="fas fa-list-alt"></i> Grade 8
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 9" name="g9">
-                                                    <i class="fas fa-list-alt"></i> Grade 9
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 10" name="g10">
-                                                    <i class="fas fa-list-alt"></i> Grade 10
-                                                </button>
-                                                <div>
-                                                    <button class="btn btn-app bg-gray-light" value="Nursery"
-                                                        name="nurs">
-                                                        <i class="fas fa-list-alt"></i> Nursery
-                                                    </button>
-
-                                                    <button class="btn btn-app bg-gray-light" value="PreKinder"
-                                                        name="pkdr">
-                                                        <i class="fas fa-list-alt"></i> PreKinder
-                                                    </button>
-
-                                                    <button class="btn btn-app bg-gray-light" value="Kinder" name="kdr">
-                                                        <i class="fas fa-list-alt"></i> Kinder
-                                                    </button>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                        <hr class="bg-navy">
-
-
                                         <table id="example2" class="table table-hover">
                                             <thead class="bg-gray-light">
                                                 <tr>
-                                                    <th>Code</th>
-                                                    <th>Description</th>
-                                                    <th>Grade Level</th>
-                                                    <th>Action</th>
+                                                    <th>Image</th>
+                                                    <th>Fullname</th>
+                                                    <th>Email</th>
+                                                    <th>Username</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-                                                <?php if (!empty($grd_lvl)) {
-
-                                                    $get_sub = mysqli_query($conn, "SELECT * FROM tbl_subjects LEFT JOIN
-                                                tbl_grade_levels ON tbl_grade_levels.grade_level_id =
-                                                tbl_subjects.grade_level_id WHERE grade_level IN ('$grd_lvl') ORDER BY subject_id DESC") or die(mysqli_error($conn));
-                                                ?>
+                                                <?php $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_adviser.ad_lname, ', ', tbl_adviser.ad_fname, ' ', tbl_adviser.ad_mname) AS fullname 
+                                                FROM tbl_adviser") ?>
                                                 <tr>
-                                                    <?php while ($row = mysqli_fetch_array($get_sub)) {
-                                                            $id = $row['subject_id'];
-                                                        ?>
-                                                    <td><?php echo $row['subject_code']; ?></td>
-                                                    <td><?php echo $row['subject_description']; ?></td>
-                                                    <td><?php echo $row['grade_level']; ?></td>
-                                                    <td><a href="edit.subjectPJH.php<?php echo '?sub=' . $id; ?>"
+                                                    <?php while ($row = mysqli_fetch_array($get_user)) {
+                                                        $id = $row['ad_id']; ?>
+                                                    <td><img src="data:image/jpeg;base64, <?php echo base64_encode($row['img']);  ?>"
+                                                            class="img zoom " alt="User image"
+                                                            style="height: 80px; width: 100px">
+                                                    </td>
+                                                    <td><?php echo $row['fullname']; ?></td>
+                                                    <td><?php echo $row['email']; ?></td>
+                                                    <td><?php echo $row['username']; ?></td>
+                                                    <td><a href="edit.adviser.php<?php echo '?ad_id=' . $id; ?>"
                                                             type="button"
-                                                            class="btn bg-lightblue text-sm p-2 mb-md-2 mb-2"><i
+                                                            class="btn bg-lightblue text-sm p-2 mb-md-2"><i
                                                                 class="fa fa-edit"></i>
                                                             Update
                                                         </a>
 
                                                         <!-- Button trigger modal -->
-                                                        <a type="button" class="btn bg-red text-sm p-2 mb-md-2 mb-2"
+                                                        <a type="button" class="btn bg-red text-sm p-2 mb-md-2"
                                                             data-toggle="modal"
                                                             data-target="#exampleModal<?php echo $id ?>"><i
                                                                 class="fa fa-trash"></i>
@@ -200,14 +107,13 @@ if (isset($_POST['g1'])) {
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body p-3">
-                                                                        Are you sure you want to delete,
-                                                                        <?php echo $row['subject_code']; ?>
-                                                                        <?php echo $row['subject_description']; ?>?
+                                                                        Are you sure you want to delete
+                                                                        <?php echo $row['fullname']; ?>?
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close</button>
-                                                                        <a href="userData/ctrl.delSubPJH.php<?php echo '?sub=' . $id; ?>"
+                                                                        <a href="ctrl.data/ctrl.del.adviser.php<?php echo '?ad_id=' . $id; ?>"
                                                                             type="button"
                                                                             class="btn btn-danger">Delete</a>
                                                                     </div>
@@ -215,9 +121,7 @@ if (isset($_POST['g1'])) {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                </tr><?php }
-                                                    } else {
-                                                    } ?>
+                                                </tr><?php } ?>
 
                                             </tbody>
                                         </table>
@@ -276,9 +180,6 @@ if (isset($_POST['g1'])) {
                     "info": true,
                     "autoWidth": false,
                     "responsive": true,
-                    "language": {
-                        "emptyTable": "No data available in table.<br> Please select grade level.",
-                    }
                 });
             });
             </script>
