@@ -738,6 +738,7 @@
         <a href="../bed-principal/edit.principal.php" class="btn btn-link pos-right mr-2 text-gray" data-toggle="tooltip" data-placement="top" title="Edit Profile"><i
                 class="fas fa-user-edit"></i></a>';
         }
+
         ?>
 
     </div>
