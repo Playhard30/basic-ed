@@ -59,7 +59,7 @@ require '../../includes/bed-session.php';
                                             <div class="row justify-content-center">
                                                 <div class="input-group col-md-7 mb-2">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text text-sm"><b>Active A.Y
+                                                        <span class="input-group-text text-sm"><b>Active A.Y.
                                                             </b></span>
                                                     </div>
                                                     <select class="form-control select2 select2-purple custom-select"
