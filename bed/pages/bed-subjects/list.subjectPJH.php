@@ -155,18 +155,16 @@ if (isset($_POST['g1'])) {
                                             </thead>
                                             <tbody>
 
-                                                <?php if (empty($grd_lvl)) {
-                                                    $get_sub = mysqli_query($conn, "SELECT * FROM tbl_subjects LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_subjects.grade_level_id WHERE grade_level LIKE '%$_POST[g1]%'");
-                                                } else {
+                                                <?php if (!empty($grd_lvl)) {
 
                                                     $get_sub = mysqli_query($conn, "SELECT * FROM tbl_subjects LEFT JOIN
                                                 tbl_grade_levels ON tbl_grade_levels.grade_level_id =
-                                                tbl_subjects.grade_level_id WHERE grade_level IN ('$grd_lvl') OR grade_level");
-                                                } ?>
+                                                tbl_subjects.grade_level_id WHERE grade_level IN ('$grd_lvl') ORDER BY subject_id DESC") or die(mysqli_error($conn));
+                                                ?>
                                                 <tr>
                                                     <?php while ($row = mysqli_fetch_array($get_sub)) {
-                                                        $id = $row['subject_id'];
-                                                    ?>
+                                                            $id = $row['subject_id'];
+                                                        ?>
                                                     <td><?php echo $row['subject_code']; ?></td>
                                                     <td><?php echo $row['subject_description']; ?></td>
                                                     <td><?php echo $row['grade_level']; ?></td>
@@ -217,7 +215,9 @@ if (isset($_POST['g1'])) {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                </tr><?php } ?>
+                                                </tr><?php }
+                                                    } else {
+                                                    } ?>
 
                                             </tbody>
                                         </table>
@@ -276,7 +276,9 @@ if (isset($_POST['g1'])) {
                     "info": true,
                     "autoWidth": false,
                     "responsive": true,
-
+                    "language": {
+                        "emptyTable": "No data available in table.<br> Please select grade level.",
+                    }
                 });
             });
             </script>

@@ -11,13 +11,26 @@ if (isset($_POST['submit'])) {
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
 
-    if ($password != $password2) {
-        $_SESSION['error-pass'] = true;
+    $check_studno = mysqli_query($conn, "SELECT * FROM tbl_students WHERE stud_no = '$studno'") or die(mysqli_error($conn));
+    $check_lrn = mysqli_query($conn, "SELECT * FROM tbl_students WHERE lrn = '$lrn'") or die(mysqli_error($conn));
+    $result = mysqli_num_rows($check_studno);
+    $result2 = mysqli_num_rows($check_lrn);
+
+    if ($result > 0) {
+        $_SESSION['double-studno'] = true;
+        header('location: ../add.student.php');
+    } elseif ($result2 > 0) {
+        $_SESSION['double-lrn'] = true;
         header('location: ../add.student.php');
     } else {
-        $hashpwd = password_hash($password, PASSWORD_BCRYPT);
-        $insertUser = mysqli_query($conn, "INSERT INTO tbl_students (stud_no, lrn, username, password) VALUES ('$studno', '$lrn', '$username', '$hashpwd')") or die(mysqli_error($conn));
-        $_SESSION['success'] = true;
-        header('location: ../add.student.php');
+        if ($password != $password2) {
+            $_SESSION['error-pass'] = true;
+            header('location: ../add.student.php');
+        } else {
+            $hashpwd = password_hash($password, PASSWORD_BCRYPT);
+            $insertUser = mysqli_query($conn, "INSERT INTO tbl_students (stud_no, lrn, username, password) VALUES ('$studno', '$lrn', '$username', '$hashpwd')") or die(mysqli_error($conn));
+            $_SESSION['success'] = true;
+            header('location: ../add.student.php');
+        }
     }
 }

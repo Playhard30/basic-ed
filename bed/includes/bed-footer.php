@@ -82,6 +82,7 @@ $(function() {
         'placeholder': 'dd/mm/yyyy'
     })
     $('[data-mask]').inputmask()
+    $('[data-toggle="tooltip"]').tooltip()
 });
 </script>
 

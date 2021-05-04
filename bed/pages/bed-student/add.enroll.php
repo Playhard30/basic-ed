@@ -14,7 +14,7 @@ require '../../includes/bed-session.php';
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Add Students</title>
+    <title>SFAC | Enroll Now</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -28,7 +28,7 @@ require '../../includes/bed-session.php';
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link disabled text-light">Add Students</a>
+                    <a href="#" class="nav-link disabled text-light">Enroll Now</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link disabled text-light">Basic Education</a>
@@ -46,31 +46,32 @@ require '../../includes/bed-session.php';
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid pl-5 pr-5 pb-3">
-                        <div class="card card-info shadow-lg">
+                        <div class="card card-lightblue shadow-lg">
                             <div class="card-header">
-                                <h3 class="card-title">Student Sign up Form</h3>
+                                <h3 class="card-title">Enrollment Form</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
+                            <?php $get_stud = mysqli_query($conn, "SELECT *, CONCAT (tbl_students.student_lname, tbl_students.student_fname, tbl_students.student_mname) AS fullname FROM tbl_students WHERE ") ?>
                             <form action="userData/ctrl.addStud.php" enctype="multipart/form-data" method="POST">
                                 <div class="card-body">
 
                                     <div class="row mb-4 mt-4 justify-content-center">
                                         <div class="input-group col-sm-5 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
+                                                <span class="input-group-text text-sm"><b>Student ID</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="studno"
-                                                placeholder="Student ID" required>
+                                                placeholder="Student ID" required disabled>
                                         </div>
 
 
                                         <div class="input-group col-sm-5 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
+                                                <span class="input-group-text text-sm"><b>Name</b></span>
                                             </div>
-                                            <input type="text" class="form-control" name="lrn"
-                                                placeholder="Learner Reference Number(LRN)" required>
+                                            <input type="text" class="form-control" name="lrn" placeholder="Name"
+                                                required disabled>
                                         </div>
 
                                     </div>
@@ -126,8 +127,8 @@ require '../../includes/bed-session.php';
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" name="submit" class="btn btn-info"><i
-                                            class="fa fa-user-plus"></i> Add</button>
+                                    <button type="submit" name="submit" class="btn bg-lightblue"><i
+                                            class="fa fa-check"></i> Enroll Now</button>
                                 </div>
                             </form>
                         </div>
