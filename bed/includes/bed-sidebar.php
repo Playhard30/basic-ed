@@ -400,7 +400,7 @@
                     </ul>
                 </li>
                 ';
-                }   
+                }
 
                 // END REGISTRAR
 
@@ -472,8 +472,9 @@
                             </a>
                         </li>
                     </ul>
-                    </li>
+                </li>
                 <li class="nav-header">ADD NEW USER</li>
+                <li class="nav-item">
                     <a href="../bed-principal/add.adviser.php" class="nav-link">
                         <i class="nav-icon fas fa-user-plus"></i>
                         <p>
@@ -637,33 +638,34 @@
                                 <i class="fa fa-user-plus nav-icon"></i>
                                 <p> Add Student</p>
                             </a>
-                        </li>  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="fa fa-book-medical nav-icon"></i>
-                        <p>
-                            Add Subject
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="../bed-subjects/add.sub.senior.php" class="nav-link">
-                                <i class="fa fa-plus nav-icon"></i>
-                                <p> Senior High</p>
-                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../bed-subjects/add.sub.k-10.php" class="nav-link">
-                                <i class="fa fa-plus nav-icon"></i>
-                                <p> Primary - Junior High</p>
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-book-medical nav-icon"></i>
+                                <p>
+                                    Add Subject
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/add.sub.senior.php" class="nav-link">
+                                        <i class="fa fa-plus nav-icon"></i>
+                                        <p> Senior High</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/add.sub.k-10.php" class="nav-link">
+                                        <i class="fa fa-plus nav-icon"></i>
+                                        <p> Primary - Junior High</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
             </ul>
-            </li>
-                    </ul>
-              
+
             ';
                 } elseif ($_SESSION['role'] == "Student") {
                     echo '
@@ -735,7 +737,7 @@
 
         <a href="../bed-principal/edit.principal.php" class="btn btn-link pos-right mr-2 text-gray" data-toggle="tooltip" data-placement="top" title="Edit Profile"><i
                 class="fas fa-user-edit"></i></a>';
-        }        
+        }
         ?>
 
     </div>
