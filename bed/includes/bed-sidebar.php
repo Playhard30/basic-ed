@@ -474,6 +474,7 @@
                     </ul>
                 </li>
                 <li class="nav-header">ADD NEW USER</li>
+                // To add new user...
                 <li class="nav-item">
                     <a href="../bed-principal/add.adviser.php" class="nav-link">
                         <i class="nav-icon fas fa-user-plus"></i>
