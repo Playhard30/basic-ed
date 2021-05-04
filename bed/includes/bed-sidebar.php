@@ -263,7 +263,7 @@
                         <li class="nav-item">
                             <a href="../bed-student/list.student.php" class="nav-link">
                                 <i class="fa fa-restroom nav-icon"></i>
-                                <p> Students List</p>
+                                <p> Student List</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -444,6 +444,72 @@
                         </p>
                     </a>
                 </li>
+
+                 <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Maintenance
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-student/list.student.php" class="nav-link">
+                                <i class="fa fa-restroom nav-icon"></i>
+                                <p> Students List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Subjets List
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/list.subjectSH.php" class="nav-link">
+                                        <i class="fa fa-list-alt nav-icon"></i>
+                                        <p> Senior High</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/list.subjectPJH.php" class="nav-link">
+                                        <i class="fa fa-list-alt nav-icon"></i>
+                                        <p> Primary - Junior High</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                 <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-folder"></i>
+                        <p>
+                            Forms
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-file-pdf nav-icon"></i>
+                                <p> Pre-Enrollment</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-forms/regform.php" class="nav-link">
+                                <i class="fa fa-file-pdf nav-icon"></i>
+                                <p> Registration</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-binoculars"></i>
@@ -485,7 +551,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+               <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-file-medical"></i>
                         <p>
@@ -500,7 +566,32 @@
                                 <p> Add Student</p>
                             </a>
                         </li>
-                        </ul>';
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-book-medical nav-icon"></i>
+                                <p>
+                                    Add Subject
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/add.sub.senior.php" class="nav-link">
+                                        <i class="fa fa-plus nav-icon"></i>
+                                        <p> Senior High</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/add.sub.k-10.php" class="nav-link">
+                                        <i class="fa fa-plus nav-icon"></i>
+                                        <p> Primary - Junior High</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                ';
                 } elseif ($_SESSION['role'] == "Student") {
                     echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
@@ -545,6 +636,11 @@
             echo ' <a href="#" class="btn btn-link ml-2"><i class="fas fa-calendar-alt text-gray"></i></a>
         <a href="../bed-student/edit.student.php"
         class="btn btn-link pos-right mr-2 text-gray"><i class="fas fa-user-edit"></i></a>';
+        } elseif ($_SESSION['role'] == "Adviser") {
+            echo ' <a href="../bed-date/add.date.php" class="btn btn-link ml-1 mr-4"><i class="fas fa-calendar-plus text-gray"></i></a>
+            <a href="../bed-date/set.date.php" class="btn btn-link ml-4 mr-auto"><i class="fas fa-calendar-alt text-gray"></i></a>
+        <a href="../bed-master_key/edit.adviser.php?ad_id= ' . $ad_id . '"
+        class="btn btn-link pos-right mr-1 text-gray"><i class="fas fa-user-edit"></i></a>';
         }
         ?>
 
