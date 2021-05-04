@@ -153,28 +153,22 @@ if (isset($_POST['stem'])) {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php if (empty($efacadyear)) {
-                                                    $get_subjects = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior
-                                                    LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_subjects_senior.grade_level_id
-                                                    LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_subjects_senior.semester_id
-                                                    LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_subjects_senior.strand_id 
-                                                    LEFT JOIN tbl_efacadyears ON tbl_efacadyears.efacadyear_id = tbl_subjects_senior.efacadyear_id
-                                                    WHERE tbl_strands.strand_name IN ('') AND tbl_efacadyears.efacadyear IN ('')");
-                                                } else {
+                                                <?php if (!empty($efacadyear)) {
+
                                                     $get_subjects = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior
                                                 LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_subjects_senior.grade_level_id
                                                 LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_subjects_senior.semester_id
                                                 LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_subjects_senior.strand_id
                                                 LEFT JOIN tbl_efacadyears ON tbl_efacadyears.efacadyear_id = tbl_subjects_senior.efacadyear_id
-                                                WHERE tbl_strands.strand_name IN ('$str_name') AND tbl_efacadyears.efacadyear IN ('$efacadyear')");
-                                                }
+                                                WHERE tbl_strands.strand_name IN ('$str_name') AND tbl_efacadyears.efacadyear IN ('$efacadyear') ORDER BY subject_id DESC") or die(mysqli_error($conn));
+
                                                 ?>
 
 
                                                 <tr>
                                                     <?php while ($row = mysqli_fetch_array($get_subjects)) {
-                                                        $id = $row['subject_id'];
-                                                    ?>
+                                                            $id = $row['subject_id'];
+                                                        ?>
                                                     <td><?php echo $row['subject_code']; ?></td>
                                                     <td><?php echo $row['subject_description']; ?></td>
                                                     <td><?php echo $row['units']; ?></td>
@@ -228,7 +222,8 @@ if (isset($_POST['stem'])) {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                </tr><?php } ?>
+                                                </tr><?php }
+                                                    } ?>
 
                                             </tbody>
                                         </table>
@@ -288,7 +283,7 @@ if (isset($_POST['stem'])) {
                     "autoWidth": false,
                     "responsive": true,
                     "language": {
-                        "emptyTable": "No data available in table",
+                        "emptyTable": "No data available in table.<br> Please select strand and E.A.Y",
                     }
 
 
