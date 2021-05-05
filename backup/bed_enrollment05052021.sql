@@ -11,7 +11,7 @@
  Target Server Version : 100417
  File Encoding         : 65001
 
- Date: 05/05/2021 00:09:25
+ Date: 05/05/2021 13:40:22
 */
 
 SET NAMES utf8mb4;
@@ -89,14 +89,15 @@ CREATE TABLE `tbl_active_quarters`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_active_semesters`;
 CREATE TABLE `tbl_active_semesters`  (
-  `active_semester_id` int(100) NOT NULL AUTO_INCREMENT,
-  `semester_id` int(100) NOT NULL,
+  `active_semester_id` int(10) NOT NULL AUTO_INCREMENT,
+  `semester_id` int(10) NOT NULL,
   PRIMARY KEY (`active_semester_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_active_semesters
 -- ----------------------------
+INSERT INTO `tbl_active_semesters` VALUES (1, 2);
 
 -- ----------------------------
 -- Table structure for tbl_admissions
