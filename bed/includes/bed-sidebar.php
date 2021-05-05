@@ -736,6 +736,11 @@
             echo ' <a href="../bed-master_key/edit.principal.php?prin_id= ' . $prin_id . '"
             class="btn btn-link pos-right mr-1 text-gray" data-toggle="tooltip" data-placement="top"
             title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
+        } elseif ($_SESSION['role'] == "Admission") {
+            echo ' <a href="../bed-date/add.date.php" class="btn btn-link ml-1 mr-4"><i class="fas fa-calendar-plus text-gray"></i></a>
+            <a href="../bed-date/set.date.php" class="btn btn-link ml-4 mr-auto"><i class="fas fa-calendar-alt text-gray"></i></a>
+        <a href="../bed-master_key/edit.admission.php?admission_id= ' . $admission_id . '"
+        class="btn btn-link pos-right mr-1 text-gray"><i class="fas fa-user-edit"></i></a>';
         }
         ?>
 
