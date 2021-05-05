@@ -1,9 +1,45 @@
-<footer class="main-footer">
+<footer class="main-footer pb-md-0">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-sm-6 col-6 mr-3">
+            <div class="info-box border">
+                <span class="info-box-icon bg-navy"><i class="far fa-bookmark"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Academic Year</span>
+                    <?php $get_acadyear = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears LEFT JOIN tbl_acadyears ON tbl_acadyears.ay_id = tbl_active_acadyears.ay_id");
+                    while ($row = mysqli_fetch_array($get_acadyear)) { ?>
+
+                    <span class="info-box-number"><?php echo $row['academic_year'];
+                                                    } ?></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <div class="col-md-4 col-sm-6 col-6 mr-3">
+            <div class="info-box border">
+                <span class="info-box-icon bg-navy"><i class="far fa-calendar-check"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Semester</span>
+                    <?php $get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id");
+                    while ($row = mysqli_fetch_array($get_sem)) { ?>
+                    <span class="info-box-number"><?php echo $row['semester'];
+                                                    } ?></span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+    </div>
+    <hr class="mt-0 pt-0">
     <strong><a href="#">SFAC Bacoor</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
         <b>Copyright</b>&copy; 2021
     </div>
+
+
 </footer>
 
 <!-- Control Sidebar -->

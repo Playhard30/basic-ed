@@ -118,11 +118,18 @@ require '../../includes/bed-session.php';
                                                         data-placeholder="Select Semester"
                                                         data-dropdown-css-class="select2-purple" name="act_sem">
                                                         <option value="" disabled></option>
-                                                        <?php $get_sem = mysqli_query($conn, "SELECT * FROM tbl_semesters") or die(mysqli_error($conn));
-                                                        while ($row = mysqli_fetch_array($get_sem)) {
+                                                        <?php $sltd_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id") or die(mysqli_error($conn));
+                                                        while ($row1 = mysqli_fetch_array($sltd_sem)) {
                                                         ?>
+                                                        <option value="<?php echo $row1['semester_id'];  ?>">
+                                                            <?php echo $row1['semester'];
+                                                                ?></option>
+                                                        <?php $get_sem = mysqli_query($conn, "SELECT * FROM tbl_semesters WHERE semester_id NOT IN (" . $row1['semester_id'] . ")") or die(mysqli_error($conn));
+                                                            while ($row = mysqli_fetch_array($get_sem)) {
+                                                            ?>
                                                         <option value="<?php echo $row['semester_id']; ?>">
                                                             <?php echo $row['semester'];
+                                                            }
                                                         } ?></option>
                                                     </select>
                                                 </div>
