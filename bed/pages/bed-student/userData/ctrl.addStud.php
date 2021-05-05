@@ -16,12 +16,18 @@ if (isset($_POST['submit'])) {
     $result = mysqli_num_rows($check_studno);
     $result2 = mysqli_num_rows($check_lrn);
 
-    if ($result > 0) {
-        $_SESSION['double-studno'] = true;
-        header('location: ../add.student.php');
-    } elseif ($result2 > 0) {
-        $_SESSION['double-lrn'] = true;
-        header('location: ../add.student.php');
+    if ($result > 0 || $result2 > 0) {
+
+        if ($result > 0 && $result2 > 0) {
+            $_SESSION['lrn-studno'] = true;
+            header('location: ../add.student.php');
+        } elseif ($result2 > 0) {
+            $_SESSION['double-lrn'] = true;
+            header('location: ../add.student.php');
+        } elseif ($result > 0) {
+            $_SESSION['double-studno'] = true;
+            header('location: ../add.student.php');
+        }
     } else {
         if ($password != $password2) {
             $_SESSION['error-pass'] = true;

@@ -70,7 +70,7 @@ require '../../includes/bed-session.php';
                                                 <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="lrn"
-                                                placeholder="Learner Reference Number(LRN)" required>
+                                                placeholder="Learner Reference Number(LRN)">
                                         </div>
 
                                     </div>
@@ -174,7 +174,24 @@ $(function() {
     });
 });
 </script>";
+            } elseif (isset($_SESSION['lrn-studno'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'Student ID and LRN are already exists.'
+    });
+});
+</script>";
             }
+            unset($_SESSION['lrn-studno']);
             unset($_SESSION['double-lrn']);
             unset($_SESSION['double-studno']); ?>
 
