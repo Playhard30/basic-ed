@@ -361,7 +361,41 @@ session_start();
             </div>
         </div>
     </div> -->
+    <section class="slide fade-6 kenBurns fromLeft">
+        <div class="content">
+            <div class="container">
+                <div class="wrap">
 
+                    <div class="fix-12-12">
+                        <div class="fix-8-12 left toRight">
+                            <h1 class="ae-1">Enroll Now| <b>Be one of us</b></h1>
+                            <p class="ae-2 h4"><span class="opacity-8"></span></p>
+                            <ul class="flex">
+                                    <li class="col-6-12 ae-3">
+                                        <h3 class="margin-top-3">Pre-School</h3>    
+                                         <a href="bed/pages/bed-online-enrollment/online_enrollment_ps.php"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
+                                    </li>
+                                    <li class="col-6-12 ae-4">
+                                        <h3 class="margin-top-3">Elementary</h3>
+                                         <a href="bed/pages/bed-online-enrollment/online_enrollment_gs.php"  name="pre-loader"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
+                                    </li>
+                                    <li class="col-6-12 ae-5">
+                                        <h3 class="margin-top-3">Junior High School</h3>
+                                         <a href="bed/pages/bed-online-enrollment/online_enrollment_jhs.php"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
+                                    </li>
+                                    <li class="col-6-12 ae-6">
+                                        <h3 class="margin-top-3">Senior High School</h3>
+                                        <a href="bed/pages/bed-online-enrollment/online_enrollment_shs.php"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
+                                    </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="background" style="background-image:url(assets/img/background/bg-3.jpg)"></div>
+    </section>
 
     <!-- Slide 2 (#15) -->
     <section class="slide fade-6 kenBurns fromLeft">
@@ -589,6 +623,7 @@ session_start();
 
     <!-- Loading Progress Bar -->
     <div class="progress-bar blue"></div>
+
 
 </body>
 
