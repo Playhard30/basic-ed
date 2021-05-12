@@ -46,7 +46,7 @@ require '../../includes/bed-session.php';
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid pl-5 pr-5 pb-3">
-                        <div class="card card-lightblue shadow-lg">
+                        <div class="card card-info shadow-lg">
                             <div class="card-header">
                                 <h3 class="card-title">Enrollment Form</h3>
                             </div>

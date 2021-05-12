@@ -3,6 +3,7 @@ require '../../includes/conn.php';
 session_start();
 ob_start();
 
+
 require '../../includes/bed-session.php';
 
 if (!empty($_GET['eay'])) {
@@ -24,6 +25,8 @@ if (isset($_GET['stem'])) {
 
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,15 +69,15 @@ if (isset($_GET['stem'])) {
                             <div class="col-12">
                                 <div class="card shadow">
                                     <div class="card-header bg-navy p-3">
-                                        <h3 class="card-title">Senior High Subjects List -<?php if (isset($_GET['stem'])) {
+                                        <h3 class="card-title">Senior High Subjects List -<?php if (isset($_POST['stem'])) {
                                                                                                 echo ' STEM';
-                                                                                            } elseif (isset($_GET['abm'])) {
+                                                                                            } elseif (isset($_POST['abm'])) {
                                                                                                 echo ' ABM';
-                                                                                            } elseif (isset($_GET['gas'])) {
+                                                                                            } elseif (isset($_POST['gas'])) {
                                                                                                 echo ' GAS';
-                                                                                            } elseif (isset($_GET['humss'])) {
+                                                                                            } elseif (isset($_POST['humss'])) {
                                                                                                 echo ' HUMSS';
-                                                                                            } elseif (isset($_GET['tvl'])) {
+                                                                                            } elseif (isset($_POST['tvl'])) {
                                                                                                 echo ' TVL-HE';
                                                                                             } else {
                                                                                                 echo ' STEM';
@@ -84,7 +87,7 @@ if (isset($_GET['stem'])) {
 
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <form action="list.subjectSH.php" method="GET">
+                                        <form action="list.activeSubSH.php" method="GET">
 
                                             <div class="row justify-content-center">
                                                 <button class="btn btn-app bg-gray-light" value="STEM" name="stem">
@@ -155,12 +158,13 @@ if (isset($_GET['stem'])) {
                                             <tbody>
                                                 <?php if (!empty($efacadyear)) {
 
+                                                    $act_sem = $_SESSION['active_semester'];
                                                     $get_subjects = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior
                                                 LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_subjects_senior.grade_level_id
                                                 LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_subjects_senior.semester_id
                                                 LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_subjects_senior.strand_id
                                                 LEFT JOIN tbl_efacadyears ON tbl_efacadyears.efacadyear_id = tbl_subjects_senior.efacadyear_id
-                                                WHERE tbl_strands.strand_name IN ('$str_name') AND tbl_efacadyears.efacadyear IN ('$efacadyear') ORDER BY tbl_subjects_senior.semester_id ASC, subject_id") or die(mysqli_error($conn));
+                                                WHERE tbl_strands.strand_name IN ('$str_name') AND tbl_efacadyears.efacadyear IN ('$efacadyear') AND tbl_semesters.semester IN ('$act_sem') ORDER BY subject_id DESC") or die(mysqli_error($conn));
 
                                                 ?>
 
@@ -176,51 +180,11 @@ if (isset($_GET['stem'])) {
                                                     <td><?php echo $row['grade_level']; ?></td>
                                                     <td><?php echo $row['semester']; ?></td>
                                                     <td><a href="edit.subjectSH.php<?php echo '?sub_id=' . $id; ?>"
-                                                            type="button"
-                                                            class="btn bg-lightblue text-sm p-2 mb-md-2"><i
-                                                                class="fa fa-edit"></i>
-                                                            Update
+                                                            type="button" class="btn btn-success text-sm p-2 mb-md-2"><i
+                                                                class="fa fa-plus mr-1"></i>
+                                                            Add Schedule
                                                         </a>
 
-                                                        <!-- Button trigger modal -->
-                                                        <a type="button" class="btn bg-red text-sm p-2 mb-md-2"
-                                                            data-toggle="modal"
-                                                            data-target="#exampleModal<?php echo $id ?>"><i
-                                                                class="fa fa-trash"></i>
-                                                            Delete
-                                                        </a>
-
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="exampleModal<?php echo $id ?>"
-                                                            tabindex="-1" role="dialog"
-                                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header bg-red">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">
-                                                                            <i class="fa fa-exclamation-triangle"></i>
-                                                                            Confirm Delete
-                                                                        </h5>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body p-3">
-                                                                        Are you sure you want to delete
-                                                                        <?php echo $row['subject_code'] ?>,
-                                                                        <?php echo $row['subject_description'] ?>?
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-dismiss="modal">Close</button>
-                                                                        <a href="userData/ctrl.delSubSH.php<?php echo '?sub_id=' . $id; ?>"
-                                                                            type="button"
-                                                                            class="btn btn-danger">Delete</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </td>
                                                 </tr><?php }
                                                     } ?>

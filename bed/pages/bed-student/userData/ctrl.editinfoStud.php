@@ -2,7 +2,13 @@
 require '../../../includes/conn.php';
 session_start();
 
-$stud_id = $_SESSION['student_id'];
+if ($_SESSION['role'] == "Registrar") {
+    $stud_id = $_SESSION['student_id'];
+} elseif ($_SESSION['role'] == "Student") {
+    $stud_id = $_SESSION['stud_id'];
+}
+
+
 
 
 if (isset($_POST['submit'])) {
@@ -39,25 +45,46 @@ if (isset($_POST['submit'])) {
     $sch_address = mysqli_real_escape_string($conn, $_POST['sch_address']);
 
 
-    if ($_SESSION['role'] == 'Registrar') {
-        if ($_SESSION['stud_no'] != $stud_no) {
+    if ($_SESSION['role'] == "Registrar") {
 
-            $check_studno = mysqli_query($conn, "SELECT * FROM tbl_students WHERE stud_no = '$studno'") or die(mysqli_error($conn));
-            $check_lrn = mysqli_query($conn, "SELECT * FROM tbl_students WHERE lrn = '$lrn'") or die(mysqli_error($conn));
-            $result = mysqli_num_rows($check_studno);
-            $result2 = mysqli_num_rows($check_lrn);
 
-            if ($result > 0) {
-                $_SESSION['double-studno'] = true;
-                header('location: ../add.student.php');
-            } elseif ($result2 > 0) {
-                $_SESSION['double-lrn'] = true;
-                header('location: ../add.student.php');
+        $check_studno = mysqli_query($conn, "SELECT * FROM tbl_students WHERE stud_no = '$stud_no'") or die(mysqli_error($conn));
+        $check_lrn = mysqli_query($conn, "SELECT * FROM tbl_students WHERE lrn = '$lrn'") or die(mysqli_error($conn));
+        $result = mysqli_num_rows($check_studno);
+        $result2 = mysqli_num_rows($check_lrn);
+
+        if ($result > 0 || $result2 > 0) {
+
+            while ($row = mysqli_fetch_array($check_studno)) {
+                $dbl_studID = $row['student_id'];
             }
-        }
-    }
+            while ($row2 = mysqli_fetch_array($check_lrn)) {
+                $dbl_studID1 = $row2['student_id'];
+            }
 
-    $insertUser = mysqli_query($conn, "UPDATE tbl_students SET stud_no = '$stud_no', lrn = '$lrn', student_fname = '$firstname', student_lname = '$lastname', student_mname = '$midname', address = '$address', date_birth = '$date_birth', place_birth = '$place_birth', age = '$age', gender_id = '$gender', nationality = '$nationality', religion = '$religion', landline = '$landline', cellphone = '$cellphone', email = '$email', fname = '$fname', focc = '$focc', fcontact = '$fcontact',  mname = '$mname', mocc = '$mocc', mcontact = '$mcontact', month_inc = '$month_inc', no_siblings = '$no_sib', guardname = '$guarname', gaddress = '$gaddress', gcontact = '$gcontact', last_sch = '$last_attend', prev_grade_level = '$prev_grade_level', sch_year = '$sch_year', sch_address = '$sch_address' WHERE student_id = '$stud_id'") or die(mysqli_error($conn));
-    $_SESSION['success-studEdit'] = true;
-    header('location: ../edit.infoStud.php?stud_id=' . $stud_id);
+            if ($stud_id != $dbl_studID && $stud_id != $dbl_studID1 && ($result == 1 && $result2 == 1)) {
+                $_SESSION['lrn-studno'] = true;
+                header('location: ../edit.infoStud.php?stud_id=' . $stud_id);
+            } elseif ($stud_id != $dbl_studID && $result == 1) {
+                $_SESSION['double-studno'] = true;
+                header('location: ../edit.infoStud.php?stud_id=' . $stud_id);
+            } elseif ($stud_id != $dbl_studID1 && $result2 == 1) {
+                $_SESSION['double-lrn'] = true;
+                header('location: ../edit.infoStud.php?stud_id=' . $stud_id);
+            } else {
+                $insertUser = mysqli_query($conn, "UPDATE tbl_students SET stud_no = '$stud_no', lrn = '$lrn', student_fname = '$firstname', student_lname = '$lastname', student_mname = '$midname', address = '$address', date_birth = '$date_birth', place_birth = '$place_birth', age = '$age', gender_id = '$gender', nationality = '$nationality', religion = '$religion', landline = '$landline', cellphone = '$cellphone', email = '$email', fname = '$fname', focc = '$focc', fcontact = '$fcontact',  mname = '$mname', mocc = '$mocc', mcontact = '$mcontact', month_inc = '$month_inc', no_siblings = '$no_sib', guardname = '$guarname', gaddress = '$gaddress', gcontact = '$gcontact', last_sch = '$last_attend', prev_grade_level = '$prev_grade_level', sch_year = '$sch_year', sch_address = '$sch_address' WHERE student_id = '$stud_id'") or die(mysqli_error($conn));
+                $_SESSION['success-studEdit'] = true;
+                header('location: ../edit.infoStud.php?stud_id=' . $stud_id);
+            }
+        } else {
+            $insertUser = mysqli_query($conn, "UPDATE tbl_students SET stud_no = '$stud_no', lrn = '$lrn', student_fname = '$firstname', student_lname = '$lastname', student_mname = '$midname', address = '$address', date_birth = '$date_birth', place_birth = '$place_birth', age = '$age', gender_id = '$gender', nationality = '$nationality', religion = '$religion', landline = '$landline', cellphone = '$cellphone', email = '$email', fname = '$fname', focc = '$focc', fcontact = '$fcontact',  mname = '$mname', mocc = '$mocc', mcontact = '$mcontact', month_inc = '$month_inc', no_siblings = '$no_sib', guardname = '$guarname', gaddress = '$gaddress', gcontact = '$gcontact', last_sch = '$last_attend', prev_grade_level = '$prev_grade_level', sch_year = '$sch_year', sch_address = '$sch_address' WHERE student_id = '$stud_id'") or die(mysqli_error($conn));
+            $_SESSION['success-studEdit'] = true;
+            header('location: ../edit.infoStud.php?stud_id=' . $stud_id);
+        }
+    } elseif ($_SESSION['role'] == "Student") {
+
+        $insertUser = mysqli_query($conn, "UPDATE tbl_students SET stud_no = '$stud_no', lrn = '$lrn', student_fname = '$firstname', student_lname = '$lastname', student_mname = '$midname', address = '$address', date_birth = '$date_birth', place_birth = '$place_birth', age = '$age', gender_id = '$gender', nationality = '$nationality', religion = '$religion', landline = '$landline', cellphone = '$cellphone', email = '$email', fname = '$fname', focc = '$focc', fcontact = '$fcontact',  mname = '$mname', mocc = '$mocc', mcontact = '$mcontact', month_inc = '$month_inc', no_siblings = '$no_sib', guardname = '$guarname', gaddress = '$gaddress', gcontact = '$gcontact', last_sch = '$last_attend', prev_grade_level = '$prev_grade_level', sch_year = '$sch_year', sch_address = '$sch_address' WHERE student_id = '$stud_id'") or die(mysqli_error($conn));
+        $_SESSION['success-studEdit'] = true;
+        header('location: ../edit.infoStud.php');
+    }
 }

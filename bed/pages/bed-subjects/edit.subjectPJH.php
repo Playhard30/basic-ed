@@ -115,8 +115,8 @@ $_SESSION['sub_id'] = $sub_id;
                                                 Update</button>
                                         </div>
                                         <div class="justify-content-end mr-2">
-                                            <a href="list.subjectPJH.php" type="submit" name="submit"
-                                                class="btn bg-gray"><i class="fa fa-arrow-circle-left "></i>
+                                            <a href="javascript:history.back();" class="btn bg-gray"><i
+                                                    class="fa fa-arrow-circle-left"></i>
                                                 Back</a>
                                         </div>
                                     </div>

@@ -10,7 +10,10 @@
                     while ($row = mysqli_fetch_array($get_acadyear)) { ?>
 
                     <span class="info-box-number"><?php echo $row['academic_year'];
-                                                    } ?></span>
+                                                        ?></span>
+                    <?php $_SESSION['active_acadyears'] = $row['academic_year'];
+                    } ?>
+
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -25,7 +28,9 @@
                     <?php $get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id");
                     while ($row = mysqli_fetch_array($get_sem)) { ?>
                     <span class="info-box-number"><?php echo $row['semester'];
-                                                    } ?></span>
+                                                        ?></span>
+                    <?php $_SESSION['active_semester'] = $row['semester'];
+                    } ?>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -136,8 +141,47 @@ $(function() {
             return false;
         });
     });
+
 });
+
+function currentTime() {
+    var date = new Date(); /* creating object of Date class */
+    var hour = date.getHours();
+    var min = date.getMinutes();
+    var sec = date.getSeconds();
+    var midday = "AM";
+    midday = (hour >= 12) ? "PM" : "AM";
+    hour = updateTime(hour);
+    hour = (hour == 0) ? 12 : ((hour > 12) ? (hour - 12) : hour);
+    min = updateTime(min);
+    sec = updateTime(sec);
+
+    document.getElementById("clock").innerText = hour + ":" + min + ":" +
+        sec + " " + midday; /* adding time to the div */
+    var t = setTimeout(function() {
+        currentTime()
+    }, 1000); /* setting timer */
+
+}
+
+function updateTime(k) {
+    if (k < 10) {
+        return "0" + k;
+    } else {
+        return k;
+    }
+}
+
+
+currentTime();
 </script>
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
 
 <!-- alert modal -->
 <?php if (isset($_SESSION['error-pass'])) {

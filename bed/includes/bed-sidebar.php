@@ -242,7 +242,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-sign-in-alt"></i>
+                        <i class="nav-icon fas fa-tasks"></i>
                         <p>
                             Enrollment
                             <i class="right fas fa-angle-left"></i>
@@ -269,7 +269,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    Subjets List
+                                    Subjects List
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -490,6 +490,9 @@
                         </p>
                     </a>
                 </li>';
+
+                    // END PRINCIPAL
+
                 } elseif ($_SESSION['role'] == "Admission") {
                     echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
@@ -498,9 +501,62 @@
                             Dashboard
                         </p>
                     </a>
-                </li>';
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>
+                            Enrollment
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-ellipsis-h nav-icon"> </i>
+                                <p>
+                                 Pending Students
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-hand-holding-medical"></i>
+                    <p>
+                        Offer/Open Subjects
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="../bed-subjects/list.activeSubSH.php" class="nav-link">
+                            <i class="fa fa-list-alt nav-icon"> </i>
+                            <p>
+                             Senior
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-list-alt nav-icon"> </i>
+                        <p>
+                         Primary - Junior
+                        </p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+                ';
+
+                    // END ADMISSION
+
                 } elseif ($_SESSION['role'] == "Teacher") {
-                    echo '<li class="nav-item menu-open">
+                    echo '
+                <li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -508,6 +564,9 @@
                         </p>
                     </a>
                 </li>';
+
+                    // END TEACHER
+
                 } elseif ($_SESSION['role'] == "Adviser") {
                     echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
@@ -545,13 +604,13 @@
                                 <li class="nav-item">
                                     <a href="../bed-subjects/list.subjectSH.php" class="nav-link">
                                         <i class="fa fa-list-alt nav-icon"></i>
-                                        <p> Senior High</p>
+                                        <p> Senior</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="../bed-subjects/list.subjectPJH.php" class="nav-link">
                                         <i class="fa fa-list-alt nav-icon"></i>
-                                        <p> Primary - Junior High</p>
+                                        <p> Primary - Junior</p>
                                     </a>
                                 </li>
                             </ul>
@@ -665,7 +724,6 @@
                     </ul>
                 </li>
             </ul>
-
             ';
                 } elseif ($_SESSION['role'] == "Student") {
                     echo '
@@ -681,7 +739,7 @@
                 <a href="../bed-student/edit.infoStud.php" class="nav-link">
                     <i class="nav-icon fas fa-id-card"></i>
                     <p>
-                        Personal Info
+                        Personal Info.
                     </p>
                 </a>
             </li>

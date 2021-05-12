@@ -35,7 +35,7 @@ if ($_SESSION['role'] == 'Registrar') {
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link disabled text-light">Personal Info</a>
+                    <a href="#" class="nav-link disabled text-light">Personal Info.</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link disabled text-light">Basic Education</a>
@@ -99,7 +99,7 @@ if ($_SESSION['role'] == 'Registrar') {
                                                 } elseif ($_SESSION['role'] == 'Student') {
                                                     echo '  <input type="text" class="form-control"
                                                     value="' . $row['stud_no'] . '" placeholder="Student ID" name="stud_no"
-                                                    disabled>
+                                                    readonly>
                                             </div>
     
                                             <div class="input-group col-md-6 mb-2">
@@ -109,7 +109,7 @@ if ($_SESSION['role'] == 'Registrar') {
                                                 </div>
                                                 <input type="text" class="form-control"
                                                     placeholder="Learner Reference Number"
-                                                    value="' . $row['lrn'] . '" disabled name="lrn">
+                                                    value="' . $row['lrn'] . '" readonly name="lrn">
                                             </div>';
                                                 } ?>
 
@@ -203,7 +203,7 @@ if ($_SESSION['role'] == 'Registrar') {
                                                 </div>
                                                 <select class="form-control custom-select select2 select2-purple"
                                                     data-dropdown-css-class="select2-purple"
-                                                    data-placeholder="Select Gender" name="gender">
+                                                    data-placeholder="Select Gender" name="gender" required>
                                                     <?php if (empty($row['gender_id'])) {
                                                             echo '<option value="" disabled selected>Select Gender</option>';
                                                             $get_gender = mysqli_query($conn, "SELECT * FROM tbl_genders");
@@ -473,7 +473,7 @@ if ($_SESSION['role'] == 'Registrar') {
                                                     data-dropdown-css-class="select2-purple"
                                                     data-placeholder="Select Grade Level" name="prev_grade_level">
                                                     <?php if (empty($row['prev_grade_level'])) {
-                                                            echo '<option value="" disabled selected>Select Grade Level</option>';
+                                                            echo '<option value="None" selected>Select Grade Level</option>';
                                                             $get_glevel = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
                                                             while ($row2 = mysqli_fetch_array($get_glevel)) {
                                                                 echo '<option value="' . $row2['grade_level'] . '">'
@@ -532,9 +532,9 @@ if ($_SESSION['role'] == 'Registrar') {
 
                                             <?php if ($_SESSION['role'] == 'Registrar')
                                                 echo ' <div class="justify-content-end mr-2">
-                                                <a href="list.student.php" name="submit" class="btn bg-gray"><i
+                                                <a href="javascript:history.back();" class="btn bg-gray"><i
                                                         class="fa fa-arrow-circle-left"></i>
-                                                    back</a>
+                                                    Back</a>
                                             </div>';
                                             ?>
 
@@ -604,10 +604,61 @@ title: 'Successfully Updated.'
                 });
             });
             </script>";
+            } elseif (isset($_SESSION['double-studno'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'Student ID already exists.'
+    });
+});
+</script>";
+            } elseif (isset($_SESSION['double-lrn'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'LRN already exists.'
+    });
+});
+</script>";
+            } elseif (isset($_SESSION['lrn-studno'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'Student ID and LRN are already exists.'
+    });
+});
+</script>";
             }
+            unset($_SESSION['lrn-studno']);
+            unset($_SESSION['double-lrn']);
+            unset($_SESSION['double-studno']);
             unset($_SESSION['no-pwd']);
             unset($_SESSION['success-studEdit']);
-            unset($_SESSION['no-img']);  ?>
+            unset($_SESSION['no-img']); ?>
 
 </body>
 
