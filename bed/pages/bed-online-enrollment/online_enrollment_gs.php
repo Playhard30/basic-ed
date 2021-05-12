@@ -3,14 +3,14 @@ require '../../includes/conn.php';
 ob_start();
 session_start();
 
-$sql= mysqli_query($db,"SELECT *, tbl_acadyears.ay_id FROM tbl_active_acadyears
-    LEFT JOIN tbl_acadyears ON tbl_acadyears.ay_id = tbl_active_acadyears.ay_id")or die(mysqli_error($db));
-while ($row= mysqli_fetch_array($sql)) {
+$sql = mysqli_query($conn,"SELECT *, tbl_acadyears.ay_id FROM tbl_active_acadyears
+    LEFT JOIN tbl_acadyears ON tbl_acadyears.ay_id = tbl_active_acadyears.ay_id")or die(mysqli_error($conn));
+while ($row = mysqli_fetch_array($sql)) {
     $_SESSION['active_acad'] = $row['academic_year'];
 }
 
-$sql= mysqli_query($db,"SELECT *, tbl_semesters.semester_id FROM tbl_active_semesters
-    LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_sem.semesters_id")or die(mysqli_error($db));
+$sql= mysqli_query($conn,"SELECT *, tbl_semesters.semester_id FROM tbl_active_semesters
+    LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id")or die(mysqli_error($conn));
 while ($row= mysqli_fetch_array($sql)) {
     $_SESSION['active_sem'] = $row['semester'];
 }
