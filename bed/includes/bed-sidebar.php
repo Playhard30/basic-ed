@@ -110,8 +110,7 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu"
-                data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
@@ -243,7 +242,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-sign-in-alt"></i>
+                        <i class="nav-icon fas fa-tasks"></i>
                         <p>
                             Enrollment
                             <i class="right fas fa-angle-left"></i>
@@ -263,14 +262,14 @@
                         <li class="nav-item">
                             <a href="../bed-student/list.student.php" class="nav-link">
                                 <i class="fa fa-restroom nav-icon"></i>
-                                <p> Students List</p>
+                                <p> Student List</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    Subjets List
+                                    Subjects List
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -278,13 +277,13 @@
                                 <li class="nav-item">
                                     <a href="../bed-subjects/list.subjectSH.php" class="nav-link">
                                         <i class="fa fa-list-alt nav-icon"></i>
-                                        <p> Senior High</p>
+                                        <p> Senior</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="../bed-subjects/list.subjectPJH.php" class="nav-link">
                                         <i class="fa fa-list-alt nav-icon"></i>
-                                        <p> Primary - Junior High</p>
+                                        <p> Primary - Junior</p>
                                     </a>
                                 </li>
                             </ul>
@@ -372,14 +371,14 @@
                         <li class="nav-item">
                             <a href="../bed-student/add.student.php" class="nav-link">
                                 <i class="fa fa-user-plus nav-icon"></i>
-                                <p> Add Student</p>
+                                <p> Add Students</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa fa-book-medical nav-icon"></i>
                                 <p>
-                                    Add Subject
+                                    Add Subjects
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -387,13 +386,13 @@
                                 <li class="nav-item">
                                     <a href="../bed-subjects/add.sub.senior.php" class="nav-link">
                                         <i class="fa fa-plus nav-icon"></i>
-                                        <p> Senior High</p>
+                                        <p> Senior</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="../bed-subjects/add.sub.k-10.php" class="nav-link">
                                         <i class="fa fa-plus nav-icon"></i>
-                                        <p> Primary - Junior High</p>
+                                        <p> Primary - Junior</p>
                                     </a>
                                 </li>
                             </ul>
@@ -402,7 +401,6 @@
                 </li>
                 ';
                 }
-
 
                 // END REGISTRAR
 
@@ -416,7 +414,85 @@
                             Dashboard
                         </p>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../bed-principal/list.adviser.php" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Advisers List
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../bed-principal/list.teacher.php" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Teachers List
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-binoculars"></i>
+                        <p>
+                            View Subjects
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/abm.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> ABM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/gas.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> GAS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/humss.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> HUMSS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/stem.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> STEM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/tvl.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> TVL</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-header">ADD NEW USER</li>
+                <li class="nav-item">
+                    <a href="../bed-principal/add.adviser.php" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>
+                            Add Adviser
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../bed-principal/add.teacher.php" class="nav-link">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>
+                            Add Teacher
+                        </p>
+                    </a>
                 </li>';
+
+                    // END PRINCIPAL
+
                 } elseif ($_SESSION['role'] == "Admission") {
                     echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
@@ -425,9 +501,62 @@
                             Dashboard
                         </p>
                     </a>
-                </li>';
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>
+                            Enrollment
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-ellipsis-h nav-icon"> </i>
+                                <p>
+                                 Pending Students
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-hand-holding-medical"></i>
+                    <p>
+                        Offer/Open Subjects
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="../bed-subjects/list.activeSubSH.php" class="nav-link">
+                            <i class="fa fa-list-alt nav-icon"> </i>
+                            <p>
+                             Senior
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fa fa-list-alt nav-icon"> </i>
+                        <p>
+                         Primary - Junior
+                        </p>
+                    </a>
+                </li>
+                </ul>
+            </li>
+                ';
+
+                    // END ADMISSION
+
                 } elseif ($_SESSION['role'] == "Teacher") {
-                    echo '<li class="nav-item menu-open">
+                    echo '
+                <li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -435,6 +564,9 @@
                         </p>
                     </a>
                 </li>';
+
+                    // END TEACHER
+
                 } elseif ($_SESSION['role'] == "Adviser") {
                     echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
@@ -444,6 +576,72 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Maintenance
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-student/list.student.php" class="nav-link">
+                                <i class="fa fa-restroom nav-icon"></i>
+                                <p> Students List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Subjets List
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/list.subjectSH.php" class="nav-link">
+                                        <i class="fa fa-list-alt nav-icon"></i>
+                                        <p> Senior</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/list.subjectPJH.php" class="nav-link">
+                                        <i class="fa fa-list-alt nav-icon"></i>
+                                        <p> Primary - Junior</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-folder"></i>
+                        <p>
+                            Forms
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-file-pdf nav-icon"></i>
+                                <p> Pre-Enrollment</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-forms/regform.php" class="nav-link">
+                                <i class="fa fa-file-pdf nav-icon"></i>
+                                <p> Registration</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-binoculars"></i>
@@ -500,24 +698,59 @@
                                 <p> Add Student</p>
                             </a>
                         </li>
-                        </ul>';
-                } elseif ($_SESSION['role'] == "Student") {
-                    echo '<li class="nav-item menu-open">
-                    <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-book-medical nav-icon"></i>
+                                <p>
+                                    Add Subject
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/add.sub.senior.php" class="nav-link">
+                                        <i class="fa fa-plus nav-icon"></i>
+                                        <p> Senior High</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../bed-subjects/add.sub.k-10.php" class="nav-link">
+                                        <i class="fa fa-plus nav-icon"></i>
+                                        <p> Primary - Junior High</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="../bed-student/edit.infoStud.php" class="nav-link">
-                        <i class="nav-icon fas fa-id-card"></i>
-                        <p>
-                            Personal Info
-                        </p>
-                    </a>
-                </li>';
+            </ul>
+            ';
+                } elseif ($_SESSION['role'] == "Student") {
+                    echo '
+            <li class="nav-item menu-open">
+                <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Dashboard
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../bed-student/edit.infoStud.php" class="nav-link">
+                    <i class="nav-icon fas fa-id-card"></i>
+                    <p>
+                        Personal Info.
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="../bed-student/add.enroll.php" class="nav-link">
+                    <i class="nav-icon fas fa-globe"></i>
+                    <p>
+                        Enroll Now
+                    </p>
+                </a>
+            </li>';
                 }
 
                 // END STUDENT
@@ -534,17 +767,38 @@
     <div class="sidebar-custom justify-content-center">
         <?php if ($_SESSION['role'] == "Master Key") {
             echo ' <a href="#" class="btn btn-link ml-2"><i class="fas fa-cog text-gray"></i></a>
-        <a href="../bed-master_key/edit.master.php"
-        class="btn btn-link pos-right mr-2 text-gray"><i class="fas fa-user-edit"></i></a>';
+
+        <a href="../bed-master_key/edit.master.php" class="btn btn-link pos-right mr-2 text-gray" data-toggle="tooltip"
+            data-placement="top" title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
         } elseif ($_SESSION['role'] == "Registrar") {
-            echo ' <a href="../bed-date/add.date.php" class="btn btn-link ml-1 mr-4"><i class="fas fa-calendar-plus text-gray"></i></a>
-            <a href="../bed-date/set.date.php" class="btn btn-link ml-4 mr-auto"><i class="fas fa-calendar-alt text-gray"></i></a>
+            echo ' <a href="../bed-date/add.date.php" class="btn btn-link ml-1 mr-4" data-toggle="tooltip"
+            data-placement="top" title="Add Academic Year"><i class="fas fa-calendar-plus text-gray"></i></a>
+
+        <a href="../bed-date/set.date.php" class="btn btn-link ml-4 mr-auto" data-toggle="tooltip" data-placement="top"
+            title="Set Academic Year & Semester"><i class="fas fa-calendar-alt text-gray"></i></a>
+
         <a href="../bed-master_key/edit.registrar.php?reg_id= ' . $reg_id . '"
-        class="btn btn-link pos-right mr-1 text-gray"><i class="fas fa-user-edit"></i></a>';
+            class="btn btn-link pos-right mr-1 text-gray" data-toggle="tooltip" data-placement="top"
+            title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
         } elseif ($_SESSION['role'] == "Student") {
             echo ' <a href="#" class="btn btn-link ml-2"><i class="fas fa-calendar-alt text-gray"></i></a>
-        <a href="../bed-student/edit.student.php"
-        class="btn btn-link pos-right mr-2 text-gray"><i class="fas fa-user-edit"></i></a>';
+
+        <a href="../bed-student/edit.student.php" class="btn btn-link pos-right mr-2 text-gray" data-toggle="tooltip" data-placement="top" title="Edit Profile"><i
+                class="fas fa-user-edit"></i></a>';
+        } elseif ($_SESSION['role'] == "Adviser") {
+            echo ' <a href="../bed-date/add.date.php" class="btn btn-link ml-1 mr-4"><i class="fas fa-calendar-plus text-gray"></i></a>
+            <a href="../bed-date/set.date.php" class="btn btn-link ml-4 mr-auto"><i class="fas fa-calendar-alt text-gray"></i></a>
+        <a href="../bed-master_key/edit.adviser.php?ad_id= ' . $ad_id . '"
+        class="btn btn-link pos-right mr-1 text-gray"><i class="fas fa-user-edit"></i></a>';
+        } elseif ($_SESSION['role'] == "Principal") {
+            echo ' <a href="../bed-master_key/edit.principal.php?prin_id= ' . $prin_id . '"
+            class="btn btn-link pos-right mr-1 text-gray" data-toggle="tooltip" data-placement="top"
+            title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
+        } elseif ($_SESSION['role'] == "Admission") {
+            echo ' <a href="../bed-date/add.date.php" class="btn btn-link ml-1 mr-4"><i class="fas fa-calendar-plus text-gray"></i></a>
+            <a href="../bed-date/set.date.php" class="btn btn-link ml-4 mr-auto"><i class="fas fa-calendar-alt text-gray"></i></a>
+        <a href="../bed-master_key/edit.admission.php?admission_id= ' . $admission_id . '"
+        class="btn btn-link pos-right mr-1 text-gray"><i class="fas fa-user-edit"></i></a>';
         }
         ?>
 

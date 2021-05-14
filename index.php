@@ -230,7 +230,7 @@ session_start();
                 <ul class="menu uppercase">
                     <li><a href="#">HOME</a></li>
                     <li><a href="#">ABOUT</a></li>
-                    <li><a action>K to 12 PROGRAM</a></li>
+                    <li><a href="#kto12">K to 12 PROGRAM</a></li>
                     <li><a href="#">CONTACT US</a></li>
                 </ul>
             </div>
@@ -398,7 +398,7 @@ session_start();
     </section>
 
     <!-- Slide 2 (#15) -->
-    <section class="slide fade-6 kenBurns fromLeft">
+    <section class="slide fade-6 kenBurns fromLeft" id="kto12">
         <div class="content">
             <div class="container">
                 <div class="wrap">

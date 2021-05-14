@@ -1,4 +1,7 @@
 <ul class="navbar-nav ml-auto">
+    <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link disabled text-light" id="clock"></a>
+    </li>
     <li class="nav-item dropdown">
         <a class="nav-link pt-1" data-toggle="dropdown" href="#">
             <div class="user-panel d-flex">

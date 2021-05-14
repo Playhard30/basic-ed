@@ -75,16 +75,37 @@ require '../../includes/bed-session.php';
 
                                     </div>
 
+
                                     <div class="row mb-4 justify-content-center">
-                                        <div class="input-group col-md-3 mb-2">
+
+                                        <div class="input-group col-md-4 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>Unit(s)</b></span>
+                                                <span class="input-group-text text-sm"><b>Lecture Unit(s)</b></span>
                                             </div>
-                                            <input type="text" class="form-control" name="units"
-                                                placeholder="Enter Total Unit(s)" required>
+                                            <input type="text" class="form-control" name="lec_units"
+                                                placeholder="Enter No. of Unit(s)" required>
                                         </div>
 
-                                        <div class="input-group col-md-5 mb-2">
+                                        <div class="input-group col-md-4 mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-sm"><b>Laboratory Unit(s)</b></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="lab_units"
+                                                placeholder="Enter No. of Unit(s)" required>
+                                        </div>
+
+                                        <div class="input-group col-md-4 mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-sm"><b>Total Unit(s)</b></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="total_units"
+                                                placeholder="Enter Total Unit(s)" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-4 justify-content-center">
+
+                                        <div class="input-group col-md-7 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><b>Pre-Requisites</b></span>
                                             </div>
@@ -92,7 +113,7 @@ require '../../includes/bed-session.php';
                                                 placeholder="Enter Pre-Requisites">
                                         </div>
 
-                                        <div class="input-group col-md-3 mb-2">
+                                        <div class="input-group col-md-4 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><b>E.A.Y</b></span>
                                             </div>
@@ -101,7 +122,7 @@ require '../../includes/bed-session.php';
                                                 data-placeholder="Effective Academic" name="eay" required>
                                                 <option value="" disabled selected>Select Semester</option>
                                                 <?php
-                                                $query = mysqli_query($conn, "SELECT * from tbl_efacadyears ");
+                                                $query = mysqli_query($conn, "SELECT * FROM tbl_efacadyears ");
                                                 while ($row2 = mysqli_fetch_array($query)) {
                                                     echo '<option value="' . $row2['efacadyear_id'] . '">' . $row2['efacadyear'] . '</option>';
                                                 }

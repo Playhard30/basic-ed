@@ -5,35 +5,25 @@ ob_start();
 
 require '../../includes/bed-session.php';
 
-if (isset($_GET['g1'])) {
-    $grd_lvl = $_GET['g1'];
-} elseif (isset($_GET['g2'])) {
-    $grd_lvl = $_GET['g2'];
-} elseif (isset($_GET['g3'])) {
-    $grd_lvl = $_GET['g3'];
-} elseif (isset($_GET['g4'])) {
-    $grd_lvl = $_GET['g4'];
-} elseif (isset($_GET['g5'])) {
-    $grd_lvl = $_GET['g5'];
-} elseif (isset($_GET['g6'])) {
-    $grd_lvl = $_GET['g6'];
-} elseif (isset($_GET['g7'])) {
-    $grd_lvl = $_GET['g7'];
-} elseif (isset($_GET['g8'])) {
-    $grd_lvl = $_GET['g8'];
-} elseif (isset($_GET['g9'])) {
-    $grd_lvl = $_GET['g9'];
-} elseif (isset($_GET['g10'])) {
-    $grd_lvl = $_GET['g10'];
-} elseif (isset($_GET['nurs'])) {
-    $grd_lvl = $_GET['nurs'];
-} elseif (isset($_GET['pkdr'])) {
-    $grd_lvl = $_GET['pkdr'];
-} elseif (isset($_GET['kdr'])) {
-    $grd_lvl = $_GET['kdr'];
+if (!empty($_POST['eay'])) {
+    $efacadyear = $_POST['eay'];
 }
-?>
 
+
+if (isset($_POST['stem'])) {
+    $str_name = $_POST['stem'];
+} elseif (isset($_POST['abm'])) {
+    $str_name = $_POST['abm'];
+} elseif (isset($_POST['gas'])) {
+    $str_name = $_POST['gas'];
+} elseif (isset($_POST['humss'])) {
+    $str_name = $_POST['humss'];
+} elseif (isset($_POST['tvl'])) {
+    $str_name = $_POST['tvl'];
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -76,107 +66,124 @@ if (isset($_GET['g1'])) {
                             <div class="col-12">
                                 <div class="card shadow">
                                     <div class="card-header bg-navy p-3">
-                                        <h3 class="card-title text-lg">Primary and Junior High Subjects List</h3>
+                                        <h3 class="card-title">Senior High Subjects List -<?php if (isset($_POST['stem'])) {
+                                                                                                echo ' STEM';
+                                                                                            } elseif (isset($_POST['abm'])) {
+                                                                                                echo ' ABM';
+                                                                                            } elseif (isset($_POST['gas'])) {
+                                                                                                echo ' GAS';
+                                                                                            } elseif (isset($_POST['humss'])) {
+                                                                                                echo ' HUMSS';
+                                                                                            } elseif (isset($_POST['tvl'])) {
+                                                                                                echo ' TVL-HE';
+                                                                                            } else {
+                                                                                                echo ' STEM';
+                                                                                            } ?></h3>
+
                                     </div>
+
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <form action="list.subjectPJH.php" method="GET">
+                                        <form action="list.subjectSH.php" method="POST">
 
                                             <div class="row justify-content-center">
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 1" name="g1">
-                                                    <i class="fas fa-list-alt"></i> Grade 1
+                                                <button class="btn btn-app bg-gray-light" value="STEM" name="stem">
+                                                    <i class="fas fa-list-alt"></i> STEM
                                                 </button>
 
-                                                <button class="btn btn-app bg-gray-light" value="Grade 2" name="g2">
-                                                    <i class="fas fa-list-alt"></i> Grade 2
+                                                <button class="btn btn-app bg-gray-light" value="ABM" name="abm">
+                                                    <i class="fas fa-list-alt"></i> ABM
                                                 </button>
 
-                                                <button class="btn btn-app bg-gray-light" value="Grade 3" name="g3">
-                                                    <i class="fas fa-list-alt"></i> Grade 3
+                                                <button class="btn btn-app bg-gray-light" value="GAS" name="gas">
+                                                    <i class="fas fa-list-alt"></i> GAS
                                                 </button>
 
-                                                <button class="btn btn-app bg-gray-light" value="Grade 4" name="g4">
-                                                    <i class="fas fa-list-alt"></i> Grade 4
+                                                <button class="btn btn-app bg-gray-light" value="HUMSS" name="humss">
+                                                    <i class="fas fa-list-alt"></i> HUMSS
                                                 </button>
 
-                                                <button class="btn btn-app bg-gray-light" value="Grade 5" name="g5">
-                                                    <i class="fas fa-list-alt"></i> Grade 5
+                                                <button class="btn btn-app bg-gray-light" value="TVL - HE" name="tvl">
+                                                    <i class="fas fa-list-alt"></i> TVL- HE
                                                 </button>
+                                            </div>
 
-                                                <button class="btn btn-app bg-gray-light" value="Grade 6" name="g6">
-                                                    <i class="fas fa-list-alt"></i> Grade 6
-                                                </button>
+                                            <div class="row justify-content-center">
+                                                <div class=" input-group col-md-4 mb-2">
 
-                                                <button class="btn btn-app bg-gray-light" value="Grade 7" name="g7">
-                                                    <i class="fas fa-list-alt"></i> Grade 7
-                                                </button>
+                                                    <select class="form-control select2 select2-navy custom-select"
+                                                        data-dropdown-css-class="select2-navy"
+                                                        data-placeholder="Select Effective Academic Year" name="eay">
+                                                        <option value="" disabled>Select Effective Academic
+                                                            Year
+                                                        </option>
+                                                        <?php $get_eay = mysqli_query($conn, "SELECT * FROM tbl_efacadyears WHERE efacadyear = '$efacadyear'");
+                                                        while ($row = mysqli_fetch_array($get_eay)) {
+                                                        ?>
+                                                        <option value="<?php echo $row['efacadyear'] ?>">
+                                                            Effective
+                                                            Academic Year <?php echo $row['efacadyear'];
+                                                                            } ?></option>
+                                                        <?php $get_eay2 = mysqli_query($conn, "SELECT * FROM tbl_efacadyears WHERE efacadyear NOT IN ('$efacadyear')");
+                                                            while ($row2 = mysqli_fetch_array($get_eay2)) {
+                                                            ?>
+                                                        <option value="<?php echo $row2['efacadyear'] ?>">
+                                                            Effective
+                                                            Academic Year <?php echo $row2['efacadyear'];
+                                                                                } ?></option>
 
-                                                <button class="btn btn-app bg-gray-light" value="Grade 8" name="g8">
-                                                    <i class="fas fa-list-alt"></i> Grade 8
-                                                </button>
+                                                    </select>
 
-                                                <button class="btn btn-app bg-gray-light" value="Grade 9" name="g9">
-                                                    <i class="fas fa-list-alt"></i> Grade 9
-                                                </button>
-
-                                                <button class="btn btn-app bg-gray-light" value="Grade 10" name="g10">
-                                                    <i class="fas fa-list-alt"></i> Grade 10
-                                                </button>
-                                                <div>
-                                                    <button class="btn btn-app bg-gray-light" value="Nursery"
-                                                        name="nurs">
-                                                        <i class="fas fa-list-alt"></i> Nursery
-                                                    </button>
-
-                                                    <button class="btn btn-app bg-gray-light" value="PreKinder"
-                                                        name="pkdr">
-                                                        <i class="fas fa-list-alt"></i> PreKinder
-                                                    </button>
-
-                                                    <button class="btn btn-app bg-gray-light" value="Kinder" name="kdr">
-                                                        <i class="fas fa-list-alt"></i> Kinder
-                                                    </button>
                                                 </div>
                                             </div>
 
                                         </form>
+
                                         <hr class="bg-navy">
-
-
                                         <table id="example2" class="table table-hover">
                                             <thead class="bg-gray-light">
                                                 <tr>
                                                     <th>Code</th>
                                                     <th>Description</th>
+                                                    <th>Units</th>
+                                                    <th>Pre-Requisites</th>
                                                     <th>Grade Level</th>
+                                                    <th>Semester</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <?php if (!empty($efacadyear)) {
 
-                                                <?php if (!empty($grd_lvl)) {
+                                                    $get_subjects = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior
+                                                LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_subjects_senior.grade_level_id
+                                                LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_subjects_senior.semester_id
+                                                LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_subjects_senior.strand_id
+                                                LEFT JOIN tbl_efacadyears ON tbl_efacadyears.efacadyear_id = tbl_subjects_senior.efacadyear_id
+                                                WHERE tbl_strands.strand_name IN ('$str_name') AND tbl_efacadyears.efacadyear IN ('$efacadyear') ORDER BY subject_id DESC") or die(mysqli_error($conn));
 
-                                                    $get_sub = mysqli_query($conn, "SELECT * FROM tbl_subjects LEFT JOIN
-                                                tbl_grade_levels ON tbl_grade_levels.grade_level_id =
-                                                tbl_subjects.grade_level_id WHERE grade_level IN ('$grd_lvl') ORDER BY tbl_grade_levels.grade_level ASC, subject_id") or die(mysqli_error($conn));
                                                 ?>
+
+
                                                 <tr>
-                                                    <?php while ($row = mysqli_fetch_array($get_sub)) {
+                                                    <?php while ($row = mysqli_fetch_array($get_subjects)) {
                                                             $id = $row['subject_id'];
                                                         ?>
                                                     <td><?php echo $row['subject_code']; ?></td>
                                                     <td><?php echo $row['subject_description']; ?></td>
+                                                    <td><?php echo $row['units']; ?></td>
+                                                    <td><?php echo $row['pre_requisites']; ?></td>
                                                     <td><?php echo $row['grade_level']; ?></td>
-                                                    <td><a href="edit.subjectPJH.php<?php echo '?sub=' . $id; ?>"
+                                                    <td><?php echo $row['semester']; ?></td>
+                                                    <td><a href="edit.subjectSH.php<?php echo '?sub_id=' . $id; ?>"
                                                             type="button"
-                                                            class="btn bg-lightblue text-sm p-2 mb-md-2 mb-2"><i
+                                                            class="btn bg-lightblue text-sm p-2 mb-md-2"><i
                                                                 class="fa fa-edit"></i>
                                                             Update
                                                         </a>
 
                                                         <!-- Button trigger modal -->
-                                                        <a type="button" class="btn bg-red text-sm p-2 mb-md-2 mb-2"
+                                                        <a type="button" class="btn bg-red text-sm p-2 mb-md-2"
                                                             data-toggle="modal"
                                                             data-target="#exampleModal<?php echo $id ?>"><i
                                                                 class="fa fa-trash"></i>
@@ -200,14 +207,14 @@ if (isset($_GET['g1'])) {
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body p-3">
-                                                                        Are you sure you want to delete,
-                                                                        <?php echo $row['subject_code']; ?>
-                                                                        <?php echo $row['subject_description']; ?>?
+                                                                        Are you sure you want to delete
+                                                                        <?php echo $row['subject_code'] ?>,
+                                                                        <?php echo $row['subject_description'] ?>?
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">Close</button>
-                                                                        <a href="userData/ctrl.delSubPJH.php<?php echo '?sub=' . $id; ?>"
+                                                                        <a href="userData/ctrl.delSubSH.php<?php echo '?sub_id=' . $id; ?>"
                                                                             type="button"
                                                                             class="btn btn-danger">Delete</a>
                                                                     </div>
@@ -216,7 +223,6 @@ if (isset($_GET['g1'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php }
-                                                    } else {
                                                     } ?>
 
                                             </tbody>
@@ -277,8 +283,10 @@ if (isset($_GET['g1'])) {
                     "autoWidth": false,
                     "responsive": true,
                     "language": {
-                        "emptyTable": "No data available in table.<br> Please select grade level.",
+                        "emptyTable": "No data available in table.<br> Please select strand and E.A.Y",
                     }
+
+
                 });
             });
             </script>

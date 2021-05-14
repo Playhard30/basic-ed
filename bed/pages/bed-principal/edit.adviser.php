@@ -5,14 +5,13 @@ ob_start();
 
 require '../../includes/bed-session.php';
 
-$reg_id = $_GET['reg_id'];
-if ($_SESSION['role'] == "Registrar") {
-    if ($reg_id != $_SESSION['reg_id']) {
+$ad_id = $_GET['ad_id'];
+if ($_SESSION['role'] == "Adviser") {
+    if ($ad_id != $_SESSION['ad_id']) {
         header('location: ../bed-404/page404.php');
     }
 }
-
-$_SESSION['get-regID'] = $reg_id;
+$_SESSION['get-adID'] = $ad_id;
 ?>
 
 
@@ -22,7 +21,7 @@ $_SESSION['get-regID'] = $reg_id;
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Update Registrar </title>
+    <title>SFAC | Update Adviser</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -36,7 +35,7 @@ $_SESSION['get-regID'] = $reg_id;
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link disabled text-light">Edit Registrar</a>
+                    <a href="#" class="nav-link disabled text-light">Update Adviser</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link disabled text-light">Basic Education</a>
@@ -50,31 +49,29 @@ $_SESSION['get-regID'] = $reg_id;
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper pt-4">
 
-                <!-- Smooth scroll button -->
-                <!-- <a href="#" id="scroll" style="display: none;"><span></span></a> -->
 
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid pl-5 pr-5 pb-3">
                         <div class="card card-purple shadow-lg">
                             <div class="card-header">
-                                <h3 class="card-title">Registrar Update Form</h3>
+                                <h3 class="card-title">Adviser Update Form</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
                             <?php
-                            $get_userInfo = mysqli_query($conn, "SELECT * FROM tbl_registrars WHERE reg_id = '$reg_id'");
+                            $get_userInfo = mysqli_query($conn, "SELECT * FROM tbl_adviser WHERE ad_id = '$ad_id'");
 
                             while ($row = mysqli_fetch_array($get_userInfo)) { ?>
-                            <form action="userData/ctrl.editReg.php<?php echo '?reg_id=' . $reg_id; ?>"
+                            <form action="ctrl.data/ctrl.edit.adviser.php<?php echo '?ad_id=' . $ad_id; ?>"
                                 enctype="multipart/form-data" method="POST">
                                 <div class="card-body">
                                     <div class="form-group mb-4">
+                                        <label for="exampleInputFile"></label>
 
-
-                                        <div class="custom-file mt-4">
-                                            <div class="img text-center">
-                                                <img class="img-bordered img-circle p-1 m-1"
+                                        <div class="custom-file">
+                                            <div class="text-center">
+                                                <img class="img-fluid img-bordered img-circle p-1 m-1"
                                                     src="data:image/jpeg;base64, <?php echo base64_encode($row['img']); ?> "
                                                     alt="User profile picture" style="width: 145px; height: 145px;">
                                             </div>
@@ -104,7 +101,7 @@ $_SESSION['get-regID'] = $reg_id;
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="firstname"
-                                                placeholder="Firstname" value="<?php echo $row['reg_fname']; ?>">
+                                                placeholder="First name" value="<?php echo $row['ad_fname']; ?>">
                                         </div>
 
 
@@ -113,7 +110,7 @@ $_SESSION['get-regID'] = $reg_id;
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="lastname"
-                                                placeholder="Lastname" value="<?php echo $row['reg_lname']; ?>">
+                                                placeholder="Last name" value="<?php echo $row['ad_lname']; ?>">
                                         </div>
 
                                         <div class="input-group col-sm-4 mb-2">
@@ -121,7 +118,7 @@ $_SESSION['get-regID'] = $reg_id;
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="midname"
-                                                placeholder="Middlename" value="<?php echo $row['reg_mname']; ?>">
+                                                placeholder="Middle name" value="<?php echo $row['ad_mname']; ?>">
                                         </div>
                                     </div>
 
@@ -186,7 +183,7 @@ $_SESSION['get-regID'] = $reg_id;
             <?php include '../../includes/bed-footer.php';
 
             // alert 
-            if (isset($_SESSION['success-regEdit'])) {
+            if (isset($_SESSION['success-adEdit'])) {
                 echo "<script>
     $(function() {
         var Toast = Swal.mixin({
@@ -236,7 +233,7 @@ title: 'Successfully Updated.'
             </script>";
             }
             unset($_SESSION['no-pwd']);
-            unset($_SESSION['success-regEdit']);
+            unset($_SESSION['success-adEdit']);
             unset($_SESSION['no-img']);  ?>
 
 </body>

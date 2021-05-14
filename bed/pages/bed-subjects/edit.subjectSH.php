@@ -3,6 +3,8 @@ require '../../includes/conn.php';
 session_start();
 ob_start();
 
+
+
 require '../../includes/bed-session.php';
 
 $sub_id = $_GET['sub_id'];
@@ -91,16 +93,38 @@ $_SESSION['get_subID'] = $sub_id;
                                     </div>
 
                                     <div class="row mb-4 justify-content-center">
-                                        <div class="input-group col-md-3 mb-2">
+
+                                        <div class="input-group col-md-4 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>Unit(s)</b></span>
+                                                <span class="input-group-text text-sm"><b>Lecture Unit(s)</b></span>
                                             </div>
-                                            <input type="text" class="form-control" name="units"
-                                                placeholder="Enter Total Unit(s)" value="<?php echo $row['units']; ?>"
-                                                required>
+                                            <input type="text" class="form-control" name="lec_units"
+                                                placeholder="Enter No. of Unit(s)"
+                                                value="<?php echo $row['lec_units']; ?>" required>
                                         </div>
 
-                                        <div class="input-group col-md-5 mb-2">
+                                        <div class="input-group col-md-4 mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-sm"><b>Laboratory Unit(s)</b></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="lab_units"
+                                                placeholder="Enter No. of Unit(s)"
+                                                value="<?php echo $row['lab_units']; ?>" required>
+                                        </div>
+
+                                        <div class="input-group col-md-4 mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-sm"><b>Total Unit(s)</b></span>
+                                            </div>
+                                            <input type="text" class="form-control" name="total_units"
+                                                placeholder="Enter Total Unit(s)"
+                                                value="<?php echo $row['total_units']; ?>" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-4 justify-content-center">
+
+                                        <div class="input-group col-md-7 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><b>Pre-Requisites</b></span>
                                             </div>
@@ -109,7 +133,7 @@ $_SESSION['get_subID'] = $sub_id;
                                                 value="<?php echo $row['pre_requisites']; ?>">
                                         </div>
 
-                                        <div class="input-group col-md-3 mb-2">
+                                        <div class="input-group col-md-4 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><b>E.A.Y</b></span>
                                             </div>
@@ -196,15 +220,17 @@ $_SESSION['get_subID'] = $sub_id;
                                 </div>
                                 <!-- /.card-body -->
 
-                                <div class="card-footer row">
-                                    <div class="col">
-                                        <button type="submit" name="submit" class="btn bg-purple"><i
-                                                class="fa fa-check"></i> Update</button>
-                                    </div>
-                                    <div class="justify-content-end mr-1">
-                                        <a href="list.subjectSH.php" class="btn bg-gray"><i
-                                                class="fa fa-arrow-circle-left"></i>
-                                            Back</a>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="submit" name="submit" class="btn bg-purple"><i
+                                                    class="fa fa-check"></i> Update</button>
+                                        </div>
+                                        <div class="justify-content-end mr-2">
+                                            <a href="javascript:history.back();" class="btn bg-gray"><i
+                                                    class="fa fa-arrow-circle-left"></i>
+                                                Back</a>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
