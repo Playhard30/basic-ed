@@ -3,20 +3,6 @@ require '../../includes/conn.php';
 ob_start();
 session_start();
 
-
-$sql= mysqli_query($conn,"SELECT *, tbl_acadyears.ay_id FROM tbl_active_acadyears
-    LEFT JOIN tbl_acadyears ON tbl_acadyears.ay_id = tbl_active_acadyears.ay_id")or die(mysqli_error($conn));
-while ($row= mysqli_fetch_array($sql)) {
-    $_SESSION['active_acad'] = $row['academic_year'];
-}
-
-$sql= mysqli_query($conn,"SELECT *, tbl_semesters.semester_id FROM tbl_active_semesters
-    LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id")or die(mysqli_error($conn));
-while ($row= mysqli_fetch_array($sql)) {
-    $_SESSION['active_sem'] = $row['semester'];
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -150,6 +136,44 @@ while ($row= mysqli_fetch_array($sql)) {
                                                 name="lrn">
                                         </div>
                                     </div>
+
+                                    <!-- year and semester -->
+                                    <div class="form-group row mb-3 mt-3 justify-content-center" hidden>   
+                                        <div class="input-group col-md-6 mb-2 ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-sm"><b>
+                                                        Semester</b></span>
+                                        </div>
+                                        <?php
+                                        $query = mysqli_query($conn,"SELECT * FROM tbl_active_semesters
+                                            LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id");
+                                            while ($row = mysqli_fetch_array($query)) { ?>
+                                        <input type="text" value="<?php echo $row['semester']; ?>" class="form-control" placeholder="Enter 11-digit lrn"
+                                                name="semester">
+                                        <?php
+                                        }
+                                        ?>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mb-3 mt-3 justify-content-center" hidden>   
+                                        <div class="input-group col-md-6 mb-2 ">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-sm"><b>
+                                                        Academic Year</b></span>
+                                        </div>
+                                        <?php
+                                        $query = mysqli_query($conn,"SELECT * FROM tbl_active_acadyears
+                                            LEFT JOIN tbl_acadyears ON tbl_acadyears.ay_id = tbl_active_acadyears.ay_id");
+                                            while ($row = mysqli_fetch_array($query)) { ?>
+                                        <input type="text" value="<?php echo $row['academic_year']; ?>" class="form-control" placeholder="Enter 11-digit lrn"
+                                                name="year">
+                                        <?php
+                                        }
+                                        ?>
+                                        </div>
+                                    </div>
+                                    <!-- year and semester -->
                                 </div>
                                 
                             <div class="bg-purple">
