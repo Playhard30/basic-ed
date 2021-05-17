@@ -81,514 +81,517 @@ session_start();
                     <p class="login-box-msg">Saint Francis of Assisi College Bacoor Campus</p>
 
                     <section class="content">
-                    <div class="container-fluid pl-5 pr-5 pb-3">
-                        <div class="card card-purple shadow-lg">
+                        <div class="container-fluid pl-5 pr-5 pb-3">
+                            <div class="card card-purple shadow-lg">
 
-                            <div class="card-header text-center">
-                                <h3 class="text-lg" style="margin-bottom: unset;">
-                                    REGISTRATION FORM
-                                </h3>
-                            </div>
-                            <form action="userData/ctrl.addonline.php" enctype="multipart/form-data" method="POST">
-                                <div class="card-body">
-                                    <div class="row mb-4 mt-4 justify-content-center">
+                                <div class="card-header text-center">
+                                    <h3 class="text-lg" style="margin-bottom: unset;">
+                                        REGISTRATION FORM
+                                    </h3>
+                                </div>
+                                <form action="userData/ctrl.addonline.php" enctype="multipart/form-data" method="POST">
+                                    <div class="card-body">
+                                        <div class="row mb-4 mt-4 justify-content-center">
 
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Student Type</b></span>
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Student Type</b></span>
+                                                </div>
+                                                <select class="form-control custom-select select2 select2-purple"
+                                                    data-dropdown-css-class="select2-purple"
+                                                    data-placeholder="Select Student Type" name="studtype">
+                                                    <option selected disabled></option>
+                                                    <option value="New">New Student</option>
+                                                    <option value="Old">Old Student</option>
+                                                </select>
+
                                             </div>
-                                            <select class="form-control custom-select select2 select2-purple"
-                                                data-dropdown-css-class="select2-purple"
-                                                data-placeholder="Select Student Type" name="studtype">
-                                                <option selected disabled></option>
-                                                <option value="New">New Student</option>
-                                                <option value="Old">Old Student</option>
-                                            </select>
 
-                                        </div>
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Grade</b></span>
-                                            </div>
-                                            <select class="form-control custom-select select2 select2-purple"
-                                                data-dropdown-css-class="select2-purple"
-                                                data-placeholder="Select Grade" name="grade">
-                                                <option selected disabled></option>
-                                                <?php
-                                                $query = mysqli_query($conn, "SELECT * FROM tbl_grade_levels LIMIT 0, 3");
-                                                    while($row = mysqli_fetch_array($query)) {
-                                                        echo '<option value="'.$row['grade_level_id'].'">'.$row['grade_level'].'</option>';
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Grade</b></span>
+                                                </div>
+                                                <select class="form-control custom-select select2 select2-purple"
+                                                    data-dropdown-css-class="select2-purple"
+                                                    data-placeholder="Select Grade" name="grade">
+                                                    <option selected disabled></option>
+                                                    <?php
+                                                    $query = mysqli_query($conn, "SELECT * FROM tbl_grade_levels LIMIT 0, 3");
+                                                    while ($row = mysqli_fetch_array($query)) {
+                                                        echo '<option value="' . $row['grade_level_id'] . '">' . $row['grade_level'] . '</option>';
                                                     }
-                                                ?>
-                                            </select>
+                                                    ?>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row mb-3 mt-3 justify-content-center">   
-                                        <div class="input-group col-md-6 mb-2 ">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text text-sm"><b>
-                                                        LRN</b></span>
+                                        <div class="form-group row mb-3 mt-3 justify-content-center">
+                                            <div class="input-group col-md-6 mb-2 ">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            LRN</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Enter 11-digit lrn"
+                                                    name="lrn">
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Enter 11-digit lrn"
-                                                name="lrn">
-                                        </div>
-                                    </div>
 
-                                    <!-- year and semester -->
-                                    <div class="form-group row mb-3 mt-3 justify-content-center" hidden>   
-                                        <div class="input-group col-md-6 mb-2 ">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text text-sm"><b>
-                                                        Semester</b></span>
-                                        </div>
-                                        <?php
-                                        $query = mysqli_query($conn,"SELECT * FROM tbl_active_semesters
+                                        <!-- year and semester -->
+                                        <div class="form-group row mb-3 mt-3 justify-content-center" hidden>
+                                            <div class="input-group col-md-6 mb-2 ">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Semester</b></span>
+                                                </div>
+                                                <?php
+                                                $query = mysqli_query($conn, "SELECT * FROM tbl_active_semesters
                                             LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id");
-                                            while ($row = mysqli_fetch_array($query)) { ?>
-                                        <input type="text" value="<?php echo $row['semester']; ?>" class="form-control" placeholder="Enter 11-digit lrn"
-                                                name="semester">
-                                        <?php
-                                        }
-                                        ?>
+                                                while ($row = mysqli_fetch_array($query)) { ?>
+                                                <input type="text" value="<?php echo $row['semester']; ?>"
+                                                    class="form-control" placeholder="Enter 11-digit lrn"
+                                                    name="semester">
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="form-group row mb-3 mt-3 justify-content-center" hidden>   
-                                        <div class="input-group col-md-6 mb-2 ">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text text-sm"><b>
-                                                        Academic Year</b></span>
-                                        </div>
-                                        <?php
-                                        $query = mysqli_query($conn,"SELECT * FROM tbl_active_acadyears
+                                        <div class="form-group row mb-3 mt-3 justify-content-center" hidden>
+                                            <div class="input-group col-md-6 mb-2 ">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Academic Year</b></span>
+                                                </div>
+                                                <?php
+                                                $query = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears
                                             LEFT JOIN tbl_acadyears ON tbl_acadyears.ay_id = tbl_active_acadyears.ay_id");
-                                            while ($row = mysqli_fetch_array($query)) { ?>
-                                        <input type="text" value="<?php echo $row['academic_year']; ?>" class="form-control" placeholder="Enter 11-digit lrn"
-                                                name="year">
-                                        <?php
-                                        }
-                                        ?>
-                                        </div>
-                                    </div>
-                                    <!-- year and semester -->
-                                </div>
-                                
-                            <div class="bg-purple">
-                                    <div class="card-header text-center">
-                                        <h3 class="text-lg" style="margin-bottom: unset;">
-                                            PERSONAL DATA
-                                        </h3>
-                                    </div>
-                                </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            
-
-                                <!-- PERSONAL DATA -->
-
-                                <div class="card-body">
-
-                                    <div class="form-group row mb-3 mt-3">
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Lastname</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Lastname"
-                                              name="lastname">
-                                        </div>
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Firstname</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Firstname"
-                                               name="firstname">
-                                        </div>
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Middlename</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Middlename"
-                                              name="midname">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-                                        <div class="input-group col-md-12 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Address</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" name="address"
-                                              
-                                                placeholder="Unit number, house number, street name, barangay, city, province">
-                                        </div>
-
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Date of Birth</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" name="date_birth"
-                                                placeholder="dd/mm/yyyy">
-                                        </div>
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Place of Birth</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" name="place_birth"
-                                                placeholder="city, province">
-                                        </div>
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Age</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" name="age"
-                                           placeholder="00 years old">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Gender</b></span>
-                                            </div>
-                                            <select class="form-control custom-select select2 select2-purple"
-                                                data-dropdown-css-class="select2-purple"
-                                                data-placeholder="Select Gender" name="gender">
-                                                <option selected disabled></option>
+                                                while ($row = mysqli_fetch_array($query)) { ?>
+                                                <input type="text" value="<?php echo $row['academic_year']; ?>"
+                                                    class="form-control" placeholder="Enter 11-digit lrn" name="year">
                                                 <?php
-                                                $query = mysqli_query($conn, "SELECT * FROM tbl_genders");
-                                                    while($row = mysqli_fetch_array($query)) {
-                                                        echo '<option value="'.$row['gender_id'].'">'.$row['gender_name'].'</option>';
-                                                    }
+                                                }
                                                 ?>
-                                            </select>
-
-                                        </div>
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Nationality</b></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Nationality"
-                                              name="nationality">
+                                        </div>
+                                        <!-- year and semester -->
+                                    </div>
+
+                                    <div class="bg-purple">
+                                        <div class="card-header text-center">
+                                            <h3 class="text-lg" style="margin-bottom: unset;">
+                                                PERSONAL DATA
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <!-- form start -->
+
+
+                                    <!-- PERSONAL DATA -->
+
+                                    <div class="card-body">
+
+                                        <div class="form-group row mb-3 mt-3">
+
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Lastname</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Lastname"
+                                                    name="lastname">
+                                            </div>
+
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Firstname</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Firstname"
+                                                    name="firstname">
+                                            </div>
+
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Middlename</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Middlename"
+                                                    name="midname">
+                                            </div>
+
                                         </div>
 
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Religion</b></span>
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-12 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Address</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" name="address"
+                                                    placeholder="Unit number, house number, street name, barangay, city, province">
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Religion"
-                                             name="religion">
+
+
                                         </div>
+
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Date of Birth</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" name="date_birth"
+                                                    placeholder="dd/mm/yyyy">
+                                            </div>
+
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Place of Birth</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" name="place_birth"
+                                                    placeholder="city, province">
+                                            </div>
+
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Age</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" name="age"
+                                                    placeholder="00 years old">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Gender</b></span>
+                                                </div>
+                                                <select class="form-control custom-select select2 select2-purple"
+                                                    data-dropdown-css-class="select2-purple"
+                                                    data-placeholder="Select Gender" name="gender">
+                                                    <option selected disabled></option>
+                                                    <?php
+                                                    $query = mysqli_query($conn, "SELECT * FROM tbl_genders");
+                                                    while ($row = mysqli_fetch_array($query)) {
+                                                        echo '<option value="' . $row['gender_id'] . '">' . $row['gender_name'] . '</option>';
+                                                    }
+                                                    ?>
+                                                </select>
+
+                                            </div>
+
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Nationality</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Nationality"
+                                                    name="nationality">
+                                            </div>
+
+                                            <div class="input-group col-md-4 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Religion</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Religion"
+                                                    name="religion">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Landline No.</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Landline Number"
+                                                    name="landline">
+                                            </div>
+
+                                            <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Cell Phone No.</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Cellphone Number"
+                                                    name="cellphone">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-12 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Email Address</b></span>
+                                                </div>
+                                                <input type="email" class="form-control" placeholder="example@gmail.com"
+                                                    name="email">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- FAMILYBACKGROUND -->
+
+                                    <div class="bg-purple">
+                                        <div class="card-header text-center">
+                                            <h3 class="text-lg" style="margin-bottom: unset;">
+                                                FAMILY BACKGROUND
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="form-group row mb-3 mt-3">
+
+                                            <div class="input-group col-md-6 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Name of Father</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Fullname"
+                                                    name="fname">
+                                            </div>
+
+                                            <div class="input-group col-md-6 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            F. Occupation</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Father Occupation"
+                                                    name="focc">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-12 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Contact No.</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Contact Number"
+                                                    name="fcontact">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-6 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Name of Mother</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Fullname"
+                                                    name="mname">
+                                            </div>
+
+                                            <div class="input-group col-md-6 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            M. Occupation</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Father Occupation"
+                                                    name="mocc">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-12 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Contact No.</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Contact Number"
+                                                    name="mcontact">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+
+
+                                            <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Monthly Income</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Family Income"
+                                                    name="month_inc">
+                                            </div>
+
+                                            <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            No. of Siblings</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Number of Siblings"
+                                                    name="no_sib">
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-12 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Guardian N.</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="Guardian Name"
+                                                    name="guardname">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+
+
+                                            <div class="input-group col-md-12 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Address</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" name="gaddress"
+                                                    placeholder="Unit number, house number, street name, barangay, city, province">
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+
+
+                                            <div class="input-group col-md-12 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Contact No.</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" name="gcontact"
+                                                    placeholder="Contact Number">
+                                            </div>
+
+                                        </div>
+
 
                                     </div>
 
-                                    <div class="form-group row mb-3">
 
-                                        <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Landline No.</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Landline Number"
-                                               name="landline">
-                                        </div>
+                                    <!-- EDUCATIONAL BACKGROUND -->
 
-                                        <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Cell Phone No.</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Cellphone Number"
-                                              name="cellphone">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-                                        <div class="input-group col-md-12 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Email Address</b></span>
-                                            </div>
-                                            <input type="email" class="form-control" placeholder="example@gmail.com"
-                                              name="email">
+                                    <div class="bg-purple">
+                                        <div class="card-header text-center">
+                                            <h3 class="text-lg" style="margin-bottom: unset;">
+                                                EDUCATIONAL BACKGROUND
+                                            </h3>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- FAMILYBACKGROUND -->
+                                    <div class="card-body">
 
-                                <div class="bg-purple">
-                                    <div class="card-header text-center">
-                                        <h3 class="text-lg" style="margin-bottom: unset;">
-                                            FAMILY BACKGROUND
-                                        </h3>
-                                    </div>
-                                </div>
+                                        <div class="form-group row mb-3 mt-3">
 
-                                <div class="card-body">
-
-                                    <div class="form-group row mb-3 mt-3">
-
-                                        <div class="input-group col-md-6 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Name of Father</b></span>
+                                            <div class="input-group col-md-12 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            SCH. Last Attended</b></span>
+                                                </div>
+                                                <input type="text" class="form-control"
+                                                    placeholder="School Last Attended" name="last_attend">
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Fullname"
-                                                name="fname">
+
                                         </div>
 
-                                        <div class="input-group col-md-6 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        F. Occupation</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Father Occupation"
-                                              name="focc">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-                                        <div class="input-group col-md-12 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Contact No.</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Contact Number"
-                                              name="fcontact">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-                                        <div class="input-group col-md-6 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Name of Mother</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Fullname"
-                                             name="mname">
-                                        </div>
-
-                                        <div class="input-group col-md-6 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        M. Occupation</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Father Occupation"
-                                             name="mocc">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-                                        <div class="input-group col-md-12 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Contact No.</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Contact Number"
-                                             name="mcontact">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-
-                                        <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Monthly Income</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Family Income"
-                                             name="month_inc">
-                                        </div>
-
-                                        <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        No. of Siblings</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Number of Siblings"
-                                             name="no_sib">
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="form-group row mb-3">
-
-                                        <div class="input-group col-md-12 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Guardian N.</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Guardian Name"
-                                              name="guardname">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-
-                                        <div class="input-group col-md-12 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Address</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" name="gaddress"
-                                               
-                                                placeholder="Unit number, house number, street name, barangay, city, province">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-
-                                        <div class="input-group col-md-12 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Contact No.</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" name="gcontact"
-                                                 placeholder="Contact Number">
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-
-                                <!-- EDUCATIONAL BACKGROUND -->
-
-                                <div class="bg-purple">
-                                    <div class="card-header text-center">
-                                        <h3 class="text-lg" style="margin-bottom: unset;">
-                                            EDUCATIONAL BACKGROUND
-                                        </h3>
-                                    </div>
-                                </div>
-
-                                <div class="card-body">
-
-                                    <div class="form-group row mb-3 mt-3">
-
-                                        <div class="input-group col-md-12 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        SCH. Last Attended</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="School Last Attended"
-                                                name="last_attend">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row mb-3">
+                                        <div class="form-group row mb-3">
 
 
 
-                                        <div class="input-group col-md-6 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Grade Level</b></span>
-                                            </div>
-                                            <select class="form-control custom-select select2 select2-purple"
-                                                data-dropdown-css-class="select2-purple"
-                                                data-placeholder="Select Grade Level" name="prev_grade_level">
-                                                <?php
-                                                $get = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
+                                            <div class="input-group col-md-6 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            Grade Level</b></span>
+                                                </div>
+                                                <select class="form-control custom-select select2 select2-purple"
+                                                    data-dropdown-css-class="select2-purple"
+                                                    data-placeholder="Select Grade Level" name="prev_grade_level">
+                                                    <?php
+                                                    $get = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
                                                     while ($row2 = mysqli_fetch_array($get)) {
-                                                            echo '<option value="' . $row2['grade_level'] . '">'
-                                                                . $row2['grade_level'] . '</option>';
+                                                        echo '<option value="' . $row2['grade_level'] . '">'
+                                                            . $row2['grade_level'] . '</option>';
                                                     }
-                                                ?>
-                                            </select>
-                                        </div>
-
-                                        <div class="input-group col-md-6 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        School Year</b></span>
+                                                    ?>
+                                                </select>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="year-year"
-                                                name="sch_year">
-                                        </div>
 
-                                    </div>
-
-                                    <div class="form-group row mb-3">
-
-                                        <div class="input-group col-md-12 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        School Address</b></span>
+                                            <div class="input-group col-md-6 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            School Year</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="year-year"
+                                                    name="sch_year">
                                             </div>
-                                            <input type="text" class="form-control" placeholder="School Address"
-                                                name="sch_address">
+
                                         </div>
 
+                                        <div class="form-group row mb-3">
+
+                                            <div class="input-group col-md-12 mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text text-sm"><b>
+                                                            School Address</b></span>
+                                                </div>
+                                                <input type="text" class="form-control" placeholder="School Address"
+                                                    name="sch_address">
+                                            </div>
+
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
+                                    <div class="card-body">
                                         <div class="form-group mb-0">
-                                        <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1" required>
-                                        <label class="custom-control-label" for="exampleCheck1">I agree that the data collected from this online registration shall be subject to the school's <a href="terms/SFAC-Data-Privacy.pdf">Data Privacy Policy</a>.</label>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" name="terms" class="custom-control-input"
+                                                    id="exampleCheck1" required>
+                                                <label class="custom-control-label" for="exampleCheck1">I agree that the
+                                                    data collected from this online registration shall be subject to the
+                                                    school's <a href="terms/SFAC-Data-Privacy.pdf">Data Privacy
+                                                        Policy</a>.</label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- /.card-body -->
+                                    <!-- /.card-body -->
 
-                                <div class="card-footer">
-                                    <button type="submit" name="submit" class="btn bg-purple"><i
-                                            class="fa fa-user-check"></i>
-                                        Register</button>
-                                </div>
-                            </form>
+                                    <div class="card-footer">
+                                        <button type="submit" name="submit" class="btn bg-purple"><i
+                                                class="fa fa-user-check"></i>
+                                            Register</button>
+                                    </div>
+                                </form>
 
-                            <!-- /.card -->
+                                <!-- /.card -->
 
-                        </div><!-- /.container-fluid -->q
-                    </div>
-                </section>
+                            </div><!-- /.container-fluid -->
+                        </div>
+                    </section>
 
                     <!-- <div class="social-auth-links text-center mt-2 mb-3">
                     <a href="#" class="btn btn-block btn-primary">
