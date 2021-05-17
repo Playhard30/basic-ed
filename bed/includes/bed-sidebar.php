@@ -22,7 +22,7 @@
                      <a class="d-block">' . $row['name'];
                     }
                 } elseif ($_SESSION['role'] == "Registrar") {
-                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrars.reg_lname, ', ', tbl_registrars.reg_fname, ' ', LEFT(tbl_registrars.reg_mname,1), '.' ) AS fullname FROM tbl_registrars WHERE reg_id = '$reg_id'");
+                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_registrars.reg_fname, LEFT(tbl_registrars.reg_mname,1), '. ', tbl_registrars.reg_lname) AS fullname FROM tbl_registrars WHERE reg_id = '$reg_id'");
                     while ($row = mysqli_fetch_array($get_user)) {
                         echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img-circle elevation-2 zoom" alt="User image" style="width: 39px; height: 39px;">
                         </div>
@@ -30,7 +30,7 @@
                      <a class="d-block">' . $row['fullname'];
                     }
                 } elseif ($_SESSION['role'] == "Principal") {
-                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_principals.prin_lname, ', ', tbl_principals.prin_fname, ' ', LEFT(tbl_principals.prin_mname,1), '.') AS fullname FROM tbl_principals WHERE prin_id = '$prin_id'");
+                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_principals.prin_fname, LEFT(tbl_principals.prin_mname,1), '. ', tbl_principals.prin_lname) AS fullname FROM tbl_principals WHERE prin_id = '$prin_id'");
                     while ($row = mysqli_fetch_array($get_user)) {
                         echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img-circle elevation-2 zoom" alt="User image" style="width: 39px; height: 39px;">
                         </div>
@@ -38,7 +38,7 @@
                      <a class="d-block">' . $row['fullname'];
                     }
                 } elseif ($_SESSION['role'] == "Accounting") {
-                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_accountings.accounting_lname, ', ', tbl_accountings.accounting_fname, ' ', LEFT(tbl_accountings.accounting_mname,1), '.') AS fullname FROM tbl_accountings WHERE acc_id = '$acc_id'");
+                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_accountings.accounting_fname, ' ', LEFT(tbl_accountings.accounting_mname,1), '. ', tbl_accountings.accounting_lname) AS fullname FROM tbl_accountings WHERE acc_id = '$acc_id'");
                     while ($row = mysqli_fetch_array($get_user)) {
                         echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img-circle elevation-2 zoom" alt="User image" style="width: 39px; height: 39px;">
                         </div>
@@ -46,7 +46,7 @@
                      <a class="d-block">' . $row['fullname'];
                     }
                 } elseif ($_SESSION['role'] == "Admission") {
-                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_admissions.admission_lname, ', ', tbl_admissions.admission_fname, ' ', LEFT(tbl_admissions.admission_mname,1), '.') AS fullname FROM tbl_admissions WHERE admission_id = '$admission_id'");
+                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_admissions.admission_fname, ' ', LEFT(tbl_admissions.admission_mname,1), '. ', tbl_admissions.admission_lname) AS fullname FROM tbl_admissions WHERE admission_id = '$admission_id'");
                     while ($row = mysqli_fetch_array($get_user)) {
                         echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img-circle elevation-2 zoom" alt="User image" style="width: 39px; height: 39px;">
                         </div>
@@ -54,7 +54,7 @@
                      <a class="d-block">' . $row['fullname'];
                     }
                 } elseif ($_SESSION['role'] == "Teacher") {
-                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_teachers.teacher_lname, ', ', tbl_teachers.teacher_fname, ' ', LEFT(tbl_teachers.teacher_mname,1), '.') AS fullname FROM tbl_teachers WHERE teacher_id = '$teacher_id'");
+                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_teachers.teacher_fname, ' ', LEFT(tbl_teachers.teacher_mname,1), '. ', tbl_teachers.teacher_lname) AS fullname FROM tbl_teachers WHERE teacher_id = '$teacher_id'");
                     while ($row = mysqli_fetch_array($get_user)) {
                         echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img-circle elevation-2 zoom" alt="User image" style="width: 39px; height: 39px;">
                         </div>
@@ -62,7 +62,7 @@
                      <a class="d-block">' . $row['fullname'];
                     }
                 } elseif ($_SESSION['role'] == "Adviser") {
-                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_adviser.ad_lname, ', ', tbl_adviser.ad_fname, ' ', LEFT(tbl_adviser.ad_mname,1), '.') AS fullname FROM tbl_adviser WHERE ad_id = '$ad_id'");
+                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_adviser.ad_fname, ' ', LEFT(tbl_adviser.ad_mname,1), '. ', tbl_adviser.ad_lname) AS fullname FROM tbl_adviser WHERE ad_id = '$ad_id'");
                     while ($row = mysqli_fetch_array($get_user)) {
                         echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img-circle elevation-2 zoom" alt="User image" style="width: 39px; height: 39px;">
                         </div>
@@ -70,7 +70,7 @@
                     <a class="d-block">' . $row['fullname'];
                     }
                 } elseif ($_SESSION['role'] == "Student") {
-                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_students.student_lname, ', ', tbl_students.student_fname, ' ', LEFT(tbl_students.student_mname,1), '.') AS fullname FROM tbl_students WHERE student_id = '$stud_id'");
+                    $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_students.student_fname, ' ', LEFT(tbl_students.student_mname,1), '. ', tbl_students.student_lname) AS fullname FROM tbl_students WHERE student_id = '$stud_id'");
                     while ($row = mysqli_fetch_array($get_user)) {
                         if (empty(base64_encode($row['img']))) {
                             echo '<img src="../../../assets/img/red_user.jpg" class="img-circle elevation-2 zoom" alt="User image" style="width: 39px; height: 39px;">
@@ -79,7 +79,7 @@
                             echo '<img src="data:image/jpeg;base64,' . base64_encode($row['img']) . '" class="img-circle elevation-2 zoom" alt="User image" style="width: 39px; height: 39px;">
                         </div>';
                         }
-                        if (empty($row['student_lname'])) {
+                        if (empty($row['student_lname']) && empty($row['student_mname']) && empty($row['student_fname'])) {
                             echo '<div class="info">
                             <a class="d-block">' . $row['stud_no'];
                         } else {
@@ -262,7 +262,7 @@
                         <li class="nav-item">
                             <a href="../bed-student/list.student.php" class="nav-link">
                                 <i class="fa fa-restroom nav-icon"></i>
-                                <p> Student List</p>
+                                <p> Students List</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -310,6 +310,12 @@
                             <a href="../bed-forms/regform.php" class="nav-link">
                                 <i class="fa fa-file-pdf nav-icon"></i>
                                 <p> Registration</p>
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a href="../bed-forms/PARS.php" class="nav-link">
+                                <i class="fa fa-file-pdf nav-icon"></i>
+                                <p> PARS</p>
                             </a>
                         </li>
 
@@ -516,40 +522,40 @@
                             <a href="#" class="nav-link">
                                 <i class="fa fa-ellipsis-h nav-icon"> </i>
                                 <p>
-                                 Pending Students
+                                    Pending Students
                                 </p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                
+
                 <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-hand-holding-medical"></i>
-                    <p>
-                        Offer/Open Subjects
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="../bed-subjects/list.activeSubSH.php" class="nav-link">
-                            <i class="fa fa-list-alt nav-icon"> </i>
-                            <p>
-                             Senior
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="fa fa-list-alt nav-icon"> </i>
+                        <i class="nav-icon fas fa-hand-holding-medical"></i>
                         <p>
-                         Primary - Junior
+                            Offer/Open Subjects
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-subjects/list.offerSubSH.php" class="nav-link">
+                                <i class="fa fa-list-alt nav-icon"> </i>
+                                <p>
+                                    Senior
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-list-alt nav-icon"> </i>
+                                <p>
+                                    Primary - Junior
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                </ul>
-            </li>
                 ';
 
                     // END ADMISSION
@@ -746,11 +752,51 @@
             <li class="nav-item">
                 <a href="../bed-student/add.enroll.php" class="nav-link">
                     <i class="nav-icon fas fa-globe"></i>
-                    <p>
-                        Enroll Now
-                    </p>
+                    <p>';
+                    $get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
+                    while ($row = mysqli_fetch_array($get_active_sem)) {
+                        $active_sem = $row['semester_id'];
+                    }
+                    $get_active_acadyear = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
+                    while ($row = mysqli_fetch_array($get_active_acadyear)) {
+                        $active_acadyear = $row['ay_id'];
+                    }
+                    $get_grade_level = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE student_id =
+                        '$stud_id'");
+                    while ($row = mysqli_fetch_array($get_grade_level)) {
+                        $grade_level_id = $row['grade_level_id'];
+                    }
+                    if (empty($grade_level_id) || $grade_level_id < 14) {
+                        $check = mysqli_query(
+                            $conn,
+                            "SELECT * FROM tbl_schoolyears WHERE student_id = '$stud_id' AND ay_id = '$active_acadyear'"
+                        );
+                        $result = mysqli_num_rows($check);
+                        if ($result > 0) {
+                            echo 'Enrollment Info. </p>
                 </a>
             </li>';
+                        } else {
+                            echo 'Enroll Now </p>
+            </a>
+            </li>';
+                        }
+                    } elseif ($grade_level_id == '14' || $grade_level_id == '15') {
+                        $check = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE semester_id = '$active_sem' AND student_id
+            = '$stud_id' AND ay_id = '$active_acadyear'");
+                        $result = mysqli_num_rows($check);
+
+                        if ($result > 0) {
+                            echo 'Enrollment Info. </p>
+            </a>
+            </li>';
+                        } else {
+                            echo 'Enroll Now
+            </p>
+            </a>
+            </li>';
+                        }
+                    }
                 }
 
                 // END STUDENT
@@ -781,8 +827,7 @@
             class="btn btn-link pos-right mr-1 text-gray" data-toggle="tooltip" data-placement="top"
             title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
         } elseif ($_SESSION['role'] == "Student") {
-            echo ' <a href="#" class="btn btn-link ml-2"><i class="fas fa-calendar-alt text-gray"></i></a>
-
+            echo '
         <a href="../bed-student/edit.student.php" class="btn btn-link pos-right mr-2 text-gray" data-toggle="tooltip" data-placement="top" title="Edit Profile"><i
                 class="fas fa-user-edit"></i></a>';
         } elseif ($_SESSION['role'] == "Adviser") {
@@ -795,10 +840,13 @@
             class="btn btn-link pos-right mr-1 text-gray" data-toggle="tooltip" data-placement="top"
             title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
         } elseif ($_SESSION['role'] == "Admission") {
-            echo ' <a href="../bed-date/add.date.php" class="btn btn-link ml-1 mr-4"><i class="fas fa-calendar-plus text-gray"></i></a>
-            <a href="../bed-date/set.date.php" class="btn btn-link ml-4 mr-auto"><i class="fas fa-calendar-alt text-gray"></i></a>
+            echo ' <a href="../bed-date/add.date.php" class="btn btn-link ml-1 mr-4"  data-toggle="tooltip" data-placement="top"
+            title="Add Academic Year"><i class="fas fa-calendar-plus text-gray"></i></a>
+            <a href="../bed-date/set.date.php" class="btn btn-link ml-4 mr-auto"  data-toggle="tooltip" data-placement="top"
+            title="Set Academic Year & Semester"><i class="fas fa-calendar-alt text-gray"></i></a>
         <a href="../bed-master_key/edit.admission.php?admission_id= ' . $admission_id . '"
-        class="btn btn-link pos-right mr-1 text-gray"><i class="fas fa-user-edit"></i></a>';
+        class="btn btn-link pos-right mr-1 text-gray"  data-toggle="tooltip" data-placement="top"
+        title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
         }
         ?>
 

@@ -14,16 +14,20 @@ if (isset($_POST['submit'])) {
 
 
     if ($grade_level == '14' || $grade_level == '15') {
-
-        $double_stud = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE ay_id = '$acadyear' AND semester_id = '$sem' AND student_id = '$stud_id' AND  grade_level_id = '$grade_level' AND strand_id = '$strand_id' AND date_enrolled = '$date_enrolled' AND stud_type= '$stud_type' AND remark= '$remark'") or die(mysqli_error($conn));
-        $result = mysqli_num_rows($double_stud);
-
-        if ($result > 0) {
-            $_SESSION['dbl-stud'] = true;
+        if (empty($strand_id)) {
+            $_SESSION['field_required'] = true;
             header('location: ../add.enroll.php');
         } else {
-            $insert = mysqli_query($conn, "INSERT INTO tbl_schoolyears (ay_id, semester_id, student_id, grade_level_id, strand_id, date_enrolled, stud_type, remark) VALUES ('$acadyear', '$sem', '$stud_id', '$grade_level', '$strand_id', '$date_enrolled', '$stud_type', '$remark')") or die(mysqli_error($conn));
-            header('location: ../../bed-subjects/add.enrolledSubSH.php');
+            $double_stud = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE ay_id = '$acadyear' AND semester_id = '$sem' AND student_id = '$stud_id' AND  grade_level_id = '$grade_level' AND strand_id = '$strand_id' AND date_enrolled = '$date_enrolled' AND stud_type= '$stud_type' AND remark= '$remark'") or die(mysqli_error($conn));
+            $result = mysqli_num_rows($double_stud);
+
+            if ($result > 0) {
+                $_SESSION['dbl-stud'] = true;
+                header('location: ../add.enroll.php');
+            } else {
+                $insert = mysqli_query($conn, "INSERT INTO tbl_schoolyears (ay_id, semester_id, student_id, grade_level_id, strand_id, date_enrolled, stud_type, remark) VALUES ('$acadyear', '$sem', '$stud_id', '$grade_level', '$strand_id', '$date_enrolled', '$stud_type', '$remark')") or die(mysqli_error($conn));
+                header('location: ../../bed-subjects/list.enrolledSubSH.php');
+            }
         }
     } else {
 
@@ -35,7 +39,7 @@ if (isset($_POST['submit'])) {
             header('location: ../add.enroll.php');
         } else {
             $insert = mysqli_query($conn, "INSERT INTO tbl_schoolyears (ay_id, student_id, grade_level_id, date_enrolled, stud_type, remark) VALUES ('$acadyear', '$stud_id', '$grade_level', '$date_enrolled', '$stud_type', '$remark')") or die(mysqli_error($conn));
-            header('location: ../../bed-subjects/add.enrolledSubSH.php');
+            header('location: ../../bed-subjects/list.enrolledSubSH.php');
         }
     }
 }

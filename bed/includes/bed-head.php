@@ -34,9 +34,18 @@
 <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 <style>
-.dropdown-item.active,
-.dropdown-item:active {
-    background-color: #dc3545 !important;
+a.select-hover:hover {
+    background-color: #e6e6e6 !important;
+    border-color: lightgray !important;
+    color: #54a1d8 !important;
+
+}
+
+a.select-hover:active {
+    background-color: lightgray !important;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 16%), 0 4px 20px 0 rgb(0 0 0 / 15%) !important;
+    border-color: lightgray !important;
+
 
 }
 
@@ -67,8 +76,8 @@ body {
 }
 
 .page-item.active .page-link {
-    background-color: #001f3f;
-    border-color: #001f3f;
+    background-color: #001f3f !important;
+    border-color: #001f3f !important;
 }
 
 .zoom {
@@ -82,6 +91,11 @@ body {
 
 table.dataTable {
     border-collapse: collapse !important;
+}
+
+.bg-gray-light {
+    background-color: #e8e8e8 !important;
+    color: #1f2d3d !important;
 }
 
 #scroll {

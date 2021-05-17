@@ -79,7 +79,8 @@ require '../../includes/bed-session.php';
                                                             <label class="custom-file-label" for="customFile">Choose
                                                                 image</label>
                                                         </div><button type="submit" name="upload"
-                                                            class="btn bg-purple"><i class="fa fa-image"></i>
+                                                            class="btn bg-purple btn-default"><i
+                                                                class="fa fa-image"></i>
                                                             Update</button>
                                                     </div>
                                                 </div>
@@ -141,7 +142,7 @@ require '../../includes/bed-session.php';
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" name="submit" class="btn bg-purple"><i
+                                    <button type="submit" name="submit" class="btn bg-purple btn-default"><i
                                             class="fa fa-user-check"></i> Update</button>
                                 </div>
                             </form>
@@ -166,7 +167,7 @@ require '../../includes/bed-session.php';
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000
+            timer: 2000
         }); 
 $('.swalDefaultSuccess') 
 Toast.fire({
@@ -182,7 +183,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({
@@ -198,7 +199,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({

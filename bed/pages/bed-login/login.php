@@ -114,7 +114,7 @@ session_start();
 
                             <!-- /.col -->
                             <div class="col-4 mb-2">
-                                <button type="submit" class="btn btn-danger btn-block" name="submit">Sign
+                                <button type="submit" class="btn bg-red btn-default btn-block p-2" name="submit">Sign
                                     in</button>
 
                             </div>

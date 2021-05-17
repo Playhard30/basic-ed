@@ -190,7 +190,7 @@ $_SESSION['get-adID'] = $ad_id;
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000
+            timer: 2000 
         }); 
 $('.swalDefaultSuccess') 
 Toast.fire({
@@ -206,7 +206,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({
@@ -222,7 +222,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({

@@ -89,7 +89,7 @@ require '../../includes/bed-session.php';
 
                                         <div class="card-footer">
                                             <button type="submit" name="submit" class="btn bg-purple"><i
-                                                    class="fas fa-calendar-check"></i> Set Active A.Y.</button>
+                                                    class="fas fa-calendar-check m-1"> </i> Set Academic Year</button>
                                         </div>
                                     </form>
                                 </div>
@@ -139,7 +139,7 @@ require '../../includes/bed-session.php';
 
                                         <div class="card-footer">
                                             <button type="submit" name="submit1" class="btn bg-purple"><i
-                                                    class="fas fa-calendar-check"></i> Set Active Sem</button>
+                                                    class="fas fa-calendar-check m-1"> </i> Set Semester</button>
                                         </div>
                                     </form>
                                 </div>

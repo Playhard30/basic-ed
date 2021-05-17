@@ -66,18 +66,18 @@ if (isset($_GET['stem'])) {
                             <div class="col-12">
                                 <div class="card shadow">
                                     <div class="card-header bg-navy p-3">
-                                        <h3 class="card-title">Senior High Subjects List -<?php if (isset($_GET['stem'])) {
-                                                                                                echo ' STEM';
+                                        <h3 class="card-title">Senior High Subjects List <?php if (isset($_GET['stem'])) {
+                                                                                                echo ' (STEM)';
                                                                                             } elseif (isset($_GET['abm'])) {
-                                                                                                echo ' ABM';
+                                                                                                echo ' (ABM)';
                                                                                             } elseif (isset($_GET['gas'])) {
-                                                                                                echo ' GAS';
+                                                                                                echo ' (GAS)';
                                                                                             } elseif (isset($_GET['humss'])) {
-                                                                                                echo ' HUMSS';
+                                                                                                echo ' (HUMSS)';
                                                                                             } elseif (isset($_GET['tvl'])) {
-                                                                                                echo ' TVL-HE';
+                                                                                                echo ' (TVL-HE)';
                                                                                             } else {
-                                                                                                echo ' STEM';
+                                                                                                echo ' (STEM)';
                                                                                             } ?></h3>
 
                                     </div>
@@ -152,7 +152,7 @@ if (isset($_GET['stem'])) {
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="border-bottom">
                                                 <?php if (!empty($efacadyear)) {
 
                                                     $get_subjects = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior
@@ -253,7 +253,7 @@ if (isset($_GET['stem'])) {
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     }); 
             $('.swalDefaultSuccess') 
             Toast.fire({

@@ -84,10 +84,9 @@ require '../../includes/bed-session.php';
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="border-bottom">
 
-                                                <?php include '../../includes/bed-head.php';
-
+                                                <?php
                                                 if (isset($_GET['look'])) {
 
                                                     $_GET['search'] = addslashes($_GET['search']);
@@ -173,6 +172,7 @@ require '../../includes/bed-session.php';
                                                 } ?>
                                             </tbody>
                                         </table>
+
                                     </div>
                                     <!-- /.card-body -->
                                 </div>
@@ -201,7 +201,7 @@ require '../../includes/bed-session.php';
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     }); 
             $('.swalDefaultSuccess') 
             Toast.fire({

@@ -80,7 +80,8 @@ require '../../includes/bed-session.php';
                                                             <label class="custom-file-label" for="customFile">Choose
                                                                 image</label>
                                                         </div><button type="submit" name="upload"
-                                                            class="btn bg-purple"><i class="fa fa-image"></i>
+                                                            class="btn bg-purple btn-default"><i
+                                                                class="fa fa-image"></i>
                                                             Update</button>
                                                     </div>
                                                 </div>
@@ -95,8 +96,7 @@ require '../../includes/bed-session.php';
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="firstname"
-                                                placeholder="Firstname" value="<?php echo $row['student_fname']; ?>"
-                                                required>
+                                                placeholder="Firstname" value="<?php echo $row['student_fname']; ?>">
                                         </div>
 
 
@@ -105,8 +105,7 @@ require '../../includes/bed-session.php';
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="lastname"
-                                                placeholder="Lastname" value="<?php echo $row['student_lname']; ?>"
-                                                required>
+                                                placeholder="Lastname" value="<?php echo $row['student_lname']; ?>">
                                         </div>
 
                                         <div class="input-group col-sm-4 mb-2">
@@ -160,7 +159,7 @@ require '../../includes/bed-session.php';
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" name="submit" class="btn bg-purple"><i
+                                    <button type="submit" name="submit" class="btn bg-purple btn-default"><i
                                             class="fa fa-user-check"></i> Update</button>
                                 </div>
                             </form>
@@ -185,7 +184,7 @@ require '../../includes/bed-session.php';
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000
+            timer: 2000
         }); 
 $('.swalDefaultSuccess') 
 Toast.fire({
@@ -201,7 +200,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({
@@ -217,7 +216,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({

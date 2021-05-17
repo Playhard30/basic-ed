@@ -62,7 +62,7 @@ require '../../includes/bed-session.php';
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="border-bottom">
                                                 <?php $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_admissions.admission_lname, ', ', tbl_admissions.admission_fname, ' ', tbl_admissions.admission_mname) AS fullname 
                                                 FROM tbl_admissions") ?>
                                                 <tr>
@@ -151,7 +151,7 @@ require '../../includes/bed-session.php';
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     }); 
             $('.swalDefaultSuccess') 
             Toast.fire({

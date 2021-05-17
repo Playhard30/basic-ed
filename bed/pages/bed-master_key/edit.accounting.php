@@ -81,7 +81,8 @@ $_SESSION['get-accID'] = $acc_id;
                                                             <label class="custom-file-label" for="customFile">Choose
                                                                 image</label>
                                                         </div><button type="submit" name="upload"
-                                                            class="btn bg-purple"><i class="fa fa-image"></i>
+                                                            class="btn bg-purple btn-default"><i
+                                                                class="fa fa-image"></i>
                                                             Update</button>
                                                     </div>
                                                 </div>
@@ -96,7 +97,8 @@ $_SESSION['get-accID'] = $acc_id;
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="firstname"
-                                                placeholder="First name" value="<?php echo $row['accounting_fname']; ?>">
+                                                placeholder="First name"
+                                                value="<?php echo $row['accounting_fname']; ?>">
                                         </div>
 
 
@@ -113,7 +115,8 @@ $_SESSION['get-accID'] = $acc_id;
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
                                             <input type="text" class="form-control" name="midname"
-                                                placeholder="Middle name" value="<?php echo $row['accounting_mname']; ?>">
+                                                placeholder="Middle name"
+                                                value="<?php echo $row['accounting_mname']; ?>">
                                         </div>
                                     </div>
 
@@ -160,7 +163,7 @@ $_SESSION['get-accID'] = $acc_id;
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" name="submit" class="btn bg-purple"><i
+                                    <button type="submit" name="submit" class="btn bg-purple btn-default"><i
                                             class="fa fa-user-check"></i> Update</button>
                                 </div>
                             </form>
@@ -185,7 +188,7 @@ $_SESSION['get-accID'] = $acc_id;
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000
+            timer: 2000
         }); 
 $('.swalDefaultSuccess') 
 Toast.fire({
@@ -201,7 +204,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({
@@ -217,7 +220,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({

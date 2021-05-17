@@ -79,7 +79,7 @@ require '../../includes/bed-session.php';
 
                                         <div class="card-footer">
                                             <button type="submit" name="submit" class="btn btn-info"><i
-                                                    class="fas fa-calendar-plus"></i> Add Effective A.Y</button>
+                                                    class="fas fa-calendar-plus m-1"> </i> Add Effective A.Y</button>
                                         </div>
                                     </form>
                                 </div>
@@ -115,7 +115,7 @@ require '../../includes/bed-session.php';
 
                                         <div class="card-footer">
                                             <button type="submit" name="submit1" class="btn btn-info"><i
-                                                    class="fas fa-calendar-plus"></i> Add Academic S.Y.</button>
+                                                    class="fas fa-calendar-plus m-1"> </i> Add Academic S.Y.</button>
                                         </div>
                                     </form>
                                 </div>

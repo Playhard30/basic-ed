@@ -153,7 +153,7 @@ if (isset($_GET['g1'])) {
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody class="border-bottom">
 
                                                 <?php if (!empty($grd_lvl)) {
 
@@ -247,7 +247,7 @@ if (isset($_GET['g1'])) {
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     }); 
             $('.swalDefaultSuccess') 
             Toast.fire({

@@ -5,6 +5,35 @@ ob_start();
 
 
 require '../../includes/bed-session.php';
+
+$get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
+while ($row = mysqli_fetch_array($get_active_sem)) {
+    $active_sem = $row['semester_id'];
+}
+$get_active_acadyear = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
+while ($row = mysqli_fetch_array($get_active_acadyear)) {
+    $active_acadyear = $row['ay_id'];
+}
+$get_grade_level = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE student_id = '$stud_id'");
+while ($row = mysqli_fetch_array($get_grade_level)) {
+    $grade_level_id = $row['grade_level_id'];
+}
+if (empty($grade_level_id) || $grade_level_id < 14) {
+    $check = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE student_id = '$stud_id' AND ay_id = '$active_acadyear'");
+    $result = mysqli_num_rows($check);
+
+    if ($result > 0) {
+        header('location: ../bed-subjects/list.enrolledSubSH.php');
+    }
+} elseif ($grade_level_id == '14' || $grade_level_id == '15') {
+    $check = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE semester_id = '$active_sem' AND student_id = '$stud_id' AND ay_id = '$active_acadyear'");
+    $result = mysqli_num_rows($check);
+
+    if ($result > 0) {
+        header('location: ../bed-subjects/list.enrolledSubSH.php');
+    }
+}
+
 ?>
 
 
@@ -72,7 +101,7 @@ require '../../includes/bed-session.php';
                                         }
                                         ?>
 
-                                    <input type="text" name="remark" value="pending" hidden>
+                                    <input type="text" name="remark" value="Pending" hidden>
 
                                     <div class="row mb-4 mt-4 justify-content-center">
                                         <div class="input-group col-md-4 mb-2">
@@ -88,7 +117,7 @@ require '../../includes/bed-session.php';
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><b>Name</b></span>
                                             </div>
-                                            <input type="text" class="form-control" name="lrn" placeholder="Name"
+                                            <input type="text" class="form-control" name="name" placeholder="Name"
                                                 value="<?php echo $row['fullname'] ?>" readonly>
                                         </div>
 
@@ -163,7 +192,7 @@ require '../../includes/bed-session.php';
 
                                 <div class="card-footer">
                                     <button type="submit" name="submit" class="btn bg-lightblue"><i
-                                            class="fa fa-check"></i>
+                                            class="fa fa-check text-sm"></i>
                                         Enroll Now</button>
                                 </div>
                             </form>
@@ -186,7 +215,7 @@ $(function() {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000
+        timer: 2000
     });
     $('.swalDefaultError')
     Toast.fire({
@@ -202,7 +231,7 @@ $(function() {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000
+        timer: 2000
     });
     $('.swalDefaultError')
     Toast.fire({
@@ -211,7 +240,24 @@ $(function() {
     });
 });
 </script>";
+            } elseif (isset($_SESSION['field_required'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'All fields are required!'
+    });
+});
+</script>";
             }
+            unset($_SESSION['field_required']);
             unset($_SESSION['double-lrn']);
             unset($_SESSION['dbl-stud']); ?>
 

@@ -21,9 +21,9 @@
         </div>
         <div class="col-md-4 col-sm-6 col-6 mr-3">
             <div class="info-box border">
-                <span class="info-box-icon bg-navy"><i class="far fa-calendar-check"></i></span>
+                <span class="info-box-icon bg-navy"><i class="far fa-flag"></i></span>
 
-                <div class="info-box-content">
+                <div class=" info-box-content">
                     <span class="info-box-text">Semester</span>
                     <?php $get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id");
                     while ($row = mysqli_fetch_array($get_sem)) { ?>
@@ -176,12 +176,12 @@ function updateTime(k) {
 currentTime();
 </script>
 
+<!-- Page Back -->
 <script>
 function goBack() {
     window.history.back();
 }
 </script>
-
 
 <!-- alert modal -->
 <?php if (isset($_SESSION['error-pass'])) {
@@ -191,7 +191,7 @@ $(function() {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000
+        timer: 2000
     });
     $('.swalDefaultError')
     Toast.fire({
@@ -207,7 +207,7 @@ $(function() {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000
+            timer: 2000
         }); 
 $('.swalDefaultSuccess') 
 Toast.fire({
@@ -223,7 +223,7 @@ $(function() {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000
+        timer: 2000
     });
     $('.swalDefaultError')
     Toast.fire({
@@ -233,7 +233,6 @@ $(function() {
 });
 </script>";
 }
-
 
 
 

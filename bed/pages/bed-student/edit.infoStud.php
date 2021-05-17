@@ -499,8 +499,10 @@ if ($_SESSION['role'] == 'Registrar') {
                                                     <span class="input-group-text text-sm"><b>
                                                             School Year</b></span>
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="year-year"
-                                                    name="sch_year" value="<?php echo $row['sch_year']; ?>">
+                                                <input type="text" class="form-control" data-inputmask-alias="datetime"
+                                                    data-inputmask-inputformat="yyyy-yyyy" data-mask
+                                                    placeholder="School Year" name="sch_year"
+                                                    value="<?php echo $row['sch_year']; ?>">
                                             </div>
 
                                         </div>
@@ -525,14 +527,14 @@ if ($_SESSION['role'] == 'Registrar') {
                                     <div class="card-footer">
                                         <div class="row">
                                             <div class="col">
-                                                <button type="submit" name="submit" class="btn bg-purple"><i
+                                                <button type="submit" name="submit" class="btn bg-purple btn-default"><i
                                                         class="fa fa-user-check"></i>
                                                     Update Info</button>
                                             </div>
 
                                             <?php if ($_SESSION['role'] == 'Registrar')
                                                 echo ' <div class="justify-content-end mr-2">
-                                                <a href="javascript:history.back();" class="btn bg-gray"><i
+                                                <a href="javascript:history.back();" class="btn bg-gray btn-default"><i
                                                         class="fa fa-arrow-circle-left"></i>
                                                     Back</a>
                                             </div>';
@@ -563,7 +565,7 @@ if ($_SESSION['role'] == 'Registrar') {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000
+            timer: 2000
         }); 
 $('.swalDefaultSuccess') 
 Toast.fire({
@@ -579,7 +581,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({
@@ -595,7 +597,7 @@ title: 'Successfully Updated.'
                     toast: true,
                     position: 'top-end',
                     showConfirmButton: false,
-                    timer: 3000
+                    timer: 2000
                 });
                 $('.swalDefaultError')
                 Toast.fire({
@@ -611,7 +613,7 @@ $(function() {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000
+        timer: 2000
     });
     $('.swalDefaultError')
     Toast.fire({
@@ -627,7 +629,7 @@ $(function() {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000
+        timer: 2000
     });
     $('.swalDefaultError')
     Toast.fire({
@@ -643,7 +645,7 @@ $(function() {
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
-        timer: 3000
+        timer: 2000
     });
     $('.swalDefaultError')
     Toast.fire({
