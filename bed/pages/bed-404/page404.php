@@ -64,7 +64,7 @@ require '../../includes/bed-session.php';
                                 Meanwhile, you may <a href="../bed-dashboard/index.php">return to dashboard</a>
                             </p>
                         </div>
-                        <div class="mr-auto ml-auto">
+                        <div class="mr-auto ml-auto mb-5">
                             <center><img src="search.gif" class=" img img-bordered" alt="gif cartoon" </center>
                         </div>
                         <!-- /.error-content -->
