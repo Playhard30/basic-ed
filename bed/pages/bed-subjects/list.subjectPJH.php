@@ -129,9 +129,9 @@ if (isset($_GET['g1'])) {
                                                         <i class="fas fa-list-alt"></i> Nursery
                                                     </button>
 
-                                                    <button class="btn btn-app bg-gray-light" value="PreKinder"
+                                                    <button class="btn btn-app bg-gray-light" value="Pre-Kinder"
                                                         name="pkdr">
-                                                        <i class="fas fa-list-alt"></i> PreKinder
+                                                        <i class="fas fa-list-alt"></i> Pre-Kinder
                                                     </button>
 
                                                     <button class="btn btn-app bg-gray-light" value="Kinder" name="kdr">

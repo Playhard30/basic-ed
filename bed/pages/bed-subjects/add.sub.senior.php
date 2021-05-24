@@ -83,7 +83,7 @@ require '../../includes/bed-session.php';
                                                 <span class="input-group-text text-sm"><b>Lecture Unit(s)</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="lec_units"
-                                                placeholder="Enter No. of Unit(s)" required>
+                                                placeholder="Enter No. of Unit(s)" >
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -91,7 +91,7 @@ require '../../includes/bed-session.php';
                                                 <span class="input-group-text text-sm"><b>Laboratory Unit(s)</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="lab_units"
-                                                placeholder="Enter No. of Unit(s)" required>
+                                                placeholder="Enter No. of Unit(s)" >
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -99,7 +99,7 @@ require '../../includes/bed-session.php';
                                                 <span class="input-group-text text-sm"><b>Total Unit(s)</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="total_units"
-                                                placeholder="Enter Total Unit(s)" required>
+                                                placeholder="Enter Total Unit(s)" >
                                         </div>
                                     </div>
 
