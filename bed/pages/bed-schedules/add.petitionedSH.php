@@ -3,11 +3,11 @@ require '../../includes/conn.php';
 session_start();
 ob_start();
 
-
 require '../../includes/bed-session.php';
-
-$sub_id = $_GET['sub_id'];
-$_SESSION['sub_id'] = $sub_id;
+$eay = $_GET['eay'];
+$_SESSION['eay'] = $eay;
+$strand_name = $_GET['str'];
+$_SESSION['strand_n'] = $strand_name;
 ?>
 
 
@@ -51,43 +51,63 @@ $_SESSION['sub_id'] = $sub_id;
                     <div class="container-fluid pl-5 pr-5 pb-3">
                         <div class="card card-info shadow-lg">
                             <div class="card-header">
-                                <h3 class="card-title">Set Schedules for Senior High</h3>
+                                <h3 class="card-title">Add Petitioned Subjects for Senior High
+                                    <?php if ($strand_name == 'STEM') {
+                                        echo '(STEM)';
+                                    } elseif ($strand_name == 'ABM') {
+                                        echo ' (ABM)';
+                                    } elseif ($strand_name == 'GAS') {
+                                        echo ' (GAS)';
+                                    } elseif ($strand_name == 'HUMSS') {
+                                        echo ' (HUMSS)';
+                                    } elseif ($strand_name == 'TVL - HE') {
+                                        echo ' (TVL-HE)';
+                                    } else {
+                                        header('location: ../bed-404/page404.php');
+                                    } ?></h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <?php $get_subject = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior WHERE subject_id = '$sub_id'") or die(mysqli_error($conn));
-                            while ($row = mysqli_fetch_array($get_subject)) {
-                            ?>
-                            <form action="subjectsData/ctrl.addsubSchedSH.php" enctype="multipart/form-data"
+
+                            <form action="subjectsData/ctrl.add.petitionedSH.php" enctype="multipart/form-data"
                                 method="POST">
                                 <div class="card-body">
 
                                     <?php $acadyear = $_SESSION['active_acadyears'];
-                                        $sem = $_SESSION['active_semester'];
-                                        ?>
+                                    $sem = $_SESSION['active_semester'];
+                                    ?>
 
                                     <input value="<?php echo $acadyear; ?>" hidden name="acadyear">
                                     <input value="<?php echo $sem; ?> " hidden name="sem">
-                                    <input value="<?php echo $sub_id; ?> " hidden name="sub_id">
+
 
                                     <div class="row mb-4 mt-4 justify-content-center">
 
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>Code</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" name="code"
-                                                value="<?php echo $row['subject_code']; ?>" readonly>
-                                        </div>
 
-
-                                        <div class="input-group col-md-6 mb-2">
+                                        <div class="input-group col-md-8 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>Description</b></span>
+                                                <span class="input-group-text text-sm"><b>Code & Subject</b></span>
                                             </div>
-                                            <input type="text" class="form-control" name="subject" value="<?php echo $row['subject_description'];
-                                                                                                            } ?>"
-                                                readonly>
+                                            <select class="form-control select2 select2-info custom-select"
+                                                data-placeholder="Select a Subject"
+                                                data-dropdown-css-class="select2-info" name="sub" required>
+                                                <option value="" selected disabled>Select Subject</option>
+
+                                                <?php
+                                                $active_sem = $_SESSION['active_semester'];
+                                                $get_offersub = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior AS subsen LEFT JOIN tbl_strands AS strd ON strd.strand_id = subsen.strand_id 
+                                                LEFT JOIN tbl_semesters AS sem ON sem.semester_id = subsen.semester_id 
+                                                LEFT JOIN tbl_efacadyears AS eay ON eay.efacadyear_id = subsen.efacadyear_id
+                                                WHERE sem.semester NOT IN ('$active_sem') AND strd.strand_name = '$strand_name' AND eay.efacadyear = '$eay'");
+                                                while ($row = mysqli_fetch_array($get_offersub)) {
+
+                                                ?>
+                                                <option value="<?php echo $row['subject_id']; ?>">
+                                                    <?php echo $row['subject_code'] . ' - ', ' ' . $row['subject_description']; ?>
+                                                </option>
+
+                                                <?php } ?>
+                                            </select>
                                         </div>
 
                                     </div>
@@ -134,11 +154,11 @@ $_SESSION['sub_id'] = $sub_id;
                                                 data-dropdown-css-class="select2-info" name="instruct">
                                                 <option value="" selected disabled></option>
                                                 <?php $get_teachers = mysqli_query($conn, "SELECT *, CONCAT(tbl_teachers.teacher_fname, ' ', LEFT(tbl_teachers.teacher_mname,1), '. ', tbl_teachers.teacher_lname) AS fullname FROM tbl_teachers") or die(mysqli_error($conn));
-                                                    while ($row = mysqli_fetch_array($get_teachers)) {
-                                                    ?>
+                                                while ($row = mysqli_fetch_array($get_teachers)) {
+                                                ?>
                                                 <option value="<?php echo $row['teacher_id']; ?>">
                                                     <?php echo $row['fullname'];
-                                                    } ?></option>
+                                                } ?></option>
                                             </select>
                                         </div>
 

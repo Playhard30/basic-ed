@@ -16,7 +16,7 @@ $_SESSION['get-accID'] = $acc_id;
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Update Accounting </title>
+    <title>Update Accounting | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">

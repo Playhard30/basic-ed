@@ -8,28 +8,27 @@ require '../../includes/bed-session.php';
 
 $get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
 while ($row = mysqli_fetch_array($get_active_sem)) {
-    $active_sem = $row['semester_id'];
+    $sem = $row['semester_id'];
 }
-$get_active_acadyear = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
-while ($row = mysqli_fetch_array($get_active_acadyear)) {
-    $active_acadyear = $row['ay_id'];
-}
-$get_grade_level = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE student_id = '$stud_id'");
-while ($row = mysqli_fetch_array($get_grade_level)) {
-    $grade_level_id = $row['grade_level_id'];
-}
-if (empty($grade_level_id) || $grade_level_id < 14) {
-    $check = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE student_id = '$stud_id' AND ay_id = '$active_acadyear'");
-    $result = mysqli_num_rows($check);
 
-    if ($result > 0) {
-        header('location: ../bed-subjects/list.enrolledSubSH.php');
-    }
-} elseif ($grade_level_id == '14' || $grade_level_id == '15') {
-    $check = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE semester_id = '$active_sem' AND student_id = '$stud_id' AND ay_id = '$active_acadyear'");
-    $result = mysqli_num_rows($check);
+$get_active_acad = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
+while ($row = mysqli_fetch_array($get_active_acad)) {
+    $acad = $row['ay_id'];
+}
 
-    if ($result > 0) {
+$get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+WHERE student_id = '$stud_id' AND semester_id = '0' AND ay_id = '$acad'") or die(mysqli_error($conn));
+$result = mysqli_num_rows($get_level_id);
+
+if ($result > 0) {
+    header('location: ../bed-subjects/list.enrolledSubPJH.php');
+} else {
+
+    $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+WHERE student_id = '$stud_id' AND semester_id = '$sem' AND ay_id = '$acad'") or die(mysqli_error($conn));
+    $result2 = mysqli_num_rows($get_level_id);
+
+    if ($result2 > 0) {
         header('location: ../bed-subjects/list.enrolledSubSH.php');
     }
 }
@@ -43,7 +42,7 @@ if (empty($grade_level_id) || $grade_level_id < 14) {
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Enroll Now</title>
+    <title>Enroll Now | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">

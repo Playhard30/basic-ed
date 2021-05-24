@@ -16,7 +16,7 @@ $_SESSION['get-adID'] = $ad_id;
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Update Adviser</title>
+    <title>Update Adviser | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">

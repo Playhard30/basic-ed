@@ -21,7 +21,7 @@ if ($_SESSION['role'] == 'Registrar') {
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Personal Info </title>
+    <title>Personal Info | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">

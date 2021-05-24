@@ -18,7 +18,7 @@ $_SESSION['sub_id'] = $sub_id;
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Update Subjects</title>
+    <title>Update Subjects | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">

@@ -51,23 +51,21 @@ $_SESSION['sub_id'] = $sub_id;
                     <div class="container-fluid pl-5 pr-5 pb-3">
                         <div class="card card-info shadow-lg">
                             <div class="card-header">
-                                <h3 class="card-title">Set Schedules for Senior High</h3>
+                                <h3 class="card-title">Set Schedules for Primary - Junior</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <?php $get_subject = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior WHERE subject_id = '$sub_id'") or die(mysqli_error($conn));
+                            <?php $get_subject = mysqli_query($conn, "SELECT * FROM tbl_subjects WHERE subject_id = '$sub_id'") or die(mysqli_error($conn));
                             while ($row = mysqli_fetch_array($get_subject)) {
                             ?>
-                            <form action="subjectsData/ctrl.addsubSchedSH.php" enctype="multipart/form-data"
+                            <form action="subjectsData/ctrl.addsubSchedPJH.php" enctype="multipart/form-data"
                                 method="POST">
                                 <div class="card-body">
 
                                     <?php $acadyear = $_SESSION['active_acadyears'];
-                                        $sem = $_SESSION['active_semester'];
                                         ?>
 
-                                    <input value="<?php echo $acadyear; ?>" hidden name="acadyear">
-                                    <input value="<?php echo $sem; ?> " hidden name="sem">
+                                    <input value="<?php echo $acadyear; ?> " hidden name="acad">
                                     <input value="<?php echo $sub_id; ?> " hidden name="sub_id">
 
                                     <div class="row mb-4 mt-4 justify-content-center">

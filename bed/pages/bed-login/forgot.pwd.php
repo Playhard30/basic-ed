@@ -10,7 +10,7 @@ ob_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SFAC | Forgot Password</title>
+    <title>Forgot Password | SFAC Bacoor</title>
     <link rel="icon" href="../../../assets/img/logo.png" type="image/gif" sizes="16x16">
 
     <!-- Google Font: Source Sans Pro -->

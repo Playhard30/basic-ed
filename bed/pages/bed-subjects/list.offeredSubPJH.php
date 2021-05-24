@@ -13,7 +13,7 @@ LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sy.grade_level_id
 LEFT JOIN tbl_strands AS std ON std.strand_id = sy.strand_id 
 LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
 LEFT JOIN tbl_semesters AS sem ON sem.semester_id = sy.semester_id
-WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadyears]' AND sem.semester = '$_SESSION[active_semester]'") or die(mysqli_error($conn));
+WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadyears]' AND sy.semester_id = '0'") or die(mysqli_error($conn));
 $result = mysqli_num_rows($get_stud);
 if ($result == 0) {
     header('location: ../bed-student/add.enroll.php');
@@ -67,7 +67,7 @@ if ($result == 0) {
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        <form action="userData/ctrl.list.offeredSubSH.php" method="POST">
+                                        <form action="userData/ctrl.list.offeredSubPJH.php" method="POST">
                                             <table id="example2" class="table table-hover">
                                                 <thead class="bg-gray-light">
                                                     <tr>
@@ -75,8 +75,6 @@ if ($result == 0) {
                                                         <th>Code</th>
                                                         <th>Description</th>
                                                         <th>Grade Level</th>
-                                                        <th>Semester</th>
-                                                        <th>Unit(s)</th>
                                                         <th>Days</th>
                                                         <th>Time</th>
                                                         <th>Room</th>
@@ -84,27 +82,22 @@ if ($result == 0) {
                                                     </tr>
                                                 </thead>
                                                 <tbody class="border-bottom">
-                                                    <?php $get_enrolled_stud = mysqli_query($conn, "SELECT * FROM tbl_schoolyears AS sy 
-                                                    LEFT JOIN tbl_strands AS strd ON sy.strand_id = strd.strand_id
-                                                    LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
-                                                    LEFT JOIN tbl_semesters AS sem ON sem.semester_id = sy.semester_id
-                                                    WHERE student_id = $stud_id AND ay.academic_year = '$_SESSION[active_acadyears]' AND sem.semester = '$_SESSION[active_semester]'") or die(mysqli_error($conn));
-                                                    while ($row = mysqli_fetch_array($get_enrolled_stud)) {
-                                                        $strand = $row['strand_id'];
-                                                    } ?>
-
-
                                                     <?php
+                                                    $get_grade_lvl = mysqli_query($conn, "SELECT * FROM tbl_schoolyears AS sy
+                                                    LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
+                                                    WHERE student_id = '$stud_id' AND semester_id = '0' AND ay.academic_year = '$_SESSION[active_acadyears]'") or die(mysqli_error($conn));
+                                                    while ($row = mysqli_fetch_array($get_grade_lvl)) {
+                                                        $glvlID = $row['grade_level_id'];
+                                                    }
+
 
                                                     $get_offerSub = mysqli_query($conn, "SELECT *, CONCAT(teach.teacher_fname, ' ', LEFT(teach.teacher_mname,1), '. ', teach.teacher_lname) AS fullname FROM tbl_schedules AS sched
-                                                LEFT JOIN tbl_subjects_senior AS sub ON sub.subject_id = sched.subject_id
+                                                LEFT JOIN tbl_subjects AS sub ON sub.subject_id = sched.subject_id
                                                 LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
                                                 LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
-                                                LEFT JOIN tbl_strands AS strd ON strd.strand_id = sub.strand_id
-                                                LEFT JOIN tbl_semesters AS sem ON sem.semester_id = sub.semester_id
                                                 WHERE sched.schedule_id NOT IN (SELECT sched.schedule_id FROM tbl_enrolled_subjects AS ensub
                                                     INNER JOIN tbl_schedules AS sched ON sched.schedule_id = ensub.schedule_id
-                                                    WHERE student_id = '$stud_id') AND (sched.semester = '$_SESSION[active_semester]' AND acadyear = '$_SESSION[active_acadyears]' AND sub.strand_id = '$strand') ORDER BY sub.grade_level_id ASC, schedule_id DESC") or die(mysqli_error($conn));
+                                                    WHERE student_id = '$stud_id') AND (semester = '0' AND sched.grade_level_id = '$glvlID' AND acadyear = '$_SESSION[active_acadyears]') ORDER BY sub.grade_level_id ASC, schedule_id DESC") or die(mysqli_error($conn));
 
 
                                                     $index = 0;
@@ -131,8 +124,6 @@ if ($result == 0) {
                                                         <td><?php echo $row['subject_code']; ?></td>
                                                         <td><?php echo $row['subject_description']; ?></td>
                                                         <td><?php echo $row['grade_level']; ?></td>
-                                                        <td><?php echo $row['semester']; ?></td>
-                                                        <td><?php echo $row['total_units']; ?></td>
                                                         <td><?php echo $row['day']; ?></td>
                                                         <td><?php echo $row['time']; ?></td>
                                                         <td><?php echo $row['room']; ?></td>
@@ -155,7 +146,7 @@ if ($result == 0) {
                                                 </div>
                                         </form>
                                         <div class="ml-2">
-                                            <a href="list.enrolledSubSH.php" class="btn btn-default bg-gray p-2"><i
+                                            <a href="list.enrolledSubPJH.php" class="btn btn-default bg-gray p-2"><i
                                                     class="fa fa-arrow-circle-left">
                                                 </i>
                                                 Back</a>

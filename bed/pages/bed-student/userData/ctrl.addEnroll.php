@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['field_required'] = true;
             header('location: ../add.enroll.php');
         } else {
-            $double_stud = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE ay_id = '$acadyear' AND semester_id = '$sem' AND student_id = '$stud_id' AND  grade_level_id = '$grade_level' AND strand_id = '$strand_id' AND date_enrolled = '$date_enrolled' AND stud_type= '$stud_type' AND remark= '$remark'") or die(mysqli_error($conn));
+            $double_stud = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE ay_id = '$acadyear' AND semester_id = '$sem' AND student_id = '$stud_id' AND  grade_level_id = '$grade_level' AND strand_id = '$strand_id'") or die(mysqli_error($conn));
             $result = mysqli_num_rows($double_stud);
 
             if ($result > 0) {
@@ -30,8 +30,7 @@ if (isset($_POST['submit'])) {
             }
         }
     } else {
-
-        $double_stud = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE ay_id = '$acadyear' AND student_id = '$stud_id' AND  grade_level_id = '$grade_level' AND date_enrolled = '$date_enrolled' AND stud_type= '$stud_type' AND remark= '$remark'") or die(mysqli_error($conn));
+        $double_stud = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE ay_id = '$acadyear' AND student_id = '$stud_id' AND  grade_level_id = '$grade_level'") or die(mysqli_error($conn));
         $result = mysqli_num_rows($double_stud);
 
         if ($result > 0) {

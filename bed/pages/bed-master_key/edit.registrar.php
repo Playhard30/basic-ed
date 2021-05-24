@@ -22,7 +22,7 @@ $_SESSION['get-regID'] = $reg_id;
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Update Registrar </title>
+    <title>Update Registrar | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">

@@ -14,7 +14,7 @@ require '../../includes/bed-session.php';
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Add Subjects</title>
+    <title>Add Subjects | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -55,6 +55,11 @@ require '../../includes/bed-session.php';
                             <form action="userData/ctrl.add.sub.k-10.php" enctype="multipart/form-data" method="POST">
                                 <div class="card-body">
 
+                                    <?php $get_active_acad = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears") or die(mysqli_error($conn));
+                                    while ($row = mysqli_fetch_array($get_active_acad)) {
+                                        $active_acadyear = $row['ay_id'];
+                                    } ?>
+                                    <input type="text" value="<?php echo $active_acadyear; ?>" name="ay_id" hidden>
                                     <div class="row mb-4 mt-4 justify-content-center">
                                         <div class="input-group col-sm-4 mb-2">
                                             <div class="input-group-prepend">

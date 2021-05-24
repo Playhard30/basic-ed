@@ -16,7 +16,7 @@ $_SESSION['get-prinID'] = $prin_id;
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Update Principal </title>
+    <title>Update Principal | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">

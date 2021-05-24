@@ -16,7 +16,7 @@ $_SESSION['get-teacherID'] = $teacher_id;
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Update Teacher </title>
+    <title>Update Teacher | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">

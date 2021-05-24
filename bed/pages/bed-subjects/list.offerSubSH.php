@@ -34,7 +34,7 @@ if (isset($_GET['stem'])) {
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Offer/Open Subjects</title>
+    <title>Offer/Open Subjects | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -122,23 +122,34 @@ if (isset($_GET['stem'])) {
                                                         <option value="" disabled>Select Effective Academic
                                                             Year
                                                         </option>
-                                                        <?php $get_eay = mysqli_query($conn, "SELECT * FROM tbl_efacadyears WHERE efacadyear = '$efacadyear'");
-                                                        while ($row = mysqli_fetch_array($get_eay)) {
+                                                        <?php
+                                                        if (!empty($efacadyear)) {
+                                                            $get_eay = mysqli_query($conn, "SELECT * FROM tbl_efacadyears WHERE efacadyear = '$efacadyear'");
+                                                            while ($row = mysqli_fetch_array($get_eay)) {
                                                         ?>
-                                                        <option value="<?php echo $row['efacadyear'] ?>">
+                                                        <option selected value="<?php echo $row['efacadyear'] ?>">
                                                             Effective
                                                             Academic Year <?php echo $row['efacadyear'];
-                                                                            } ?></option>
+                                                                                } ?></option>
                                                         <?php $get_eay2 = mysqli_query($conn, "SELECT * FROM tbl_efacadyears WHERE efacadyear NOT IN ('$efacadyear')");
-                                                            while ($row2 = mysqli_fetch_array($get_eay2)) {
-                                                            ?>
+                                                                while ($row2 = mysqli_fetch_array($get_eay2)) {
+                                                                ?>
                                                         <option value="<?php echo $row2['efacadyear'] ?>">
                                                             Effective
                                                             Academic Year <?php echo $row2['efacadyear'];
-                                                                                } ?></option>
+                                                                                    } ?></option>
+                                                        <?php } else {
+                                                                    $get_eay = mysqli_query($conn, "SELECT * FROM tbl_efacadyears ORDER BY efacadyear_id DESC");
+                                                                    while ($row = mysqli_fetch_array($get_eay)) {
+                                                                    ?>
+                                                        <option value="<?php echo $row['efacadyear'] ?>">
+                                                            Effective
+                                                            Academic Year <?php echo $row['efacadyear'];
+                                                                                        } ?></option>
+                                                        <?php  } ?>
+
 
                                                     </select>
-
                                                 </div>
                                             </div>
 
@@ -166,7 +177,7 @@ if (isset($_GET['stem'])) {
                                                 LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_subjects_senior.semester_id
                                                 LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_subjects_senior.strand_id
                                                 LEFT JOIN tbl_efacadyears ON tbl_efacadyears.efacadyear_id = tbl_subjects_senior.efacadyear_id
-                                                WHERE tbl_strands.strand_name IN ('$str_name') AND tbl_efacadyears.efacadyear IN ('$efacadyear') AND tbl_semesters.semester IN ('$act_sem') ORDER BY subject_id DESC") or die(mysqli_error($conn));
+                                                WHERE tbl_strands.strand_name IN ('$str_name') AND tbl_efacadyears.efacadyear IN ('$efacadyear') AND tbl_semesters.semester IN ('$act_sem') ORDER BY grade_level ASC, subject_id") or die(mysqli_error($conn));
 
                                                 ?>
 
@@ -196,52 +207,66 @@ if (isset($_GET['stem'])) {
                                         <!-- END TABLE -->
 
 
-                                        <?php if (isset($_GET['stem'])) {
-                                            echo '<hr class="bg-navy"> <div class="row
+                                        <?php if (!empty($efacadyear)) {
+                                            if (isset($_GET['stem'])) {
+                                                echo '
+                                        <hr class="bg-navy">
+                                        <div class="row
                                         ">
-                                             <a type="button"
-                                                    class="btn bg-lightblue btn-default p-2 pl-3 pr-3"><i
-                                                        class="fa fa-pen-alt"> </i>
-                                                     Other Subjects</a>
+                                            <a href="../bed-schedules/add.petitionedSH.php?str=STEM&eay=' . $efacadyear . '" type="button"
+                                                class="btn bg-lightblue btn-default p-2 pl-3 pr-3"><i
+                                                    class="fa fa-pen-alt"> </i>
+                                                Open Petitioned</a>
                                         </div>';
-                                        } elseif (isset($_GET['abm'])) {
-                                            echo '<hr class="bg-navy"> <div class="row
+                                            } elseif (isset($_GET['abm'])) {
+                                                echo '
+                                        <hr class="bg-navy">
+                                        <div class="row
                                             ">
-                                            
-                                                <a type="button" class="btn bg-lightblue btn-default p-2 pl-3 pr-3"><i
-                                                        class="fa fa-pen-alt"></i>
-                                                     Other Subjects</a>
-                                        
+
+                                            <a href="../bed-schedules/add.petitionedSH.php?str=ABM&eay=' . $efacadyear . '" type="button"
+                                                class="btn bg-lightblue btn-default p-2 pl-3 pr-3"><i
+                                                    class="fa fa-pen-alt"></i>
+                                                Open Petitioned</a>
+
                                         </div>';
-                                        } elseif (isset($_GET['gas'])) {
-                                            echo '<hr class="bg-navy"> <div class="row
+                                            } elseif (isset($_GET['gas'])) {
+                                                echo '
+                                        <hr class="bg-navy">
+                                        <div class="row
                                             ">
-                                            
-                                                <a type="button" class="btn bg-lightblue btn-default p-2 pl-3 pr-3 "><i
-                                                        class="fa fa-pen-alt"></i>
-                                                     Other Subjects</a>
-                                     
+
+                                            <a href="../bed-schedules/add.petitionedSH.php?str=GAS&eay=' . $efacadyear . '" type="button"
+                                                class="btn bg-lightblue btn-default p-2 pl-3 pr-3 "><i
+                                                    class="fa fa-pen-alt"></i>
+                                                Open Petitioned</a>
+
                                         </div>';
-                                        } elseif (isset($_GET['humss'])) {
-                                            echo '<hr class="bg-navy"> <div class="row
+                                            } elseif (isset($_GET['humss'])) {
+                                                echo '
+                                        <hr class="bg-navy">
+                                        <div class="row
                                             ">
-                                            
-                                                <a type="button" class="btn bg-lightblue btn-default p-2 pl-3 pr-3 "><i
-                                                        class="fa fa-pen-alt"></i>
-                                                     Other Subjects</a>
-                                        
+
+                                            <a href="../bed-schedules/add.petitionedSH.php?str=HUMSS&eay=' . $efacadyear . '" type="button"
+                                                class="btn bg-lightblue btn-default p-2 pl-3 pr-3 "><i
+                                                    class="fa fa-pen-alt"></i>
+                                                Open Petitioned</a>
+
                                         </div>';
-                                        } elseif (isset($_GET['tvl'])) {
-                                            echo '<hr class="bg-navy"> <div class="row
+                                            } elseif (isset($_GET['tvl'])) {
+                                                echo '
+                                        <hr class="bg-navy">
+                                        <div class="row
                                             ">
-                                            
-                                                <a type="button" class="btn bg-lightblue btn-default p-2 pl-3 pr-3 "><i
-                                                        class="fa fa-pen-alt"></i>
-                                                     Other Subjects</a>
-                                     
+
+                                            <a href="../bed-schedules/add.petitionedSH.php?str=TVL - HE&eay=' . $efacadyear . '" type="button"
+                                                class="btn bg-lightblue btn-default p-2 pl-3 pr-3 "><i
+                                                    class="fa fa-pen-alt"></i>
+                                                Open Petitioned</a>
+
                                         </div>';
-                                        } else {
-                                            echo '';
+                                            }
                                         } ?>
 
 
@@ -301,7 +326,7 @@ if (isset($_GET['stem'])) {
                     "autoWidth": false,
                     "responsive": true,
                     "language": {
-                        "emptyTable": "No data available in table.<br> Please select strand and E.A.Y",
+                        "emptyTable": "No data available in table.",
                     }
 
 

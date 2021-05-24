@@ -31,7 +31,7 @@ if (isset($_GET['stem'])) {
 <!-- Head and links -->
 
 <head>
-    <title>SFAC | Subjects List</title>
+    <title>Subjects List | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -117,20 +117,31 @@ if (isset($_GET['stem'])) {
                                                         <option value="" disabled>Select Effective Academic
                                                             Year
                                                         </option>
-                                                        <?php $get_eay = mysqli_query($conn, "SELECT * FROM tbl_efacadyears WHERE efacadyear = '$efacadyear'");
-                                                        while ($row = mysqli_fetch_array($get_eay)) {
+                                                        <?php
+                                                        if (!empty($efacadyear)) {
+                                                            $get_eay = mysqli_query($conn, "SELECT * FROM tbl_efacadyears WHERE efacadyear = '$efacadyear'");
+                                                            while ($row = mysqli_fetch_array($get_eay)) {
                                                         ?>
-                                                        <option value="<?php echo $row['efacadyear'] ?>">
+                                                        <option selected value="<?php echo $row['efacadyear'] ?>">
                                                             Effective
                                                             Academic Year <?php echo $row['efacadyear'];
-                                                                            } ?></option>
+                                                                                } ?></option>
                                                         <?php $get_eay2 = mysqli_query($conn, "SELECT * FROM tbl_efacadyears WHERE efacadyear NOT IN ('$efacadyear')");
-                                                            while ($row2 = mysqli_fetch_array($get_eay2)) {
-                                                            ?>
+                                                                while ($row2 = mysqli_fetch_array($get_eay2)) {
+                                                                ?>
                                                         <option value="<?php echo $row2['efacadyear'] ?>">
                                                             Effective
                                                             Academic Year <?php echo $row2['efacadyear'];
-                                                                                } ?></option>
+                                                                                    } ?></option>
+                                                        <?php } else {
+                                                                    $get_eay = mysqli_query($conn, "SELECT * FROM tbl_efacadyears ORDER BY efacadyear_id DESC");
+                                                                    while ($row = mysqli_fetch_array($get_eay)) {
+                                                                    ?>
+                                                        <option value="<?php echo $row['efacadyear'] ?>">
+                                                            Effective
+                                                            Academic Year <?php echo $row['efacadyear'];
+                                                                                        } ?></option>
+                                                        <?php  } ?>
 
                                                     </select>
 

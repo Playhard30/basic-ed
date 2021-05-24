@@ -3,11 +3,9 @@ require '../../includes/conn.php';
 session_start();
 ob_start();
 
-
 require '../../includes/bed-session.php';
-
-$sub_id = $_GET['sub_id'];
-$_SESSION['sub_id'] = $sub_id;
+$grade_lvl = $_GET['g'];
+$_SESSION['grade_lvl'] = $grade_lvl;
 ?>
 
 
@@ -51,43 +49,80 @@ $_SESSION['sub_id'] = $sub_id;
                     <div class="container-fluid pl-5 pr-5 pb-3">
                         <div class="card card-info shadow-lg">
                             <div class="card-header">
-                                <h3 class="card-title">Set Schedules for Senior High</h3>
+                                <h3 class="card-title">Add Petitioned Subjects for
+                                    <?php if ($grade_lvl == 'Grade 1') {
+                                        echo 'Grade 1';
+                                    } elseif ($grade_lvl == 'Grade 2') {
+                                        echo 'Grade 2';
+                                    } elseif ($grade_lvl == 'Grade 3') {
+                                        echo 'Grade 3';
+                                    } elseif ($grade_lvl == 'Grade 4') {
+                                        echo 'Grade 4';
+                                    } elseif ($grade_lvl == 'Grade 5') {
+                                        echo 'Grade 5';
+                                    } elseif ($grade_lvl == 'Grade 6') {
+                                        echo 'Grade 6';
+                                    } elseif ($grade_lvl == 'Grade 7') {
+                                        echo 'Grade 7';
+                                    } elseif ($grade_lvl == 'Grade 8') {
+                                        echo 'Grade 8';
+                                    } elseif ($grade_lvl == 'Grade 9') {
+                                        echo 'Grade 9';
+                                    } elseif ($grade_lvl == 'Grade 10') {
+                                        echo 'Grade 10';
+                                    } elseif ($grade_lvl == 'Nursery') {
+                                        echo 'Nursery';
+                                    } elseif ($grade_lvl == 'Pre-Kinder') {
+                                        echo 'Pre-Kinder';
+                                    } elseif ($grade_lvl == 'Kinder') {
+                                        echo 'Kinder';
+                                    } else {
+                                        header('location: ../bed-404/page404.php');
+                                    } ?></h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <?php $get_subject = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior WHERE subject_id = '$sub_id'") or die(mysqli_error($conn));
-                            while ($row = mysqli_fetch_array($get_subject)) {
-                            ?>
-                            <form action="subjectsData/ctrl.addsubSchedSH.php" enctype="multipart/form-data"
+
+                            <form action="subjectsData/ctrl.add.petitionedPJH.php" enctype="multipart/form-data"
                                 method="POST">
                                 <div class="card-body">
 
                                     <?php $acadyear = $_SESSION['active_acadyears'];
-                                        $sem = $_SESSION['active_semester'];
-                                        ?>
-
+                                    $get_glvl_id = mysqli_query($conn, "SELECT * FROM tbl_grade_levels WHERE grade_level = '$grade_lvl'");
+                                    while ($row = mysqli_fetch_array($get_glvl_id)) {
+                                        $glevel_id = $row['grade_level_id'];
+                                    }
+                                    ?>
+                                    <input value="<?php echo $glevel_id; ?>" hidden name="glvl">
                                     <input value="<?php echo $acadyear; ?>" hidden name="acadyear">
-                                    <input value="<?php echo $sem; ?> " hidden name="sem">
-                                    <input value="<?php echo $sub_id; ?> " hidden name="sub_id">
 
                                     <div class="row mb-4 mt-4 justify-content-center">
 
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>Code</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" name="code"
-                                                value="<?php echo $row['subject_code']; ?>" readonly>
-                                        </div>
 
-
-                                        <div class="input-group col-md-6 mb-2">
+                                        <div class="input-group col-md-8 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>Description</b></span>
+                                                <span class="input-group-text text-sm"><b>Code & Subject &
+                                                        Level</b></span>
                                             </div>
-                                            <input type="text" class="form-control" name="subject" value="<?php echo $row['subject_description'];
-                                                                                                            } ?>"
-                                                readonly>
+                                            <select class="form-control select2 select2-info custom-select"
+                                                data-placeholder="Select a Subject"
+                                                data-dropdown-css-class="select2-info" name="sub" required>
+                                                <option value="" selected disabled>Select Subject</option>
+
+                                                <?php
+                                                $active_sem = $_SESSION['active_semester'];
+                                                $get_offersub = mysqli_query($conn, "SELECT * FROM tbl_subjects AS sub
+                                                LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
+                                                WHERE gl.grade_level NOT IN ('$grade_lvl')");
+                                                while ($row = mysqli_fetch_array($get_offersub)) {
+
+                                                ?>
+                                                <option value="<?php echo $row['subject_id']; ?>">
+                                                    <?php echo $row['subject_code'] . ' -- ' .  $row['subject_description'] . ' -- ' . $row['grade_level']; ?>
+                                                </option>
+
+                                                <?php } ?>
+                                            </select>
                                         </div>
 
                                     </div>
@@ -134,11 +169,11 @@ $_SESSION['sub_id'] = $sub_id;
                                                 data-dropdown-css-class="select2-info" name="instruct">
                                                 <option value="" selected disabled></option>
                                                 <?php $get_teachers = mysqli_query($conn, "SELECT *, CONCAT(tbl_teachers.teacher_fname, ' ', LEFT(tbl_teachers.teacher_mname,1), '. ', tbl_teachers.teacher_lname) AS fullname FROM tbl_teachers") or die(mysqli_error($conn));
-                                                    while ($row = mysqli_fetch_array($get_teachers)) {
-                                                    ?>
+                                                while ($row = mysqli_fetch_array($get_teachers)) {
+                                                ?>
                                                 <option value="<?php echo $row['teacher_id']; ?>">
                                                     <?php echo $row['fullname'];
-                                                    } ?></option>
+                                                } ?></option>
                                             </select>
                                         </div>
 

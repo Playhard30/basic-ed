@@ -547,7 +547,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="../bed-subjects/list.offerSubPJH.php" class="nav-link">
                                 <i class="fa fa-list-alt nav-icon"> </i>
                                 <p>
                                     Primary - Junior
@@ -753,48 +753,39 @@
                 <a href="../bed-student/add.enroll.php" class="nav-link">
                     <i class="nav-icon fas fa-globe"></i>
                     <p>';
+
                     $get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
                     while ($row = mysqli_fetch_array($get_active_sem)) {
-                        $active_sem = $row['semester_id'];
+                        $sem = $row['semester_id'];
                     }
-                    $get_active_acadyear = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
-                    while ($row = mysqli_fetch_array($get_active_acadyear)) {
-                        $active_acadyear = $row['ay_id'];
-                    }
-                    $get_grade_level = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE student_id =
-                        '$stud_id'");
-                    while ($row = mysqli_fetch_array($get_grade_level)) {
-                        $grade_level_id = $row['grade_level_id'];
-                    }
-                    if (empty($grade_level_id) || $grade_level_id < 14) {
-                        $check = mysqli_query(
-                            $conn,
-                            "SELECT * FROM tbl_schoolyears WHERE student_id = '$stud_id' AND ay_id = '$active_acadyear'"
-                        );
-                        $result = mysqli_num_rows($check);
-                        if ($result > 0) {
-                            echo 'Enrollment Info. </p>
-                </a>
-            </li>';
-                        } else {
-                            echo 'Enroll Now </p>
-            </a>
-            </li>';
-                        }
-                    } elseif ($grade_level_id == '14' || $grade_level_id == '15') {
-                        $check = mysqli_query($conn, "SELECT * FROM tbl_schoolyears WHERE semester_id = '$active_sem' AND student_id
-            = '$stud_id' AND ay_id = '$active_acadyear'");
-                        $result = mysqli_num_rows($check);
 
-                        if ($result > 0) {
-                            echo 'Enrollment Info. </p>
-            </a>
-            </li>';
+                    $get_active_acad = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
+                    while ($row = mysqli_fetch_array($get_active_acad)) {
+                        $acad = $row['ay_id'];
+                    }
+
+                    $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+                    WHERE student_id = '$stud_id' AND semester_id = '0' AND ay_id = '$acad'") or die(mysqli_error($conn));
+                    $result = mysqli_num_rows($get_level_id);
+
+                    if ($result > 0) {
+                        echo 'Enrollment Info.</p>
+                        </a>
+                        </li>';
+                    } else {
+
+                        $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+                    WHERE student_id = '$stud_id' AND semester_id = '$sem' AND ay_id = '$acad'") or die(mysqli_error($conn));
+                        $result2 = mysqli_num_rows($get_level_id);
+
+                        if ($result2 > 0) {
+                            echo 'Enrollment Info.</p>
+                            </a>
+                            </li>';
                         } else {
-                            echo 'Enroll Now
-            </p>
-            </a>
-            </li>';
+                            echo 'Enroll Now</p>
+                            </a>
+                            </li>';
                         }
                     }
                 }
