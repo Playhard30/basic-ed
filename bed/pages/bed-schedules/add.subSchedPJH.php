@@ -67,6 +67,7 @@ $_SESSION['sub_id'] = $sub_id;
 
                                     <input value="<?php echo $acadyear; ?> " hidden name="acad">
                                     <input value="<?php echo $sub_id; ?> " hidden name="sub_id">
+                                    <input value="<?php echo $row['grade_level_id']; ?>" hidden name="glvl">
 
                                     <div class="row mb-4 mt-4 justify-content-center">
 
