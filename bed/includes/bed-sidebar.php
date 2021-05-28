@@ -461,10 +461,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                        <a href="../bed-master_key/list.teacher.php" class="nav-link">
+                        <i class="fas fa-chalkboard nav-icon"></i>
+                            <p>
+                                 Teacher List
+                            </p>
+                        </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    Subjets List
+                                    Subjects List
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -564,6 +572,12 @@
                             <a href="../bed-student/add.student.php" class="nav-link">
                                 <i class="fa fa-user-plus nav-icon"></i>
                                 <p> Add Student</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-master_key/add.teacher.php" class="nav-link">
+                                <i class="fa fa-user-plus nav-icon"></i>
+                                <p> Add Teacher</p>
                             </a>
                         </li>
                         <li class="nav-item">
