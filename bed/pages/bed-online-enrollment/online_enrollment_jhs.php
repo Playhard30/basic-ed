@@ -133,7 +133,7 @@ session_start();
                                                         LRN</b></span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="Enter 11-digit lrn"
-                                                name="lrn">
+                                                name="lrn" required> 
                                         </div>
                                     </div>
 
@@ -199,7 +199,7 @@ session_start();
                                                         Lastname</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Lastname"
-                                              name="lastname">
+                                              name="lastname" required>
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -208,7 +208,7 @@ session_start();
                                                         Firstname</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Firstname"
-                                               name="firstname">
+                                               name="firstname" required>
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -231,7 +231,7 @@ session_start();
                                             </div>
                                             <input type="text" class="form-control" name="address"
                                               
-                                                placeholder="Unit number, house number, street name, barangay, city, province">
+                                                placeholder="Unit number, house number, street name, barangay, city, province" required>
                                         </div>
 
 
@@ -245,7 +245,7 @@ session_start();
                                                         Date of Birth</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="date_birth"
-                                                placeholder="dd/mm/yyyy">
+                                                placeholder="dd/mm/yyyy" required>
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -254,7 +254,7 @@ session_start();
                                                         Place of Birth</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="place_birth"
-                                                placeholder="city, province">
+                                                placeholder="city, province" required>
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -263,7 +263,7 @@ session_start();
                                                         Age</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="age"
-                                           placeholder="00 years old">
+                                           placeholder="00 years old" required>
                                         </div>
 
                                     </div>
@@ -295,7 +295,7 @@ session_start();
                                                         Nationality</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Nationality"
-                                              name="nationality">
+                                              name="nationality" required>
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -304,7 +304,7 @@ session_start();
                                                         Religion</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Religion"
-                                             name="religion">
+                                             name="religion" required>
                                         </div>
 
                                     </div>
@@ -326,7 +326,7 @@ session_start();
                                                         Cell Phone No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Cellphone Number"
-                                              name="cellphone">
+                                              name="cellphone" required>
                                         </div>
 
                                     </div>
@@ -339,7 +339,7 @@ session_start();
                                                         Email Address</b></span>
                                             </div>
                                             <input type="email" class="form-control" placeholder="example@gmail.com"
-                                              name="email">
+                                              name="email" required>
                                         </div>
                                     </div>
                                 </div>
@@ -364,7 +364,7 @@ session_start();
                                                         Name of Father</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Fullname"
-                                                name="fname">
+                                                name="fname" required>
                                         </div>
 
                                         <div class="input-group col-md-6 mb-2">
@@ -373,7 +373,7 @@ session_start();
                                                         F. Occupation</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Father Occupation"
-                                              name="focc">
+                                              name="focc" required>
                                         </div>
 
                                     </div>
@@ -386,7 +386,7 @@ session_start();
                                                         Contact No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Contact Number"
-                                              name="fcontact">
+                                              name="fcontact" required>
                                         </div>
 
                                     </div>
@@ -399,7 +399,7 @@ session_start();
                                                         Name of Mother</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Fullname"
-                                             name="mname">
+                                             name="mname" required>
                                         </div>
 
                                         <div class="input-group col-md-6 mb-2">
@@ -408,7 +408,7 @@ session_start();
                                                         M. Occupation</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Father Occupation"
-                                             name="mocc">
+                                             name="mocc" required>
                                         </div>
 
                                     </div>
@@ -421,7 +421,7 @@ session_start();
                                                         Contact No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Contact Number"
-                                             name="mcontact">
+                                             name="mcontact" required>
                                         </div>
 
                                     </div>
@@ -435,7 +435,7 @@ session_start();
                                                         Monthly Income</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Family Income"
-                                             name="month_inc">
+                                             name="month_inc" required>
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
@@ -458,7 +458,7 @@ session_start();
                                                         Guardian N.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Guardian Name"
-                                              name="guardname">
+                                              name="guardname" required>
                                         </div>
 
                                     </div>
@@ -487,7 +487,7 @@ session_start();
                                                         Contact No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="gcontact"
-                                                 placeholder="Contact Number">
+                                                 placeholder="Contact Number" required>
                                         </div>
 
                                     </div>
@@ -516,7 +516,7 @@ session_start();
                                                         SCH. Last Attended</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="School Last Attended"
-                                                name="last_attend">
+                                                name="last_attend" required>
                                         </div>
 
                                     </div>
@@ -549,7 +549,7 @@ session_start();
                                                         School Year</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="year-year"
-                                                name="sch_year">
+                                                name="sch_year" required>
                                         </div>
 
                                     </div>
@@ -562,7 +562,7 @@ session_start();
                                                         School Address</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="School Address"
-                                                name="sch_address">
+                                                name="sch_address" required>
                                         </div>
 
                                     </div>

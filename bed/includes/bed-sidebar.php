@@ -513,10 +513,10 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-ellipsis-h nav-icon"> </i>
+                            <a href="../bed-online-enrollment/online_list.php" class="nav-link">
+                                <i class="fas fa-globe-asia nav-icon"> </i>
                                 <p>
-                                 Pending Students
+                                 Online Inquiries
                                 </p>
                             </a>
                         </li>
