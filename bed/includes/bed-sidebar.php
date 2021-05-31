@@ -528,10 +528,18 @@
                             <a href="../bed-student/list.enrolledStud.php" class="nav-link">
                                 <i class="fa fa-ellipsis-h nav-icon"> </i>
                                 <p>
-                                    Pending Students
+                                 Pending Students
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                        <a href="../bed-online-enrollment/online_list.php" class="nav-link">
+                            <i class="fas fa-globe-asia nav-icon"> </i>
+                            <p>
+                             Online Inquiries
+                            </p>
+                        </a>
+                    </li>
                     </ul>
                 </li>
 

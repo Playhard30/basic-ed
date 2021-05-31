@@ -8,6 +8,7 @@ if (isset($_POST['submit'])) {
 
 	$studtype = mysqli_real_escape_string($conn, $_POST['studtype']);
 	$grade = mysqli_real_escape_string($conn, $_POST['grade']);
+	$strand = mysqli_real_escape_string($conn, $_POST['strand']);
 	$lrn = mysqli_real_escape_string($conn, $_POST['lrn']);
 
 	$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
@@ -31,7 +32,7 @@ if (isset($_POST['submit'])) {
     $mcontact = mysqli_real_escape_string($conn, $_POST['mcontact']);
     $month_inc  = mysqli_real_escape_string($conn, $_POST['month_inc']);
     $no_sib = mysqli_real_escape_string($conn, $_POST['no_sib']);
-    $guardname = mysqli_real_escape_string($conn, $_POST['guardname']);
+    $guarname = mysqli_real_escape_string($conn, $_POST['guardname']);
     $gaddress = mysqli_real_escape_string($conn, $_POST['gaddress']);
     $gcontact = mysqli_real_escape_string($conn, $_POST['gcontact']);
     $last_attend = mysqli_real_escape_string($conn, $_POST['last_attend']);
@@ -42,12 +43,11 @@ if (isset($_POST['submit'])) {
     $year = mysqli_real_escape_string($conn, $_POST['year']);
     $semester = mysqli_real_escape_string($conn, $_POST['semester']);
 
-    $insertUser = mysqli_query($conn, "INSERT INTO tbl_online_reg (stud_type, grade_level_id, lrn, student_lname, student_fname, student_mname, address, date_birth, place_birth, age, gender_id, nationality, religion, landline, cellphone, email, fname, focc, fcontact, mname, mocc, mcontact, month_inc, no_siblings, guardname, gaddress, gcontact, last_sch, prev_grade_level, sch_year, sch_address, academic_year, semester, status ) VALUES ('$studtype', '$grade', '$lrn', '$firstname', '$lastname', '$midname', '$address', '$date_birth', '$place_birth', '$age', '$gender', '$nationality', '$religion', '$landline', '$cellphone', '$email', '$fname', '$focc', '$fcontact', '$mname', '$mocc', '$mcontact', '$month_inc', '$no_sib', '$guardname', '$gaddress', '$gcontact', '$last_attend', '$prev_grade_level', '$sch_year' , '$sch_address', '$year', '$semester', 'Pending')");
+    $insertUser = mysqli_query($conn, "INSERT INTO tbl_admit_online (stud_type, grade_id, strand_id, lrn, student_lname, student_fname, student_mname, address, date_birth, place_birth, age, gender_id, nationality, religion, landline, cellphone, email, fname, focc, fcontact, mname, mocc, mcontact, month_inc, no_siblings, guardname, gaddress, gcontact, last_sch, prev_grade_level, sch_year, sch_address, academic_year, semester, status ) VALUES ('$studtype', '$grade', '$strand', '$lrn', '$firstname', '$lastname', '$midname', '$address', '$date_birth', '$place_birth', '$age', '$gender', '$nationality', '$religion', '$landline', '$cellphone', '$email', '$fname', '$focc', '$fcontact', '$mname', '$mocc', '$mcontact', '$month_inc', '$no_sib', '$guardname', '$gaddress', '$gcontact', '$last_attend', '$prev_grade_level', '$sch_year' , '$sch_address', '$year', '$semester', 'Pending')");
     $_SESSION['success'] = true;
-    header('location: ../../../../index.php');
+    header('location: ../online_list.php');
 
 }
 
 
 ?>
-
