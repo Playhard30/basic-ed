@@ -1,95 +1,68 @@
 <?php
 require '../../includes/conn.php';
-ob_start();
 session_start();
+ob_start();
+
+require '../../includes/bed-session.php';
+
+$or_id = $_GET['or_id'];
+$_SESSION['get-orID'] = $or_id;
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Head and links -->
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SFAC | Log in</title>
-    <link rel="icon" href="../../../assets/img/logo.png" type="image/gif" sizes="16x16">
+    <title>SFAC | Personal Info </title>
+    <?php include '../../includes/bed-head.php'; ?>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Toastr -->
-    <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
 
-    <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
-    <!-- Toastr -->
-    <script src="../../plugins/toastr/toastr.min.js"></script>
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link disabled text-light">Personal Info.</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link disabled text-light">Basic Education</a>
+                </li>
+            </ul>
+            <?php include '../../includes/bed-navbar.php'; ?>
 
+            <!-- sidebar menu -->
+            <?php include '../../includes/bed-sidebar.php'; ?>
 
-    <!-- Custom css -->
-    <style>
-    .background {
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position-x: right;
-        background-position: bottom;
-
-    }
-
-    body {
-        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    }
-
-    .toast-top-right {
-        right: unset;
-        margin-top: 1%;
-    }
-    </style>
-</head>
-
-<body class="hold-transition login-page background"
-    style="background-image: url('../../../assets/img/background/bg-4.jpg');">
-
-    <!-- Preloader -->
-    <?php
-    if (isset($_POST['pre-loader'])) {
-        echo ' <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__wobble" src="../../../assets/img/logo.png" alt="logo-preloader" height="100" width="100">
-    </div>';
-    } ?>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper pt-4">
 
 
-    <div class="content">
-        <!-- /.login-logo -->
-        <div class="card-header card-header-tabs border-bottom-0">
-            <div class="card card-outline card-red shadow-lg">
-                <div class="card-header text-center">
-                    <a href="../../../index.php" class="h1"><img height="90" width="90"
-                            src="../../../assets/img/logo.png" alt="logo-signin"></a>
-                </div>
-                <div class="card-body">
-                    <p class="login-box-msg">Saint Francis of Assisi College Bacoor Campus</p>
-
-                    <section class="content">
+                <!-- Main content -->
+                <section class="content">
                     <div class="container-fluid pl-5 pr-5 pb-3">
                         <div class="card card-purple shadow-lg">
-
                             <div class="card-header text-center">
                                 <h3 class="text-lg" style="margin-bottom: unset;">
                                     REGISTRATION FORM
                                 </h3>
                             </div>
-                            <form action="userData/ctrl.addonline.php" enctype="multipart/form-data" method="POST">
+                            <form action="userData/ctrl.admitonline.php" enctype="multipart/form-data" method="POST">
+                            <?php
+                                $display_info = mysqli_query($conn, "SELECT *, CONCAT(tbl_online_reg.student_lname, ', ', tbl_online_reg.student_fname, ' ', tbl_online_reg.student_mname) AS fullname FROM tbl_online_reg
+                                    LEFT JOIN tbl_genders ON tbl_genders.gender_id = tbl_online_reg.gender_id
+                                    LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_online_reg.grade_level_id
+                                    WHERE or_id = '".$_GET['or_id']."'") or die (mysqli_error($conn));
+
+                                while ($row = mysqli_fetch_array($display_info)) {
+                            ?>
                                 <div class="card-body">
                                     <div class="row mb-4 mt-4 justify-content-center">
                                         <div class="input-group col-md-4 mb-2">
@@ -100,9 +73,9 @@ session_start();
                                             <select class="form-control custom-select select2 select2-purple"
                                                 data-dropdown-css-class="select2-purple"
                                                 data-placeholder="Select Student Type" name="studtype">
-                                                <option selected disabled></option>
-                                                <option value="New">New Student</option>
-                                                <option value="Old">Old Student</option>
+                                                <option value="<?php echo $row['stud_type']; ?>"><?php echo $row['stud_type']; ?></option>
+                                                <option value="New">New</option>
+                                                <option value="Old">Old</option>
                                             </select>
 
                                         </div>
@@ -115,13 +88,24 @@ session_start();
                                             <select class="form-control custom-select select2 select2-purple"
                                                 data-dropdown-css-class="select2-purple"
                                                 data-placeholder="Select Grade" name="grade">
-                                                <option selected disabled></option>
-                                                <?php
-                                                $query = mysqli_query($conn, "SELECT * FROM tbl_grade_levels LIMIT 3, 6");
-                                                    while($row = mysqli_fetch_array($query)) {
-                                                        echo '<option value="'.$row['grade_level_id'].'">'.$row['grade_level'].'</option>';
-                                                    }
-                                                ?>
+                                                <?php if (empty($row['grade_level_id'])) {
+                                                            echo '<option value="" disabled selected>Select Gender</option>';
+                                                            $get_level = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
+                                                            while ($row2 = mysqli_fetch_array($get_level)) {
+                                                                echo '
+                                                <option value="' . $row2['grade_level_id'] .
+                                                                    '">' . $row2['grade_level'] . '</option>';
+                                                            }
+                                                        } else {
+                                                            echo '<option disabled>Select Gender</option>
+                                                        <option value="' . $row['grade_level_id'] .
+                                                                '" selected >' . $row['grade_level'] . '</option>';
+                                                            $get_level = mysqli_query($conn, "SELECT * FROM tbl_grade_levels WHERE grade_level_id NOT IN (" . $row['grade_level_id'] . ")");
+                                                            while ($row3 = mysqli_fetch_array($get_level)) {
+                                                                echo '<option value="' . $row3['grade_level_id'] . '">'
+                                                                    . $row3['grade_level'] . '</option>';
+                                                            }
+                                                        } ?>
                                             </select>
                                         </div>
                                     </div>
@@ -133,47 +117,9 @@ session_start();
                                                         LRN</b></span>
                                         </div>
                                         <input type="text" class="form-control" placeholder="Enter 11-digit lrn"wwww
-                                                name="lrn">
+                                               value="<?php echo $row['lrn']; ?>" name="lrn">
                                         </div>
                                     </div>
-
-                                    <!-- year and semester -->
-                                    <div class="form-group row mb-3 mt-3 justify-content-center" hidden>   
-                                        <div class="input-group col-md-6 mb-2 ">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text text-sm"><b>
-                                                        Semester</b></span>
-                                        </div>
-                                        <?php
-                                        $query = mysqli_query($conn,"SELECT * FROM tbl_active_semesters
-                                            LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id");
-                                            while ($row = mysqli_fetch_array($query)) { ?>
-                                        <input type="text" value="<?php echo $row['semester']; ?>" class="form-control" placeholder="Enter 11-digit lrn"
-                                                name="semester" required>
-                                        <?php
-                                        }
-                                        ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row mb-3 mt-3 justify-content-center" hidden>   
-                                        <div class="input-group col-md-6 mb-2 ">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text text-sm"><b>
-                                                        Academic Year</b></span>
-                                        </div>
-                                        <?php
-                                        $query = mysqli_query($conn,"SELECT * FROM tbl_active_acadyears
-                                            LEFT JOIN tbl_acadyears ON tbl_acadyears.ay_id = tbl_active_acadyears.ay_id");
-                                            while ($row = mysqli_fetch_array($query)) { ?>
-                                        <input type="text" value="<?php echo $row['academic_year']; ?>" class="form-control" placeholder="Enter 11-digit lrn"
-                                                name="year">
-                                        <?php
-                                        }
-                                        ?>
-                                        </div>
-                                    </div>
-                                    <!-- year and semester -->
                                 </div>
                                 
                             <div class="bg-purple">
@@ -199,7 +145,7 @@ session_start();
                                                         Lastname</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Lastname"
-                                              name="lastname">
+                                             value="<?php echo $row['student_lname']; ?>" name="lastname">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -208,7 +154,7 @@ session_start();
                                                         Firstname</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Firstname"
-                                               name="firstname">
+                                             value="<?php echo $row['student_fname']; ?>"  name="firstname">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -217,7 +163,7 @@ session_start();
                                                         Middlename</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Middlename"
-                                              name="midname">
+                                             value="<?php echo $row['student_mname']; ?>" name="midname">
                                         </div>
 
                                     </div>
@@ -229,9 +175,7 @@ session_start();
                                                 <span class="input-group-text text-sm"><b>
                                                         Address</b></span>
                                             </div>
-                                            <input type="text" class="form-control" name="address"
-                                              
-                                                placeholder="Unit number, house number, street name, barangay, city, province">
+                                            <input type="text" class="form-control" name="address" placeholder="Unit number, house number, street name, barangay, city, province">
                                         </div>
 
 
@@ -245,7 +189,7 @@ session_start();
                                                         Date of Birth</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="date_birth"
-                                                placeholder="dd/mm/yyyy">
+                                                value="<?php echo $row['date_birth']; ?>" placeholder="dd/mm/yyyy">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -254,7 +198,7 @@ session_start();
                                                         Place of Birth</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="place_birth"
-                                                placeholder="city, province">
+                                              value="<?php echo $row['place_birth']; ?>"  placeholder="city, province">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -263,7 +207,7 @@ session_start();
                                                         Age</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="age"
-                                           placeholder="00 years old">
+                                           value="<?php echo $row['age']; ?>" placeholder="00 years old">
                                         </div>
 
                                     </div>
@@ -278,13 +222,24 @@ session_start();
                                             <select class="form-control custom-select select2 select2-purple"
                                                 data-dropdown-css-class="select2-purple"
                                                 data-placeholder="Select Gender" name="gender">
-                                                <option selected disabled></option>
-                                                <?php
-                                                $query = mysqli_query($conn, "SELECT * FROM tbl_genders");
-                                                    while($row = mysqli_fetch_array($query)) {
-                                                        echo '<option value="'.$row['gender_id'].'">'.$row['gender_name'].'</option>';
-                                                    }
-                                                ?>
+                                                        <?php if (empty($row['gender_id'])) {
+                                                            echo '<option value="" disabled selected>Select Gender</option>';
+                                                            $get_gender = mysqli_query($conn, "SELECT * FROM tbl_genders");
+                                                            while ($row2 = mysqli_fetch_array($get_gender)) {
+                                                                echo '
+                                                <option value="' . $row2['gender_id'] .
+                                                                    '">' . $row2['gender_name'] . '</option>';
+                                                            }
+                                                        } else {
+                                                            echo '<option disabled>Select Gender</option>
+                                                        <option value="' . $row['gender_id'] .
+                                                                '" selected >' . $row['gender_name'] . '</option>';
+                                                            $get_gender = mysqli_query($conn, "SELECT * FROM tbl_genders WHERE gender_id NOT IN (" . $row['gender_id'] . ")");
+                                                            while ($row3 = mysqli_fetch_array($get_gender)) {
+                                                                echo '<option value="' . $row3['gender_id'] . '">'
+                                                                    . $row3['gender_name'] . '</option>';
+                                                            }
+                                                        } ?>
                                             </select>
 
                                         </div>
@@ -294,8 +249,7 @@ session_start();
                                                 <span class="input-group-text text-sm"><b>
                                                         Nationality</b></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Nationality"
-                                              name="nationality">
+                                            <input type="text" class="form-control" placeholder="Nationality"  value="<?php echo $row['nationality']; ?>" name="nationality">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -304,7 +258,7 @@ session_start();
                                                         Religion</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Religion"
-                                             name="religion">
+                                             value="<?php echo $row['religion']; ?>" name="religion">
                                         </div>
 
                                     </div>
@@ -317,7 +271,7 @@ session_start();
                                                         Landline No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Landline Number"
-                                               name="landline">
+                                              value="<?php echo $row['landline']; ?>" name="landline">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
@@ -326,7 +280,7 @@ session_start();
                                                         Cell Phone No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Cellphone Number"
-                                              name="cellphone">
+                                             value="<?php echo $row['cellphone']; ?>" name="cellphone">
                                         </div>
 
                                     </div>
@@ -339,7 +293,7 @@ session_start();
                                                         Email Address</b></span>
                                             </div>
                                             <input type="email" class="form-control" placeholder="example@gmail.com"
-                                              name="email">
+                                             value="<?php echo $row['email']; ?>" name="email">
                                         </div>
                                     </div>
                                 </div>
@@ -364,7 +318,7 @@ session_start();
                                                         Name of Father</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Fullname"
-                                                name="fname">
+                                               value="<?php echo $row['fname']; ?>"  name="fname">
                                         </div>
 
                                         <div class="input-group col-md-6 mb-2">
@@ -373,7 +327,7 @@ session_start();
                                                         F. Occupation</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Father Occupation"
-                                              name="focc">
+                                             value="<?php echo $row['focc']; ?>" name="focc">
                                         </div>
 
                                     </div>
@@ -386,7 +340,7 @@ session_start();
                                                         Contact No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Contact Number"
-                                              name="fcontact">
+                                             value="<?php echo $row['fcontact']; ?>" name="fcontact">
                                         </div>
 
                                     </div>
@@ -399,7 +353,7 @@ session_start();
                                                         Name of Mother</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Fullname"
-                                             name="mname">
+                                             value="<?php echo $row['mname']; ?>" name="mname">
                                         </div>
 
                                         <div class="input-group col-md-6 mb-2">
@@ -408,7 +362,7 @@ session_start();
                                                         M. Occupation</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Father Occupation"
-                                             name="mocc">
+                                            value="<?php echo $row['mocc']; ?>" name="mocc">
                                         </div>
 
                                     </div>
@@ -421,7 +375,7 @@ session_start();
                                                         Contact No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Contact Number"
-                                             name="mcontact">
+                                             value="<?php echo $row['mcontact']; ?>" name="mcontact">
                                         </div>
 
                                     </div>
@@ -435,7 +389,7 @@ session_start();
                                                         Monthly Income</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Family Income"
-                                             name="month_inc">
+                                             value="<?php echo $row['month_inc']; ?>" name="month_inc">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
@@ -444,7 +398,7 @@ session_start();
                                                         No. of Siblings</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Number of Siblings"
-                                             name="no_sib">
+                                             value="<?php echo $row['no_siblings']; ?>" name="no_sib">
                                         </div>
 
                                     </div>
@@ -458,7 +412,7 @@ session_start();
                                                         Guardian N.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Guardian Name"
-                                              name="guardname">
+                                             value="<?php echo $row['guardname']; ?>" name="guardname">
                                         </div>
 
                                     </div>
@@ -472,7 +426,7 @@ session_start();
                                                         Address</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="gaddress"
-                                               
+                                               value="<?php echo $row['gaddress']; ?>" 
                                                 placeholder="Unit number, house number, street name, barangay, city, province">
                                         </div>
 
@@ -487,6 +441,7 @@ session_start();
                                                         Contact No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="gcontact"
+                                            value="<?php echo $row['gcontact']; ?>"
                                                  placeholder="Contact Number">
                                         </div>
 
@@ -516,6 +471,7 @@ session_start();
                                                         SCH. Last Attended</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="School Last Attended"
+                                            value="<?php echo $row['last_sch']; ?>"
                                                 name="last_attend">
                                         </div>
 
@@ -533,13 +489,24 @@ session_start();
                                             <select class="form-control custom-select select2 select2-purple"
                                                 data-dropdown-css-class="select2-purple"
                                                 data-placeholder="Select Grade Level" name="prev_grade_level">
-                                                <?php
-                                                $get = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
-                                                    while ($row2 = mysqli_fetch_array($get)) {
-                                                            echo '<option value="' . $row2['grade_level'] . '">'
-                                                                . $row2['grade_level'] . '</option>';
-                                                    }
-                                                ?>
+                                                <?php if (empty($row['prev_grade_level'])) {
+                                                            echo '<option value="None" selected>Select Grade Level</option>';
+                                                            $get_glevel = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
+                                                            while ($row2 = mysqli_fetch_array($get_glevel)) {
+                                                                echo '<option value="' . $row2['grade_level'] . '">'
+                                                                    . $row2['grade_level'] . '</option>';
+                                                            }
+                                                        } else {
+                                                            echo '<option disabled>Select Grade Level</option>
+                                                        <option value="' . $row['prev_grade_level'] . '" selected>'
+                                                                . $row['prev_grade_level'] . '</option>';
+                                                            $get_glevel = mysqli_query($conn, "SELECT * FROM tbl_grade_levels WHERE grade_level NOT IN ('" . $row['prev_grade_level'] . "') ");
+                                                            while ($row3 = mysqli_fetch_array($get_glevel)) {
+                                                                echo '<option value="' . $row3['grade_level'] . '">'
+                                                                    . $row3['grade_level'] . '</option>';
+                                                            }
+                                                        }
+                                                        ?>
                                             </select>
                                         </div>
 
@@ -549,7 +516,7 @@ session_start();
                                                         School Year</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="year-year"
-                                                name="sch_year">
+                                                name="sch_year" value="<?php echo $row['sch_year']; ?>">
                                         </div>
 
                                     </div>
@@ -562,19 +529,12 @@ session_start();
                                                         School Address</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="School Address"
-                                                name="sch_address">
+                                                name="sch_address" value="<?php echo $row['sch_address']; ?>">
                                         </div>
 
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                        <div class="form-group mb-0">
-                                        <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1" required>
-                                        <label class="custom-control-label" for="exampleCheck1">I agree that the data collected from this online registration shall be subject to the school's <a href="terms/SFAC-Data-Privacy.pdf">Data Privacy Policy</a>.</label>
-                                        </div>
-                                    </div>
-                                </div>
+                            <?php } ?>
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
@@ -589,48 +549,118 @@ session_start();
                         </div><!-- /.container-fluid -->
                     </div>
                 </section>
-
-                    <!-- <div class="social-auth-links text-center mt-2 mb-3">
-                    <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                    </a>
-                    <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                    </a>
-                </div> -->
-                    <!-- /.social-auth-links -->
-
-
-                    <!-- <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
-                </p> -->
-                </div>
-                <!-- /.card-body -->
+                <!-- /.content -->
             </div>
-        </div>
-        <!-- /.card -->
-    </div>
-    <!-- /.login-box -->
+            <!-- /.content-wrapper -->
 
-    <!-- Validation toast -->
-    <?php
-    if (isset($_SESSION['pwd-error'])) {
-        echo "<script>
+
+            <!-- Footer and script -->
+            <?php include '../../includes/bed-footer.php';
+
+            // alert 
+            if (isset($_SESSION['success-studEdit'])) {
+                echo "<script>
     $(function() {
-        toastr.error('The password you’ve entered is incorrect.')
-    });
-    </script>";
-    } elseif (isset($_SESSION['no-input'])) {
-        echo "<script>
-            $(function () {
-                toastr.error('Enter your valid username and password.')
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        }); 
+$('.swalDefaultSuccess') 
+Toast.fire({
+icon: 'success',
+title: 'Successfully Updated.'
+})
+}); 
+</script>";
+            } elseif (isset($_SESSION['no-img'])) {
+                echo "<script>
+            $(function() {
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                $('.swalDefaultError')
+                Toast.fire({
+                    icon: 'error',
+                    title:  'Upload Failed. Please try again.'
+                });
             });
-        </script>";
-    }
-    session_destroy();
-    ?>
-    <!-- End Validation toast -->
-
+            </script>";
+            } elseif (isset($_SESSION['no-pwd'])) {
+                echo "<script>
+            $(function() {
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                $('.swalDefaultError')
+                Toast.fire({
+                    icon: 'error',
+                    title:  'The Password field is required. Please try again.'
+                });
+            });
+            </script>";
+            } elseif (isset($_SESSION['double-studno'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'Student ID already exists.'
+    });
+});
+</script>";
+            } elseif (isset($_SESSION['double-lrn'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'LRN already exists.'
+    });
+});
+</script>";
+            } elseif (isset($_SESSION['lrn-studno'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'Student ID and LRN are already exists.'
+    });
+});
+</script>";
+            }
+            unset($_SESSION['lrn-studno']);
+            unset($_SESSION['double-lrn']);
+            unset($_SESSION['double-studno']);
+            unset($_SESSION['no-pwd']);
+            unset($_SESSION['success-studEdit']);
+            unset($_SESSION['no-img']); ?>
 
 </body>
 
