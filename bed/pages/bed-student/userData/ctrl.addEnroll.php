@@ -26,6 +26,7 @@ if (isset($_POST['submit'])) {
                 header('location: ../add.enroll.php');
             } else {
                 $insert = mysqli_query($conn, "INSERT INTO tbl_schoolyears (ay_id, semester_id, student_id, grade_level_id, strand_id, date_enrolled, stud_type, remark) VALUES ('$acadyear', '$sem', '$stud_id', '$grade_level', '$strand_id', '$date_enrolled', '$stud_type', '$remark')") or die(mysqli_error($conn));
+                $_SESSION['submit-success'] = true;
                 header('location: ../../bed-subjects/list.enrolledSubSH.php');
             }
         }
@@ -38,6 +39,7 @@ if (isset($_POST['submit'])) {
             header('location: ../add.enroll.php');
         } else {
             $insert = mysqli_query($conn, "INSERT INTO tbl_schoolyears (ay_id, student_id, grade_level_id, date_enrolled, stud_type, remark) VALUES ('$acadyear', '$stud_id', '$grade_level', '$date_enrolled', '$stud_type', '$remark')") or die(mysqli_error($conn));
+            $_SESSION['submit-success'] = true;
             header('location: ../../bed-subjects/list.enrolledSubSH.php');
         }
     }

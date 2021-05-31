@@ -190,9 +190,48 @@ $_SESSION['grade_lvl'] = $grade_lvl;
                                                 Submit</button>
                                         </div>
                                         <div class="justify-content-end mr-2">
-                                            <a href="javascript:history.back();" class="btn bg-gray"><i
-                                                    class="fa fa-arrow-circle-left"></i>
-                                                Back</a>
+                                            <?php if ($grade_lvl == "Grade 1") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g1=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Grade 2") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g2=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Grade 3") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g3=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Grade 4") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g4=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Grade 5") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g5=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Grade 6") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g6=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Grade 7") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g7=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Grade 8") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g8=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Grade 9") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g9=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Grade 10") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?g10=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Nursery") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?nurs=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Pre-Kinder") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?pkdr=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            } elseif ($grade_lvl == "Kinder") {
+                                                echo '<a href="../bed-subjects/list.offerSubPJH.php?kdr=' . $grade_lvl . '"
+                                            class="btn bg-gray">';
+                                            }  ?>
+                                            <i class="fa fa-arrow-circle-left"></i>
+                                            Back</a>
                                         </div>
 
                                     </div>

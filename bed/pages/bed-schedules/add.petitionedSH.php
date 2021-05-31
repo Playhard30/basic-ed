@@ -175,9 +175,19 @@ $_SESSION['strand_n'] = $strand_name;
                                                 Submit</button>
                                         </div>
                                         <div class="justify-content-end mr-2">
-                                            <a href="javascript:history.back();" class="btn bg-gray"><i
-                                                    class="fa fa-arrow-circle-left"></i>
-                                                Back</a>
+                                            <?php if ($strand_name == "ABM") {
+                                                echo '<a href=" ../bed-subjects/list.offerSubSH.php?abm=' . $strand_name . '&eay=' . $eay . '" class="btn bg-gray">';
+                                            } elseif ($strand_name == "STEM") {
+                                                echo '<a href=" ../bed-subjects/list.offerSubSH.php?stem=' . $strand_name . '&eay=' . $eay . '" class="btn bg-gray">';
+                                            } elseif ($strand_name == "GAS") {
+                                                echo '<a href=" ../bed-subjects/list.offerSubSH.php?gas=' . $strand_name . '&eay=' . $eay . '" class="btn bg-gray">';
+                                            } elseif ($strand_name == "HUMSS") {
+                                                echo '<a href=" ../bed-subjects/list.offerSubSH.php?humss=' . $strand_name . '&eay=' . $eay . '" class="btn bg-gray">';
+                                            } elseif ($strand_name == "TVL - HE") {
+                                                echo '<a href=" ../bed-subjects/list.offerSubSH.php?tvl=' . $strand_name . '&eay=' . $eay . '" class="btn bg-gray">';
+                                            } ?>
+                                            <i class="fa fa-arrow-circle-left"></i>
+                                            Back</a>
                                         </div>
 
                                     </div>

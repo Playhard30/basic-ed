@@ -525,7 +525,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="../bed-student/list.enrolledStud.php" class="nav-link">
                                 <i class="fa fa-ellipsis-h nav-icon"> </i>
                                 <p>
                                     Pending Students

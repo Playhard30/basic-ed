@@ -232,12 +232,77 @@ $(function() {
     });
 });
 </script>";
+} elseif (isset($_SESSION['submit-success'])) {
+    echo "<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        }); 
+$('.swalDefaultSuccess') 
+Toast.fire({
+icon: 'success',
+title: 'Successfully Submitted.'
+})
+}); 
+</script>";
+} elseif (isset($_SESSION['update-success'])) {
+    echo "<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        }); 
+$('.swalDefaultSuccess') 
+Toast.fire({
+icon: 'success',
+title: 'Successfully Updated.'
+})
+}); 
+</script>";
+} elseif (isset($_SESSION['confirm'])) {
+    echo "<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        }); 
+$('.swalDefaultSuccess') 
+Toast.fire({
+icon: 'success',
+title: 'Successfully Confirmed.'
+})
+}); 
+</script>";
+} elseif (isset($_SESSION['cancel'])) {
+    echo "<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        }); 
+$('.swalDefaultSuccess') 
+Toast.fire({
+icon: 'success',
+title: 'Successfully Canceled.'
+})
+}); 
+</script>";
 }
-
-
-
+unset($_SESSION['confirm']);
+unset($_SESSION['cancel']);
+unset($_SESSION['update-success']);
 unset($_SESSION['error-pass']);
 unset($_SESSION['success']);
 unset($_SESSION['subject_exists']);
+unset($_SESSION['submit-success']);
 
 ?>

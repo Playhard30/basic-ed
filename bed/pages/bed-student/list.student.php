@@ -90,6 +90,7 @@ require '../../includes/bed-session.php';
                                                 if (isset($_GET['look'])) {
 
                                                     $_GET['search'] = addslashes($_GET['search']);
+                                                    $_SESSION['search'] = $_GET['search'];
 
                                                     $get_user = mysqli_query($conn, "SELECT *, CONCAT(tbl_students.student_lname, ', ', tbl_students.student_fname, ' ', tbl_students.student_mname) AS fullname 
                                                 FROM tbl_students

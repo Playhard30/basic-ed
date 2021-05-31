@@ -98,6 +98,10 @@ table.dataTable {
     color: #1f2d3d !important;
 }
 
+table.dataTable tbody td {
+    vertical-align: middle;
+}
+
 #scroll {
 
     position: fixed;

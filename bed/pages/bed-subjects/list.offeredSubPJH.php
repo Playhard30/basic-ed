@@ -3,7 +3,42 @@ require '../../includes/conn.php';
 session_start();
 ob_start();
 
+if ($_SESSION['role'] == "Admission") {
+    $stud_id = $_GET['stud_id'];
+    $_SESSION['studtID'] = $stud_id;
+
+    $get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
+    while ($row = mysqli_fetch_array($get_active_sem)) {
+        $sem = $row['semester_id'];
+    }
+
+    $get_active_acad = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
+    while ($row = mysqli_fetch_array($get_active_acad)) {
+        $acad = $row['ay_id'];
+    }
+
+    $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+        WHERE student_id = '$stud_id' AND semester_id = '0' AND ay_id = '$acad'") or die(mysqli_error($conn));
+    $result = mysqli_num_rows($get_level_id);
+
+    if ($result > 0) {
+    } else {
+
+        $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+        WHERE student_id = '$stud_id' AND semester_id = '$sem' AND ay_id = '$acad'") or die(mysqli_error($conn));
+        $result2 = mysqli_num_rows($get_level_id);
+
+        if ($result2 > 0) {
+            header('location: ../bed-404/page404.php');
+        } else {
+            header('location: ../bed-404/page404.php');
+        }
+    }
+}
+
 require '../../includes/bed-session.php';
+
+
 
 $get_stud = mysqli_query($conn, "SELECT *, CONCAT(stud.student_fname, ' ', LEFT(stud.student_mname,1), '. ', stud.student_lname) AS fullname 
 FROM tbl_schoolyears AS sy
@@ -14,9 +49,20 @@ LEFT JOIN tbl_strands AS std ON std.strand_id = sy.strand_id
 LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
 LEFT JOIN tbl_semesters AS sem ON sem.semester_id = sy.semester_id
 WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadyears]' AND sy.semester_id = '0'") or die(mysqli_error($conn));
-$result = mysqli_num_rows($get_stud);
-if ($result == 0) {
-    header('location: ../bed-student/add.enroll.php');
+if ($_SESSION['role'] == "Student") {
+    $result = mysqli_num_rows($get_stud);
+    if ($result == 0) {
+        header('location: ../bed-student/add.enroll.php');
+    }
+}
+while ($row = mysqli_fetch_array($get_stud)) {
+    $rem = $row['remark'];
+}
+if ($_SESSION['role'] == "Student") {
+    if ($rem == "Canceled" || $rem == "Pending") {
+    } else {
+        header('location: list.enrolledSubPJH.php');
+    }
 }
 
 ?>
@@ -67,31 +113,37 @@ if ($result == 0) {
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
+                                        <?php if ($_SESSION['role'] == "Student") { ?>
                                         <form action="userData/ctrl.list.offeredSubPJH.php" method="POST">
-                                            <table id="example2" class="table table-hover">
-                                                <thead class="bg-gray-light">
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Code</th>
-                                                        <th>Description</th>
-                                                        <th>Grade Level</th>
-                                                        <th>Days</th>
-                                                        <th>Time</th>
-                                                        <th>Room</th>
-                                                        <th>Professor</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="border-bottom">
-                                                    <?php
-                                                    $get_grade_lvl = mysqli_query($conn, "SELECT * FROM tbl_schoolyears AS sy
+                                            <?php } elseif ($_SESSION['role'] == "Admission") { ?>
+                                            <form
+                                                action="userData/ctrl.list.offeredSubPJH.php?stud_id=<?php echo $stud_id; ?>"
+                                                method="POST">
+                                                <?php } ?>
+                                                <table id="example2" class="table table-hover">
+                                                    <thead class="bg-gray-light">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Code</th>
+                                                            <th>Description</th>
+                                                            <th>Grade Level</th>
+                                                            <th>Days</th>
+                                                            <th>Time</th>
+                                                            <th>Room</th>
+                                                            <th>Professor</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="border-bottom">
+                                                        <?php
+                                                        $get_grade_lvl = mysqli_query($conn, "SELECT * FROM tbl_schoolyears AS sy
                                                     LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
                                                     WHERE student_id = '$stud_id' AND semester_id = '0' AND ay.academic_year = '$_SESSION[active_acadyears]'") or die(mysqli_error($conn));
-                                                    while ($row = mysqli_fetch_array($get_grade_lvl)) {
-                                                        $glvlID = $row['grade_level_id'];
-                                                    }
+                                                        while ($row = mysqli_fetch_array($get_grade_lvl)) {
+                                                            $glvlID = $row['grade_level_id'];
+                                                        }
 
 
-                                                    $get_offerSub = mysqli_query($conn, "SELECT *, CONCAT(teach.teacher_fname, ' ', LEFT(teach.teacher_mname,1), '. ', teach.teacher_lname) AS fullname FROM tbl_schedules AS sched
+                                                        $get_offerSub = mysqli_query($conn, "SELECT *, CONCAT(teach.teacher_fname, ' ', LEFT(teach.teacher_mname,1), '. ', teach.teacher_lname) AS fullname FROM tbl_schedules AS sched
                                                 LEFT JOIN tbl_subjects AS sub ON sub.subject_id = sched.subject_id
                                                 LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
                                                 LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
@@ -100,59 +152,74 @@ if ($result == 0) {
                                                     WHERE student_id = '$stud_id') AND (semester = '0' AND sched.grade_level_id = '$glvlID' AND acadyear = '$_SESSION[active_acadyears]') ORDER BY sub.grade_level_id ASC, schedule_id DESC") or die(mysqli_error($conn));
 
 
-                                                    $index = 0;
-                                                    while ($row = mysqli_fetch_array($get_offerSub)) {
+                                                        $index = 0;
+                                                        while ($row = mysqli_fetch_array($get_offerSub)) {
 
-                                                    ?>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="text" name="studID[]"
-                                                                value="<?php echo $stud_id ?>" hidden>
-                                                            <input type="text" name="sched_id[]"
-                                                                value="<?php echo $row['schedule_id']; ?>" hidden>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input
-                                                                    class="custom-control-input custom-control-input-navy"
-                                                                    type="checkbox"
-                                                                    id="customCheckbox4<?php echo $row['schedule_id'] ?>"
-                                                                    name="checked[]" value="<?php echo $index++; ?>">
-                                                                <label
-                                                                    for="customCheckbox4<?php echo $row['schedule_id'] ?>"
-                                                                    class="custom-control-label"></label>
-                                                            </div>
-                                                        </td>
-                                                        <td><?php echo $row['subject_code']; ?></td>
-                                                        <td><?php echo $row['subject_description']; ?></td>
-                                                        <td><?php echo $row['grade_level']; ?></td>
-                                                        <td><?php echo $row['day']; ?></td>
-                                                        <td><?php echo $row['time']; ?></td>
-                                                        <td><?php echo $row['room']; ?></td>
-                                                        <td><?php echo $row['fullname']; ?></td>
-                                                    </tr>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </tbody>
-                                            </table>
-                                            <hr class="bg-navy">
+                                                        ?>
+                                                        <tr>
+                                                            <td>
+                                                                <input type="text" name="studID[]"
+                                                                    value="<?php echo $stud_id ?>" hidden>
+                                                                <input type="text" name="sched_id[]"
+                                                                    value="<?php echo $row['schedule_id']; ?>" hidden>
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input
+                                                                        class="custom-control-input custom-control-input-navy"
+                                                                        type="checkbox"
+                                                                        id="customCheckbox4<?php echo $row['schedule_id'] ?>"
+                                                                        name="checked[]"
+                                                                        value="<?php echo $index++; ?>">
+                                                                    <label
+                                                                        for="customCheckbox4<?php echo $row['schedule_id'] ?>"
+                                                                        class="custom-control-label"></label>
+                                                                </div>
+                                                            </td>
+                                                            <td><?php echo $row['subject_code']; ?></td>
+                                                            <td><?php echo $row['subject_description']; ?></td>
+                                                            <td><?php echo $row['grade_level']; ?></td>
+                                                            <td><?php echo $row['day']; ?></td>
+                                                            <td><?php echo $row['time']; ?></td>
+                                                            <td><?php echo $row['room']; ?></td>
+                                                            <?php if (empty($row['fullname'])) { ?>
+                                                            <td>TBA</td>
+                                                            <?php } else { ?>
+                                                            <td><?php echo $row['fullname']; ?></td>
+                                                            <?php } ?>
 
-                                            <div class="row justify-content-end float-right">
+                                                        </tr>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                                <hr class="bg-navy">
 
-                                                <div class="ml-1">
-                                                    <button name=" submit" class="btn btn-default bg-lightblue p-2"><i
-                                                            class="fa fa-plus">
-                                                        </i>
-                                                        Add Selected</button>
-                                                </div>
-                                        </form>
-                                        <div class="ml-2">
-                                            <a href="list.enrolledSubPJH.php" class="btn btn-default bg-gray p-2"><i
-                                                    class="fa fa-arrow-circle-left">
-                                                </i>
-                                                Back</a>
+                                                <div class="row justify-content-end float-right">
 
-                                        </div>
-
+                                                    <div class="ml-1">
+                                                        <button name=" submit"
+                                                            class="btn btn-default bg-lightblue p-2"><i
+                                                                class="fa fa-plus">
+                                                            </i>
+                                                            Add Selected</button>
+                                                    </div>
+                                            </form>
+                                            <?php if ($_SESSION['role'] == "Admission") { ?>
+                                            <div class="ml-2">
+                                                <a href="list.enrolledSubPJH.php?stud_id=<?php echo $stud_id; ?>"
+                                                    class="btn btn-default bg-gray p-2"><i
+                                                        class="fa fa-arrow-circle-left">
+                                                    </i>
+                                                    Back</a>
+                                            </div>
+                                            <?php } else if ($_SESSION['role'] == "Student") { ?>
+                                            <div class="ml-2">
+                                                <a href="list.enrolledSubPJH.php" class="btn btn-default bg-gray p-2"><i
+                                                        class="fa fa-arrow-circle-left">
+                                                    </i>
+                                                    Back</a>
+                                            </div>
+                                            <?php  } ?>
                                     </div>
 
                                 </div>

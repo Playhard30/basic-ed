@@ -55,9 +55,15 @@ $_SESSION['sub_id'] = $sub_id;
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <?php $get_subject = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior WHERE subject_id = '$sub_id'") or die(mysqli_error($conn));
+                            <?php $get_subject = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior AS sub
+                            LEFT JOIN tbl_strands AS strd ON strd.strand_id = sub.strand_id 
+                            LEFT JOIN tbl_efacadyears AS eay on eay.efacadyear_id = sub.efacadyear_id
+                            WHERE sub.subject_id = '$sub_id'") or die(mysqli_error($conn));
                             while ($row = mysqli_fetch_array($get_subject)) {
+                                $strand_n = $row['strand_name'];
+                                $eay = $row['efacadyear'];
                             ?>
+
                             <form action="subjectsData/ctrl.addsubSchedSH.php" enctype="multipart/form-data"
                                 method="POST">
                                 <div class="card-body">
@@ -86,14 +92,13 @@ $_SESSION['sub_id'] = $sub_id;
                                                 <span class="input-group-text text-sm"><b>Description</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="subject" value="<?php echo $row['subject_description'];
-                                                                                                            } ?>"
+                                                                                                                ?>"
                                                 readonly>
                                         </div>
 
                                     </div>
 
                                     <div class="row mb-4 justify-content-center">
-
 
                                         <div class="input-group col-md-4 mb-2">
                                             <div class="input-group-prepend">
@@ -154,14 +159,27 @@ $_SESSION['sub_id'] = $sub_id;
                                                     class="fa fa-check"></i>
                                                 Submit</button>
                                         </div>
+                                        <?php if ($strand_n == "ABM") {
+                                            } ?>
                                         <div class="justify-content-end mr-2">
-                                            <a href="javascript:history.back();" class="btn bg-gray"><i
-                                                    class="fa fa-arrow-circle-left"></i>
-                                                Back</a>
+                                            <?php if ($strand_n == "ABM") {
+                                                    echo '<a href=" ../bed-subjects/list.offerSubSH.php?abm=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } elseif ($strand_n == "STEM") {
+                                                    echo '<a href=" ../bed-subjects/list.offerSubSH.php?stem=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } elseif ($strand_n == "GAS") {
+                                                    echo '<a href=" ../bed-subjects/list.offerSubSH.php?gas=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } elseif ($strand_n == "HUMSS") {
+                                                    echo '<a href=" ../bed-subjects/list.offerSubSH.php?humss=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } elseif ($strand_n == "TVL - HE") {
+                                                    echo '<a href=" ../bed-subjects/list.offerSubSH.php?tvl=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } ?>
+                                            <i class="fa fa-arrow-circle-left"></i>
+                                            Back</a>
                                         </div>
 
                                     </div>
                                 </div>
+                                <?php } ?>
                             </form>
                         </div>
                         <!-- /.card -->

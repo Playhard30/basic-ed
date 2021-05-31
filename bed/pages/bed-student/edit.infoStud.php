@@ -534,7 +534,7 @@ if ($_SESSION['role'] == 'Registrar') {
 
                                             <?php if ($_SESSION['role'] == 'Registrar')
                                                 echo ' <div class="justify-content-end mr-2">
-                                                <a href="javascript:history.back();" class="btn bg-gray btn-default"><i
+                                                <a href="list.student.php?search=' . $_SESSION['search'] . '&look=" class="btn bg-gray btn-default"><i
                                                         class="fa fa-arrow-circle-left"></i>
                                                     Back</a>
                                             </div>';

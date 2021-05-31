@@ -55,8 +55,11 @@ $_SESSION['sub_id'] = $sub_id;
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <?php $get_subject = mysqli_query($conn, "SELECT * FROM tbl_subjects WHERE subject_id = '$sub_id'") or die(mysqli_error($conn));
+                            <?php $get_subject = mysqli_query($conn, "SELECT * FROM tbl_subjects AS sub
+                            LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id 
+                            WHERE sub.subject_id = '$sub_id'") or die(mysqli_error($conn));
                             while ($row = mysqli_fetch_array($get_subject)) {
+                                $gl = $row['grade_level'];
                             ?>
                             <form action="subjectsData/ctrl.addsubSchedPJH.php" enctype="multipart/form-data"
                                 method="POST">
@@ -85,7 +88,7 @@ $_SESSION['sub_id'] = $sub_id;
                                                 <span class="input-group-text text-sm"><b>Description</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="subject" value="<?php echo $row['subject_description'];
-                                                                                                            } ?>"
+                                                                                                                ?>"
                                                 readonly>
                                         </div>
 
@@ -154,13 +157,53 @@ $_SESSION['sub_id'] = $sub_id;
                                                 Submit</button>
                                         </div>
                                         <div class="justify-content-end mr-2">
-                                            <a href="javascript:history.back();" class="btn bg-gray"><i
-                                                    class="fa fa-arrow-circle-left"></i>
-                                                Back</a>
+                                            <?php if ($gl == "Grade 1") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g1=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Grade 2") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g2=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Grade 3") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g3=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Grade 4") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g4=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Grade 5") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g5=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Grade 6") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g6=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Grade 7") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g7=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Grade 8") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g8=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Grade 9") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g9=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Grade 10") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?g10=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Nursery") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?nurs=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Pre-Kinder") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?pkdr=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                } elseif ($gl == "Kinder") {
+                                                    echo '<a href="../bed-subjects/list.offerSubPJH.php?kdr=' . $gl . '"
+                                            class="btn bg-gray">';
+                                                }  ?>
+                                            <i class="fa fa-arrow-circle-left"></i>
+                                            Back</a>
                                         </div>
 
                                     </div>
                                 </div>
+                                <?php } ?>
                             </form>
                         </div>
                         <!-- /.card -->

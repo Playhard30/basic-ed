@@ -65,7 +65,9 @@ $_SESSION['get_subID'] = $sub_id;
                             LEFT JOIN tbl_efacadyears ON tbl_efacadyears.efacadyear_id = tbl_subjects_senior.efacadyear_id
                             WHERE subject_id = '$sub_id'");
 
-                            while ($row = mysqli_fetch_array($get_subInfo)) { ?>
+                            while ($row = mysqli_fetch_array($get_subInfo)) {
+                                $strand_n = $row['strand_name'];
+                                $eay = $row['efacadyear']; ?>
                             <form action="userData/ctrl.editSubSH.php<?php echo '?sub_id=' . $sub_id; ?>"
                                 enctype="multipart/form-data" method="POST">
                                 <div class="card-body">
@@ -227,9 +229,18 @@ $_SESSION['get_subID'] = $sub_id;
                                                     class="fa fa-check"></i> Update</button>
                                         </div>
                                         <div class="justify-content-end mr-2">
-                                            <a href="javascript:history.back();" class="btn bg-gray"><i
-                                                    class="fa fa-arrow-circle-left"></i>
-                                                Back</a>
+                                            <?php if ($strand_n == "ABM") {
+                                                    echo '<a href=" list.subjectSH.php?abm=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } elseif ($strand_n == "STEM") {
+                                                    echo '<a href=" list.subjectSH.php?stem=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } elseif ($strand_n == "GAS") {
+                                                    echo '<a href=" list.subjectSH.php?gas=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } elseif ($strand_n == "HUMSS") {
+                                                    echo '<a href=" list.subjectSH.php?humss=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } elseif ($strand_n == "TVL - HE") {
+                                                    echo '<a href=" list.subjectSH.php?tvl=' . $strand_n . '&eay=' . $eay . '" class="btn bg-gray">';
+                                                } ?><i class="fa fa-arrow-circle-left"></i>
+                                            Back</a>
                                         </div>
                                     </div>
                                 </div>

@@ -5,6 +5,41 @@ ob_start();
 
 require '../../includes/bed-session.php';
 
+if ($_SESSION['role'] == "Admission") {
+    $stud_id = $_GET['stud_id'];
+    $_SESSION['studtID'] = $stud_id;
+
+    $get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
+    while ($row = mysqli_fetch_array($get_active_sem)) {
+        $sem = $row['semester_id'];
+    }
+
+    $get_active_acad = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
+    while ($row = mysqli_fetch_array($get_active_acad)) {
+        $acad = $row['ay_id'];
+    }
+
+    $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+        WHERE student_id = '$stud_id' AND semester_id = '0' AND ay_id = '$acad'") or die(mysqli_error($conn));
+    $result = mysqli_num_rows($get_level_id);
+
+    if ($result > 0) {
+        header('location: ../bed-404/page404.php');
+    } else {
+
+        $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
+        WHERE student_id = '$stud_id' AND semester_id = '$sem' AND ay_id = '$acad'") or die(mysqli_error($conn));
+        $result2 = mysqli_num_rows($get_level_id);
+
+        if ($result2 > 0) {
+        } else {
+            header('location: ../bed-404/page404.php');
+        }
+    }
+}
+
+
+
 $get_stud = mysqli_query($conn, "SELECT *, CONCAT(stud.student_fname, ' ', LEFT(stud.student_mname,1), '. ', stud.student_lname) AS fullname 
 FROM tbl_schoolyears AS sy
 LEFT JOIN tbl_students AS stud ON stud.student_id = sy.student_id
@@ -14,11 +49,21 @@ LEFT JOIN tbl_strands AS std ON std.strand_id = sy.strand_id
 LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
 LEFT JOIN tbl_semesters AS sem ON sem.semester_id = sy.semester_id
 WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadyears]' AND sem.semester = '$_SESSION[active_semester]'") or die(mysqli_error($conn));
-$result = mysqli_num_rows($get_stud);
-if ($result == 0) {
-    header('location: ../bed-student/add.enroll.php');
+if ($_SESSION['role'] == "Student") {
+    $result = mysqli_num_rows($get_stud);
+    if ($result == 0) {
+        header('location: ../bed-student/add.enroll.php');
+    }
 }
-
+while ($row = mysqli_fetch_array($get_stud)) {
+    $rem = $row['remark'];
+}
+if ($_SESSION['role'] == "Student") {
+    if ($rem == "Canceled" || $rem == "Pending") {
+    } else {
+        header('location: list.enrolledSubSH.php');
+    }
+}
 ?>
 
 
@@ -83,7 +128,7 @@ if ($result == 0) {
                                                         <th>Professor</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="border-bottom">
+                                                <tbody>
                                                     <?php $get_enrolled_stud = mysqli_query($conn, "SELECT * FROM tbl_schoolyears AS sy 
                                                     LEFT JOIN tbl_strands AS strd ON sy.strand_id = strd.strand_id
                                                     LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
@@ -136,7 +181,11 @@ if ($result == 0) {
                                                         <td><?php echo $row['day']; ?></td>
                                                         <td><?php echo $row['time']; ?></td>
                                                         <td><?php echo $row['room']; ?></td>
+                                                        <?php if (empty($row['fullname'])) { ?>
+                                                        <td>TBA</td>
+                                                        <?php } else { ?>
                                                         <td><?php echo $row['fullname']; ?></td>
+                                                        <?php } ?>
                                                     </tr>
                                                     <?php
                                                     }
@@ -154,14 +203,22 @@ if ($result == 0) {
                                                         Add Selected</button>
                                                 </div>
                                         </form>
+                                        <?php if ($_SESSION['role'] == "Student") { ?>
                                         <div class="ml-2">
                                             <a href="list.enrolledSubSH.php" class="btn btn-default bg-gray p-2"><i
                                                     class="fa fa-arrow-circle-left">
                                                 </i>
                                                 Back</a>
-
                                         </div>
-
+                                        <?php } elseif ($_SESSION['role'] == "Admission") {
+                                        ?>
+                                        <div class="ml-2">
+                                            <a href="list.enrolledSubSH.php?stud_id=<?php echo $stud_id; ?>"
+                                                class="btn btn-default bg-gray p-2"><i class="fa fa-arrow-circle-left">
+                                                </i>
+                                                Back</a>
+                                        </div>
+                                        <?php } ?>
                                     </div>
 
                                 </div>
