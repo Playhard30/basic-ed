@@ -542,7 +542,40 @@
                     </li>
                     </ul>
                 </li>
-
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Maintenance
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-student/list.student.php" class="nav-link">
+                                <i class="fa fa-restroom nav-icon"></i>
+                                <p> Student List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-file-medical"></i>
+                        <p>
+                            Data Entry
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-student/add.student.php" class="nav-link">
+                                <i class="fa fa-user-plus nav-icon"></i>
+                                <p> Add Students</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>       
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-medical"></i>
@@ -566,6 +599,48 @@
                                 <p>
                                     Primary - Junior
                                 </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>    
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-binoculars"></i>
+                        <p>
+                            View Subjects
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/abm.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> ABM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/gas.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> GAS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/humss.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> HUMSS</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/stem.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> STEM</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-hedCurr/tvl.php" class="nav-link">
+                                <i class="fa fa-file-alt nav-icon"> </i>
+                                <p class="ml-1"> TVL</p>
                             </a>
                         </li>
                     </ul>
@@ -603,6 +678,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="../bed-principal/list.teacher.php" class="nav-link">
+                            <i class="nav-icon fas fa-table"></i>
+                            <p>
+                                Teachers List
+                            </p>
+                        </a>
+                    </li>
                         <li class="nav-item">
                             <a href="../bed-student/list.student.php" class="nav-link">
                                 <i class="fa fa-restroom nav-icon"></i>
@@ -717,6 +800,14 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="../bed-principal/add.teacher.php" class="nav-link">
+                            <i class="nav-icon fas fa-user-plus"></i>
+                            <p>
+                                Add Teacher
+                            </p>    
+                        </a>
+                    </li>
                         <li class="nav-item">
                             <a href="../bed-student/add.student.php" class="nav-link">
                                 <i class="fa fa-user-plus nav-icon"></i>
