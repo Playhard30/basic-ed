@@ -228,10 +228,10 @@ session_start();
                         alt="logo-left"></a></div>
             <div class="center">
                 <ul class="menu uppercase">
-                    <li><a href="#">HOME</a></li>
-                    <li><a href="#">ABOUT</a></li>
-                    <li><a href="#kto12">K to 12 PROGRAM</a></li>
-                    <li><a href="#">CONTACT US</a></li>
+                    <li><a href="home.html">HOME</a></li>
+                    <li><a href="about_us.html">ABOUT</a></li>
+                    <li><a href="Kto12.html">K to 12 PROGRAM</a></li>
+                    <li><a href="contact us.html">CONTACT US</a></li>
                 </ul>
             </div>
             <div class="right">
