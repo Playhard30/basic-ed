@@ -648,7 +648,23 @@
                 ';
 
                     // END ADMISSION
-
+            } elseif ($_SESSION['role'] == "Accounting") {
+                    echo '<li class="nav-item menu-open">
+                    <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="../bed-accounting/approve_online_inq.php" class="nav-link">
+                        <i class="nav-icon fas fa-id-card"></i>
+                        <p>
+                            Online Inquiries
+                        </p>
+                    </a>
+                </li>';
 
                 } elseif ($_SESSION['role'] == "Teacher") {
                     echo '<li class="nav-item menu-open">
@@ -659,6 +675,7 @@
                         </p>
                     </a>
                 </li>';
+
                 } elseif ($_SESSION['role'] == "Adviser") {
                     echo '<li class="nav-item menu-open">
                     <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">

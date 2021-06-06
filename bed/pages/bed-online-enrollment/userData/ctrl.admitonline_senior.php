@@ -44,9 +44,9 @@ if (isset($_POST['submit'])) {
     $sch_year = mysqli_real_escape_string($conn, $_POST['sch_year']);
     $sch_address = mysqli_real_escape_string($conn, $_POST['sch_address']);
 
-    $status_update = mysqli_query($conn,"UPDATE tbl_online_reg_senior SET status = 'Approved' where or_id = '$or_id'");
+    $status_update = mysqli_query($conn,"UPDATE tbl_online_reg_senior SET status = 'For Approval' where or_id = '$or_id'");
 
-    $insertUser = mysqli_query($conn, "INSERT INTO tbl_admit_online (stud_type, grade_level_id, strand_id, lrn, student_lname, student_fname, student_mname, address, date_birth, place_birth, age, gender_id, nationality, religion, landline, cellphone, email, fname, focc, fcontact, mname, mocc, mcontact, month_inc, no_siblings, guardname, gaddress, gcontact, last_sch, prev_grade_level, sch_year, sch_address, status ) VALUES ('$studtype', '$grade', '$strand', '$lrn', '$firstname', '$lastname', '$midname', '$address', '$date_birth', '$place_birth', '$age', '$gender', '$nationality', '$religion', '$landline', '$cellphone', '$email', '$fname', '$focc', '$fcontact', '$mname', '$mocc', '$mcontact', '$month_inc', '$no_sib', '$guardname', '$gaddress', '$gcontact', '$last_attend', '$prev_grade_level', '$sch_year' , '$sch_address', 'Pending')")  or die (mysqli_error($conn));
+    $insertUser = mysqli_query($conn, "INSERT INTO tbl_admit_online (stud_type, grade_level_id, strand_id, lrn, student_lname, student_fname, student_mname, address, date_birth, place_birth, age, gender_id, nationality, religion, landline, cellphone, email, fname, focc, fcontact, mname, mocc, mcontact, month_inc, no_siblings, guardname, gaddress, gcontact, last_sch, prev_grade_level, sch_year, sch_address, status ) VALUES ('$studtype', '$grade', '$strand', '$lrn', '$firstname', '$lastname', '$midname', '$address', '$date_birth', '$place_birth', '$age', '$gender', '$nationality', '$religion', '$landline', '$cellphone', '$email', '$fname', '$focc', '$fcontact', '$mname', '$mocc', '$mcontact', '$month_inc', '$no_sib', '$guardname', '$gaddress', '$gcontact', '$last_attend', '$prev_grade_level', '$sch_year' , '$sch_address', 'For Approval')")  or die (mysqli_error($conn));
 
 
     $_SESSION['success'] = true;
