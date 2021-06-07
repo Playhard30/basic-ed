@@ -536,18 +536,18 @@
                             <a href="../bed-student/list.enrolledStud.php" class="nav-link">
                                 <i class="fa fa-ellipsis-h nav-icon"> </i>
                                 <p>
-                                 Pending Students
+                                    Pending Students
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                        <a href="../bed-online-enrollment/online_list.php" class="nav-link">
-                            <i class="fas fa-globe-asia nav-icon"> </i>
-                            <p>
-                             Online Inquiries
-                            </p>
-                        </a>
-                    </li>
+                            <a href="../bed-online-enrollment/online_list.php" class="nav-link">
+                                <i class="fas fa-globe-asia nav-icon"> </i>
+                                <p>
+                                    Online Inquiries
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -583,7 +583,34 @@
                             </a>
                         </li>
                     </ul>
-                </li>       
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-clock"></i>
+                        <p>
+                            Class Schedule
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-schedules/list.subSchedSH.php" class="nav-link">
+                                <i class="fa fa-list-alt nav-icon"> </i>
+                                <p>
+                                    Senior
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fa fa-list-alt nav-icon"> </i>
+                                <p>
+                                    Primary - Junior
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-hand-holding-medical"></i>
@@ -610,7 +637,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>    
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-binoculars"></i>
@@ -679,13 +706,13 @@
                             <a href="../bed-student/list.enrolledStud.php" class="nav-link">
                                 <i class="fa fa-list-alt nav-icon"> </i>
                                 <p>
-                                 Confirmed Students
+                                    Confirmed Students
                                 </p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                  <li class="nav-item">
+                <li class="nav-item">
                     <a href="../bed-accounting/approve_online_inq.php" class="nav-link">
                         <i class="nav-icon fas fa-id-card"></i>
                         <p>
