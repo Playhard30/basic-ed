@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
 
 
     $_SESSION['success'] = true;
-    header('location: ../../../../index.php');
+    header('location: ../online_success.php');
 
 }
 

@@ -373,19 +373,19 @@ session_start();
                             <ul class="flex">
                                     <li class="col-6-12 ae-3">
                                         <h3 class="margin-top-3">Pre-School</h3>    
-                                         <a href="bed/pages/bed-online-enrollment/online_enrollment_ps.php"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
+                                         <a href="bed/pages/bed-online-enrollment/online_enrollment_ps.php"  data-toggle ="tooltip" title="Nursery, Pre-Kinder and Kinder"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
                                     </li>
                                     <li class="col-6-12 ae-4">
                                         <h3 class="margin-top-3">Elementary</h3>
-                                         <a href="bed/pages/bed-online-enrollment/online_enrollment_gs.php"  name="pre-loader"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
+                                         <a href="bed/pages/bed-online-enrollment/online_enrollment_gs.php"  data-toggle ="tooltip" title="Grade 1 to 6"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
                                     </li>
                                     <li class="col-6-12 ae-5">
                                         <h3 class="margin-top-3">Junior High School</h3>
-                                         <a href="bed/pages/bed-online-enrollment/online_enrollment_jhs.php"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
+                                         <a href="bed/pages/bed-online-enrollment/online_enrollment_jhs.php"  data-toggle ="tooltip" title="Grade 7 to 10"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
                                     </li>
                                     <li class="col-6-12 ae-6">
                                         <h3 class="margin-top-3">Senior High School</h3>
-                                        <a href="bed/pages/bed-online-enrollment/online_enrollment_shs.php"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
+                                        <a href="bed/pages/bed-online-enrollment/online_enrollment_shs.php" data-toggle ="tooltip" title="Grade 11 and Grade 12"><img src="assets/img/image-89-1.jpg" class="wide rounded" alt="Video Thumbnail" /></a>
                                     </li>
                             </ul>
                         </div>
@@ -626,5 +626,10 @@ session_start();
 
 
 </body>
+ <script>
+        $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script>
 
 </html>
