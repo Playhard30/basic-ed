@@ -134,7 +134,7 @@ session_start();
 
                                                 </div>
                                                 <input type="text" class="form-control" placeholder="Enter 11-digit lrn"
-                                                    name="lrn" required>
+                                                    name="lrn">
                                             </div>
 
                                             <!-- year and semester -->
@@ -328,7 +328,7 @@ session_start();
                                                     </div>
 
                                                     <input type="text" class="form-control"
-                                                        placeholder="Landline Number" name="landline" required>
+                                                        placeholder="Landline Number" name="landline">
                                                 </div>
 
                                                 <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
