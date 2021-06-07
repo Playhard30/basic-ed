@@ -519,7 +519,7 @@ session_start();
                                 <!-- EDUCATIONAL BACKGROUND -->
 
                                 <div class="bg-purple">
-                                    <div class="card-header text-center">dd
+                                    <div class="card-header text-center">
                                         <h3 class="text-lg" style="margin-bottom: unset;">
                                             EDUCATIONAL BACKGROUND
                                         </h3>

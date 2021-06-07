@@ -47,9 +47,8 @@ if (isset($_POST['submit'])) {
 
     $status_update = mysqli_query($conn,"UPDATE tbl_admit_online SET status = 'Approved' where ao_id = '$ao_id'");
 
-    $hashpwd = password_hash($password, PASSWORD_BCRYPT);
 
-    $insertUser = mysqli_query($conn, "INSERT INTO tbl_studentS ( username, password, stud_no, lrn, student_lname, student_fname, student_mname, address, date_birth, place_birth, age, gender_id, nationality, religion, landline, cellphone, email, fname, focc, fcontact, mname, mocc, mcontact, month_inc, no_siblings, guardname, gaddress, gcontact, last_sch, prev_grade_level, sch_year, sch_address ) VALUES ('$username' , '$hashpwd', '$stud_no', '$lrn', '$firstname', '$lastname', '$midname', '$address', '$date_birth', '$place_birth', '$age', '$gender', '$nationality', '$religion', '$landline', '$cellphone', '$email', '$fname', '$focc', '$fcontact', '$mname', '$mocc', '$mcontact', '$month_inc', '$no_sib', '$guardname', '$gaddress', '$gcontact', '$last_attend', '$prev_grade_level', '$sch_year' , '$sch_address')")  or die (mysqli_error($conn));
+    $insertUser = mysqli_query($conn, "INSERT INTO tbl_students ( username, password, stud_no, lrn, student_lname, student_fname, student_mname, address, date_birth, place_birth, age, gender_id, nationality, religion, landline, cellphone, email, fname, focc, fcontact, mname, mocc, mcontact, month_inc, no_siblings, guardname, gaddress, gcontact, last_sch, prev_grade_level, sch_year, sch_address ) VALUES ('$username' , '$password', '$stud_no', '$lrn', '$firstname', '$lastname', '$midname', '$address', '$date_birth', '$place_birth', '$age', '$gender', '$nationality', '$religion', '$landline', '$cellphone', '$email', '$fname', '$focc', '$fcontact', '$mname', '$mocc', '$mcontact', '$month_inc', '$no_sib', '$guardname', '$gaddress', '$gcontact', '$last_attend', '$prev_grade_level', '$sch_year' , '$sch_address')")  or die (mysqli_error($conn));
 
 
     $_SESSION['success'] = true;
