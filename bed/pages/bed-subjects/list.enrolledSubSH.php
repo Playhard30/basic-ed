@@ -181,6 +181,7 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
                                                             <th></th>
                                                             <th>Code</th>
                                                             <th>Description</th>
+                                                            <th>Strand</th>
                                                             <th>Unit(s)</th>
                                                             <th>Days</th>
                                                             <th>Time</th>
@@ -196,6 +197,7 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
                                                 LEFT JOIN tbl_subjects_senior AS sub ON sub.subject_id = sched.subject_id
                                                 LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
                                                 LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
+                                                LEFT JOIN tbl_strands AS strd ON strd.strand_id = sub.strand_id
                                                 WHERE stud.student_id = $stud_id AND sched.semester = '$_SESSION[active_semester]' AND sched.acadyear = '$_SESSION[active_acadyears]'") or die(mysqli_error($conn));
                                                         $index = 0;
                                                         while ($row = mysqli_fetch_array($get_enrolled_sub)) {
@@ -239,6 +241,7 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
                                                             </td>
                                                             <td><?php echo $row['subject_code']; ?></td>
                                                             <td><?php echo $row['subject_description']; ?></td>
+                                                            <td><?php echo $row['strand_name']; ?></td>
                                                             <td><?php echo $row['total_units']; ?></td>
                                                             <td><?php echo $row['day']; ?></td>
                                                             <td><?php echo $row['time']; ?></td>

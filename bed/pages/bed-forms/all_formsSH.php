@@ -61,6 +61,7 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->AddPage();
     //--------------------------Principal---------------------------------//
 
+    // CELL (Width, height, text border, Next line, align)
     $pdf->Image('../../../assets/img/logo.png', 33, 9, 10, 10);
 
     $pdf->SetTextColor(255, 0, 0);
@@ -1079,67 +1080,77 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $xy = 3;
     $i = 1;
     while ($row2 = mysqli_fetch_array($get_enrolled_sub)) {
-        $pdf->SetFont('Arial', '', '7.5');
+        $pdf->SetFont('Arial', '', '6');
 
 
         $pdf->SetXY(13, $y + $xy);
-        $pdf->Cell(1, 3.5, $i, 0, 0, 'L');
-        $pdf->Cell(39, 3.5, $row2['subject_code'], 0, 0, 'C');
-        $pdf->Cell(10, 3.5, $row2['total_units'], 0, 0, 'C');
-        $fontsize = 7.5;
+        $pdf->Cell(1, 3, $i, 0, 0, 'L');
+
+
+        $fontsize = 6;
+        $tempFontSize = $fontsize;
+        $cellwidth = 30;
+        while ($pdf->GetStringWidth($row2['subject_code']) > $cellwidth) {
+            $pdf->SetFontSize($tempFontSize -= 0.1);
+        }
+        $pdf->Cell(39, 3, $row2['subject_code'], 0, 0, 'C');
+
+        $pdf->Cell(10, 3, $row2['total_units'], 0, 0, 'C');
+
+        $fontsize = 6;
         $tempFontSize = $fontsize;
         $cellwidth = 13;
         while ($pdf->GetStringWidth($row2['day']) > $cellwidth) {
             $pdf->SetFontSize($tempFontSize -= 0.1);
         }
-        $pdf->Cell(15, 3.5, $row2['day'], 0, 0, 'C');
+        $pdf->Cell(15, 3, $row2['day'], 0, 0, 'C');
 
-        $pdf->SetFont('Arial', '', '7.5');
-        $fontsize = 7.5;
+        $pdf->SetFont('Arial', '', '6');
+        $fontsize = 6;
         $tempFontSize = $fontsize;
         $cellwidth = 18;
         while ($pdf->GetStringWidth($row2['time']) > $cellwidth) {
             $pdf->SetFontSize($tempFontSize -= 0.1);
         }
-        $pdf->Cell(20, 3.5, $row2['time'], 0, 0, 'C');
+        $pdf->Cell(20, 3, $row2['time'], 0, 0, 'C');
 
-        $pdf->SetFont('Arial', '', '7.5');
-        $fontsize = 7.5;
+        $pdf->SetFont('Arial', '', '6');
+        $fontsize = 6;
         $tempFontSize = $fontsize;
         $cellwidth = 10;
         while ($pdf->GetStringWidth($row2['room']) > $cellwidth) {
             $pdf->SetFontSize($tempFontSize -= 0.1);
         }
-        $pdf->Cell(10, 3.5, $row2['room'], 0, 0, 'C');
+        $pdf->Cell(10, 3, $row2['room'], 0, 0, 'C');
 
-        $pdf->SetFont('Arial', '', '7.5');
-        $pdf->Cell(17, 3.5, '', 0, 0, 'C');
+        $pdf->SetFont('Arial', '', '6');
+        $pdf->Cell(17, 3, '', 0, 0, 'C');
 
-        $fontsize = 7.5;
+        $fontsize = 6;
         $tempFontSize = $fontsize;
         $cellwidth = 27;
         while ($pdf->GetStringWidth($row2['fullname']) > $cellwidth) {
             $pdf->SetFontSize($tempFontSize -= 0.1);
         }
         if (!empty($row2['fullname'])) {
-            $pdf->Cell(0, 3.5, utf8_decode($row2['fullname']), 0, 0, 'C');
+            $pdf->Cell(0, 3, utf8_decode($row2['fullname']), 0, 0, 'C');
             $pdf->SetFont('Arial', '', '9');
         } else {
-            $pdf->Cell(0, 3.5, 'TBA', 0, 0, 'C');
+            $pdf->Cell(0, 3, 'TBA', 0, 0, 'C');
             $pdf->SetFont('Arial', '', '9');
         }
 
-        $xy += 3.5;
+        $xy += 3;
         $i++;
     }
 
-    $pdf->Rect(13, 55, 40, 35);
-    $pdf->Rect(63, 55, 15, 35);
-    $pdf->Rect(98, 55, 10, 35);
-    $pdf->Rect(125, 55, 30, 35);
+    $pdf->Rect(13, 55, 40, 40);
+    $pdf->Rect(63, 55, 15, 40);
+    $pdf->Rect(98, 55, 10, 40);
+    $pdf->Rect(125, 55, 30, 40);
 
     $pdf->SetXY(13, 90);
-    $pdf->Cell(0, 0, '', 1, 1);
+    $pdf->Cell(0, 5, '', 'B', 1);
 
     $pdf->Ln(1);
     $pdf->SetFont('Arial', 'B', 8);

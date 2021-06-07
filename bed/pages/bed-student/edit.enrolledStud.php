@@ -63,7 +63,7 @@ $_SESSION['student_id'] = $stud_id;
                             LEFT JOIN tbl_semesters AS sem ON sem.semester_id = sy.semester_id
                             LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id =sy.grade_level_id
                             LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id  
-                            WHERE sy.student_id = '$stud_id'") or die(mysqli_error($conn));
+                            WHERE sy.student_id = '$stud_id' AND (sem.semester = '$_SESSION[active_semester]' OR sy.semester_id = '0')") or die(mysqli_error($conn));
                             while ($row = mysqli_fetch_array($get_enrolled_stud)) {
                             ?>
                             <form action="userData/ctrl.editEnrolledStud.php" enctype="multipart/form-data"
