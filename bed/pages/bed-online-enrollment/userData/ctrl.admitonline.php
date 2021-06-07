@@ -11,6 +11,11 @@ if (isset($_POST['submit'])) {
     $or_id = $_SESSION['or_id'];
 
     $studtype = mysqli_real_escape_string($conn, $_POST['studtype']);
+
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $stud_no = mysqli_real_escape_string($conn, $_POST['stud_no']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+
     $grade = mysqli_real_escape_string($conn, $_POST['grade']);
     $lrn = mysqli_real_escape_string($conn, $_POST['lrn']);
 
@@ -45,7 +50,9 @@ if (isset($_POST['submit'])) {
 
     $status_update = mysqli_query($conn,"UPDATE tbl_online_reg SET status = 'For Approval' where or_id = '$or_id'");
 
-    $insertUser = mysqli_query($conn, "INSERT INTO tbl_admit_online (stud_type, grade_level_id, lrn, student_lname, student_fname, student_mname, address, date_birth, place_birth, age, gender_id, nationality, religion, landline, cellphone, email, fname, focc, fcontact, mname, mocc, mcontact, month_inc, no_siblings, guardname, gaddress, gcontact, last_sch, prev_grade_level, sch_year, sch_address, status ) VALUES ('$studtype', '$grade', '$lrn', '$firstname', '$lastname', '$midname', '$address', '$date_birth', '$place_birth', '$age', '$gender', '$nationality', '$religion', '$landline', '$cellphone', '$email', '$fname', '$focc', '$fcontact', '$mname', '$mocc', '$mcontact', '$month_inc', '$no_sib', '$guardname', '$gaddress', '$gcontact', '$last_attend', '$prev_grade_level', '$sch_year' , '$sch_address', 'For Approval')")  or die (mysqli_error($conn));
+    $hashpwd = password_hash($password, PASSWORD_BCRYPT);
+
+    $insertUser = mysqli_query($conn, "INSERT INTO tbl_admit_online (stud_type, username, password, stud_no, grade_level_id, lrn, student_lname, student_fname, student_mname, address, date_birth, place_birth, age, gender_id, nationality, religion, landline, cellphone, email, fname, focc, fcontact, mname, mocc, mcontact, month_inc, no_siblings, guardname, gaddress, gcontact, last_sch, prev_grade_level, sch_year, sch_address, status ) VALUES ('$studtype', '$username' , '$hashpwd', '$stud_no', '$grade', '$lrn', '$firstname', '$lastname', '$midname', '$address', '$date_birth', '$place_birth', '$age', '$gender', '$nationality', '$religion', '$landline', '$cellphone', '$email', '$fname', '$focc', '$fcontact', '$mname', '$mocc', '$mcontact', '$month_inc', '$no_sib', '$guardname', '$gaddress', '$gcontact', '$last_attend', '$prev_grade_level', '$sch_year' , '$sch_address', 'For Approval')")  or die (mysqli_error($conn));
 
 
     $_SESSION['success'] = true;
