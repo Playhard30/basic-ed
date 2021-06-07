@@ -119,6 +119,43 @@ $_SESSION['or_id'] = $or_id;
                                         <input type="text" class="form-control" placeholder="Enter 11-digit lrn"wwww
                                                value="<?php echo $row['lrn']; ?>" name="lrn">
                                         </div>
+
+                                        <div class="input-group col-md-6 mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-sm"><b>
+                                                        Student No.</b></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Enter Student Number"
+                                              name="stud_no">
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="bg-purple">
+                                    <div class="card-header text-center">
+                                        <h3 class="text-lg" style="margin-bottom: unset;">
+                                            ACCOUNT DETAILS
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group row mb-3 mt-3">
+
+                                        <div class="input-group col-md-6 mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-sm"><i class="fas fa-user"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Username"
+                                                name="username">
+                                        </div>
+
+                                        <div class="input-group col-md-6 mb-2">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-sm"><i class="fas fa-lock"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="Password"
+                                             name="password">
+                                        </div>
+
                                     </div>
                                 </div>
                                 
