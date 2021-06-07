@@ -5,7 +5,7 @@ ob_start();
 
 require '../../includes/bed-session.php';
 
-if ($_SESSION['role'] == "Admission") {
+if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") {
     $stud_id = $_GET['stud_id'];
     $_SESSION['studtID'] = $stud_id;
 
@@ -210,7 +210,7 @@ if ($_SESSION['role'] == "Student") {
                                                 </i>
                                                 Back</a>
                                         </div>
-                                        <?php } elseif ($_SESSION['role'] == "Admission") {
+                                        <?php } elseif ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") {
                                         ?>
                                         <div class="ml-2">
                                             <a href="list.enrolledSubSH.php?stud_id=<?php echo $stud_id; ?>"

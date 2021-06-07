@@ -6,8 +6,16 @@ ob_start();
 
 require '../../includes/bed-session.php';
 
+
 $sub_id = $_GET['sub_id'];
-$_SESSION['sub_id'] = $sub_id;
+$get_subID = mysqli_query($conn, "SELECT * FROM tbl_subjects WHERE subject_id = '$sub_id'");
+$result = mysqli_num_rows($get_subID);
+if ($result > 0) {
+    $_SESSION['sub_id'] = $sub_id;
+} else {
+    header('location: ../bed-404/page404.php');
+}
+
 ?>
 
 

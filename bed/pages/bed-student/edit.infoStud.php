@@ -5,7 +5,7 @@ ob_start();
 
 require '../../includes/bed-session.php';
 
-if ($_SESSION['role'] == 'Registrar') {
+if ($_SESSION['role'] == 'Registrar' || $_SESSION['role'] == 'Admission') {
 
     $stud_id = $_GET['stud_id'];
     $_SESSION['student_id'] = $stud_id;
@@ -81,7 +81,7 @@ if ($_SESSION['role'] == 'Registrar') {
                                                         Student ID</b>
                                                 </span>
                                             </div>
-                                            <?php if ($_SESSION['role'] == 'Registrar') {
+                                            <?php if ($_SESSION['role'] == 'Registrar' || $_SESSION['role'] == 'Admission') {
                                                     echo ' <input type="text" class="form-control"
                                                 value="' . $row['stud_no'] . '" placeholder="Student ID" name="stud_no"
                                            >
@@ -169,8 +169,10 @@ if ($_SESSION['role'] == 'Registrar') {
                                                     <span class="input-group-text text-sm"><b>
                                                             Date of Birth</b></span>
                                                 </div>
-                                                <input type="text" class="form-control" name="date_birth"
-                                                    placeholder="dd/mm/yyyy" value="<?php echo $row['date_birth']; ?>">
+                                                <input type="text" class="form-control" data-inputmask-alias="datetime"
+                                                    data-inputmask-inputformat="dd/mm/yyyy" data-mask name="date_birth"
+                                                    placeholder="day/month/year"
+                                                    value="<?php echo $row['date_birth']; ?>">
                                             </div>
 
                                             <div class="input-group col-md-4 mb-2">
@@ -532,7 +534,7 @@ if ($_SESSION['role'] == 'Registrar') {
                                                     Update Info</button>
                                             </div>
 
-                                            <?php if ($_SESSION['role'] == 'Registrar')
+                                            <?php if ($_SESSION['role'] == 'Registrar' || $_SESSION['role'] == 'Admission')
                                                 echo ' <div class="justify-content-end mr-2">
                                                 <a href="list.student.php?search=' . $_SESSION['search'] . '&look=" class="btn bg-gray btn-default"><i
                                                         class="fa fa-arrow-circle-left"></i>

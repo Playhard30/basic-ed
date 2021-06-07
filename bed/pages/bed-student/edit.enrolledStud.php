@@ -175,7 +175,19 @@ $_SESSION['student_id'] = $stud_id;
                                             </select>
                                         </div>
 
+                                        <div class="input-group col-md-4 mb-2 ">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text text-sm"><b>Section</b></span>
+                                            </div> <input type="text" class="form-control" name="section"
+                                                placeholder="Section of a Student"
+                                                value="<?php echo $row['section']; ?>">
+                                        </div>
+
                                     </div>
+
+
+
+
                                     <?php
                                 } ?>
                                 </div>
@@ -189,9 +201,16 @@ $_SESSION['student_id'] = $stud_id;
                                                 Update Details</button>
                                         </div>
                                         <div class="justify-content-end mr-2">
-                                            <a href="list.enrolledStud.php" class="btn bg-gray btn-default"><i
-                                                    class="fa fa-arrow-circle-left"></i>
-                                                Back</a>
+                                            <?php if ($_SESSION['role'] == "Accounting") { ?>
+                                            <a href="list.enrolledStud.php?search=<?php echo $_SESSION['search']; ?>&look="
+                                                class="btn bg-gray btn-default">
+                                                <?php  } else { ?>
+                                                <a href="list.enrolledStud.php" class="btn bg-gray btn-default">
+
+                                                    <?php } ?>
+
+                                                    <i class="fa fa-arrow-circle-left"></i>
+                                                    Back</a>
                                         </div>
                                     </div>
                                 </div>

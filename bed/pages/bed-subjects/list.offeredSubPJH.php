@@ -3,7 +3,7 @@ require '../../includes/conn.php';
 session_start();
 ob_start();
 
-if ($_SESSION['role'] == "Admission") {
+if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") {
     $stud_id = $_GET['stud_id'];
     $_SESSION['studtID'] = $stud_id;
 
@@ -115,7 +115,7 @@ if ($_SESSION['role'] == "Student") {
                                     <div class="card-body">
                                         <?php if ($_SESSION['role'] == "Student") { ?>
                                         <form action="userData/ctrl.list.offeredSubPJH.php" method="POST">
-                                            <?php } elseif ($_SESSION['role'] == "Admission") { ?>
+                                            <?php } elseif ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") { ?>
                                             <form
                                                 action="userData/ctrl.list.offeredSubPJH.php?stud_id=<?php echo $stud_id; ?>"
                                                 method="POST">
@@ -204,7 +204,7 @@ if ($_SESSION['role'] == "Student") {
                                                             Add Selected</button>
                                                     </div>
                                             </form>
-                                            <?php if ($_SESSION['role'] == "Admission") { ?>
+                                            <?php if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") { ?>
                                             <div class="ml-2">
                                                 <a href="list.enrolledSubPJH.php?stud_id=<?php echo $stud_id; ?>"
                                                     class="btn btn-default bg-gray p-2"><i

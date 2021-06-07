@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
 
     if (empty($_POST['checked'])) {
         $_SESSION['empty-check'] = true;
-        if ($_SESSION['role'] == "Admission") {
+        if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") {
             header('location: ../list.enrolledSubSH.php?stud_id=' . $stud_id);
         } else if ($_SESSION['role'] == "Student") {
             header('location: ../list.enrolledSubSH.php');
@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
             $ensub = $_POST['enrolled_subID'];
             $del_enrolled_sub = mysqli_query($conn, "DELETE FROM tbl_enrolled_subjects WHERE enrolled_sub_id = '$ensub[$index]'") or die(mysqli_error($conn));
             $_SESSION['drop'] = true;
-            if ($_SESSION['role'] == "Admission") {
+            if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") {
                 header('location: ../list.enrolledSubSH.php?stud_id=' . $stud_id);
             } else if ($_SESSION['role'] == "Student") {
                 header('location: ../list.enrolledSubSH.php');

@@ -19,6 +19,16 @@
             </div>
             <!-- /.info-box -->
         </div>
+
+        <?php
+        if ($_SESSION['role'] == "Student") {
+            $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears AS sy
+        LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
+        WHERE student_id = '$stud_id' AND semester_id = '0' AND ay.academic_year = '$_SESSION[active_acadyears]'") or die(mysqli_error($conn));
+            $result = mysqli_num_rows($get_level_id);
+            if ($result > 0) { ?>
+
+        <?php } else { ?>
         <div class="col-md-4 col-sm-6 col-6 mr-3">
             <div class="info-box border">
                 <span class="info-box-icon bg-navy"><i class="far fa-flag"></i></span>
@@ -26,16 +36,38 @@
                 <div class=" info-box-content">
                     <span class="info-box-text">Semester</span>
                     <?php $get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id");
-                    while ($row = mysqli_fetch_array($get_sem)) { ?>
+                            while ($row = mysqli_fetch_array($get_sem)) { ?>
                     <span class="info-box-number"><?php echo $row['semester'];
-                                                        ?></span>
+                                                                ?></span>
                     <?php $_SESSION['active_semester'] = $row['semester'];
-                    } ?>
+                            } ?>
                 </div>
                 <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
         </div>
+        <?php  }
+        } else {
+            ?>
+        <div class="col-md-4 col-sm-6 col-6 mr-3">
+            <div class="info-box border">
+                <span class="info-box-icon bg-navy"><i class="far fa-flag"></i></span>
+
+                <div class=" info-box-content">
+                    <span class="info-box-text">Semester</span>
+                    <?php $get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters LEFT JOIN tbl_semesters ON tbl_semesters.semester_id = tbl_active_semesters.semester_id");
+                        while ($row = mysqli_fetch_array($get_sem)) { ?>
+                    <span class="info-box-number"><?php echo $row['semester'];
+                                                            ?></span>
+                    <?php $_SESSION['active_semester'] = $row['semester'];
+                        } ?>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <?php } ?>
+
     </div>
     <hr class="mt-0 pt-0">
     <strong><a href="#">SFAC Bacoor</a>.</strong>
@@ -183,6 +215,8 @@ function goBack() {
 }
 </script>
 
+
+
 <!-- alert modal -->
 <?php if (isset($_SESSION['error-pass'])) {
     echo "<script>
@@ -296,7 +330,40 @@ title: 'Successfully Canceled.'
 })
 }); 
 </script>";
+} elseif (isset($_SESSION['approve'])) {
+    echo "<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        }); 
+$('.swalDefaultSuccess') 
+Toast.fire({
+icon: 'success',
+title: 'Successfully Approved.'
+})
+}); 
+</script>";
+} elseif (isset($_SESSION['disapprove'])) {
+    echo "<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000
+        }); 
+$('.swalDefaultSuccess') 
+Toast.fire({
+icon: 'success',
+title: 'Successfully Disapproved.'
+})
+}); 
+</script>";
 }
+
 unset($_SESSION['confirm']);
 unset($_SESSION['cancel']);
 unset($_SESSION['update-success']);
@@ -304,5 +371,7 @@ unset($_SESSION['error-pass']);
 unset($_SESSION['success']);
 unset($_SESSION['subject_exists']);
 unset($_SESSION['submit-success']);
+unset($_SESSION['approve']);
+unset($_SESSION['disapprove']);
 
 ?>

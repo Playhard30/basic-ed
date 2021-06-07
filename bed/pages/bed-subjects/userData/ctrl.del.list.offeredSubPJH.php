@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['empty-check'] = true;
         if ($_SESSION['role'] == "Student") {
             header('location: ../list.enrolledSubPJH.php');
-        } elseif ($_SESSION['role'] == "Admission") {
+        } elseif ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") {
             header('location: ../list.enrolledSubPJH.php?stud_id=' . $stud_id);
         }
     } else {
@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['drop'] = true;
             if ($_SESSION['role'] == "Student") {
                 header('location: ../list.enrolledSubPJH.php');
-            } elseif ($_SESSION['role'] == "Admission") {
+            } elseif ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") {
                 header('location: ../list.enrolledSubPJH.php?stud_id=' . $stud_id);
             }
         }

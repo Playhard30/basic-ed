@@ -5,7 +5,7 @@ ob_start();
 
 require '../../includes/bed-session.php';
 
-if ($_SESSION['role'] == "Admission") {
+if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") {
     $stud_id = $_GET['stud_id'];
 
     $get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
@@ -169,7 +169,7 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
                                     <div class="card-body">
                                         <?php if ($_SESSION['role'] == "Student") { ?>
                                         <form action="userData/ctrl.del.list.offeredSubSH.php" method="POST">
-                                            <?php } elseif ($_SESSION['role'] == "Admission") { ?>
+                                            <?php } elseif ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") { ?>
                                             <form
                                                 action="userData/ctrl.del.list.offeredSubSH.php?stud_id=<?php echo $stud_id; ?>"
                                                 method="POST">
@@ -220,7 +220,7 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
                                                                         class="custom-control-label"></label>
                                                                 </div>
                                                                 <?php }
-                                                                    } elseif ($_SESSION['role'] == "Admission") { ?>
+                                                                    } elseif ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") { ?>
                                                                 <div
                                                                     class="custom-control custom-checkbox justify-content-center">
                                                                     <input type="text" name="enrolled_subID[]"
@@ -290,15 +290,20 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
 
                                                 </table>
 
-                                                <?php if ($_SESSION['role'] == "Admission") { ?>
+                                                <?php if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") { ?>
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-4">
-                                                        <a href="../bed-student/list.enrolledStud.php"
-                                                            class="btn btn-default bg-gray p-2"><i
-                                                                class="fa fa-arrow-circle-left">
-                                                            </i>
-                                                            Back</a>
+                                                        <?php if ($_SESSION['role'] == "Accounting") { ?>
+                                                        <a href="../bed-student/list.enrolledStud.php?search=<?php echo $_SESSION['search']; ?>&look="
+                                                            class="btn btn-default bg-gray p-2">
+                                                            <?php } else { ?>
+                                                            <a href="../bed-student/list.enrolledStud.php"
+                                                                class="btn btn-default bg-gray p-2">
+                                                                <?php } ?>
+                                                                <i class="fa fa-arrow-circle-left">
+                                                                </i>
+                                                                Back</a>
                                                     </div>
 
                                                     <div class="ml-auto mr-1">

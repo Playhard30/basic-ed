@@ -315,7 +315,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../bed-forms/regform.php" class="nav-link">
+                            <a href="../bed-forms/allformsnodata.php" class="nav-link">
                                 <i class="fa fa-file-pdf nav-icon"></i>
                                 <p> Registration</p>
                             </a>
@@ -390,6 +390,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                        <a href="../bed-master_key/add.adviser.php" class="nav-link">
+                        <i class="fa fa-user-plus nav-icon"></i>
+                            <p>
+                                Add Sections
+                            </p>
+                        </a>
+                    </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa fa-book-medical nav-icon"></i>
@@ -646,9 +654,39 @@
                     </ul>
                 </li>
                 ';
-
                     // END ADMISSION
 
+                } elseif ($_SESSION['role'] == "Accounting") {
+                    echo '<li class="nav-item menu-open">
+                    <a href="../bed-dashboard/index.php" id="loadfile" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-sign-in-alt"></i>
+                        <p>
+                            Enrollment
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-student/list.enrolledStud.php" class="nav-link">
+                                <i class="fa fa-list-alt nav-icon"> </i>
+                                <p>
+                                 Confirmed Students
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>';
+
+                    //END ACCOUNTING
 
                 } elseif ($_SESSION['role'] == "Teacher") {
                     echo '<li class="nav-item menu-open">
@@ -678,14 +716,6 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="../bed-principal/list.teacher.php" class="nav-link">
-                            <i class="nav-icon fas fa-table"></i>
-                            <p>
-                                Teachers List
-                            </p>
-                        </a>
-                    </li>
                         <li class="nav-item">
                             <a href="../bed-student/list.student.php" class="nav-link">
                                 <i class="fa fa-restroom nav-icon"></i>
@@ -693,12 +723,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                        <a href="../bed-master_key/list.teacher.php" class="nav-link">
-                        <i class="fas fa-chalkboard nav-icon"></i>
-                            <p>
-                                 Teacher List
-                            </p>
-                        </a>
+                            <a href="../bed-master_key/list.teacher.php" class="nav-link">
+                                <i class="fas fa-chalkboard nav-icon"></i>
+                                <p>
+                                    Teacher List
+                                </p>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -800,24 +830,18 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="../bed-principal/add.teacher.php" class="nav-link">
-                            <i class="nav-icon fas fa-user-plus"></i>
-                            <p>
-                                Add Teacher
-                            </p>    
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a href="../bed-principal/add.teacher.php" class="nav-link">
+                                <i class="nav-icon fas fa-user-plus"></i>
+                                <p>
+                                    Add Teacher
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="../bed-student/add.student.php" class="nav-link">
                                 <i class="fa fa-user-plus nav-icon"></i>
                                 <p> Add Student</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../bed-master_key/add.teacher.php" class="nav-link">
-                                <i class="fa fa-user-plus nav-icon"></i>
-                                <p> Add Teacher</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -870,22 +894,18 @@
                 <a href="../bed-student/add.enroll.php" class="nav-link">
                     <i class="nav-icon fas fa-globe"></i>
                     <p>';
-
                     $get_active_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
                     while ($row = mysqli_fetch_array($get_active_sem)) {
                         $sem = $row['semester_id'];
                     }
-
                     $get_active_acad = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears");
                     while ($row = mysqli_fetch_array($get_active_acad)) {
                         $acad = $row['ay_id'];
                     }
-
                     $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
                         WHERE student_id = '$stud_id' AND semester_id = '0' AND ay_id = '$acad'") or
                         die(mysqli_error($conn));
                     $result = mysqli_num_rows($get_level_id);
-
                     if ($result > 0) {
                         echo 'Enrollment Info.</p>
                 </a>
@@ -893,7 +913,8 @@
                     } else {
 
                         $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
-            WHERE student_id = '$stud_id' AND semester_id = '$sem' AND ay_id = '$acad'") or die(mysqli_error($conn));
+            WHERE student_id = '$stud_id' AND semester_id = '$sem' AND ay_id = '$acad'") or
+                            die(mysqli_error($conn));
                         $result2 = mysqli_num_rows($get_level_id);
 
                         if ($result2 > 0) {
@@ -936,7 +957,7 @@
             class="btn btn-link pos-right mr-1 text-gray" data-toggle="tooltip" data-placement="top"
             title="Edit Profile"><i class="fas fa-user-edit"></i></a>';
         } elseif ($_SESSION['role'] == "Student") {
-            echo ' <a href="#" class="btn btn-link ml-2"><i class="fas fa-calendar-alt text-gray"></i></a>
+            echo ' <a href="#" class="btn btn-link ml-2"><i class="fas fa-cog text-gray"></i></a>
 
         <a href="../bed-student/edit.student.php" class="btn btn-link pos-right mr-2 text-gray" data-toggle="tooltip" data-placement="top" title="Edit Profile"><i
                 class="fas fa-user-edit"></i></a>';

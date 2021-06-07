@@ -185,6 +185,7 @@ if (isset($_GET['stem'])) {
                                                 <tr>
                                                     <?php while ($row = mysqli_fetch_array($get_subjects)) {
                                                             $id = $row['subject_id'];
+
                                                         ?>
                                                     <td><?php echo $row['subject_code']; ?></td>
                                                     <td><?php echo $row['subject_description']; ?></td>

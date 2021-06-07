@@ -13,7 +13,7 @@ require '../../includes/bed-session.php';
 <!-- Head and links -->
 
 <head>
-    <title>Page Not Found | SFAC Bacoor</title>
+    <title>Error Page | SFAC Bacoor</title>
     <?php include '../../includes/bed-head.php'; ?>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -37,7 +37,7 @@ require '../../includes/bed-session.php';
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link disabled text-light">Page 404</a>
+                    <a href="#" class="nav-link disabled text-light">Page 500</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link disabled text-light">Basic Education</a>
@@ -55,24 +55,24 @@ require '../../includes/bed-session.php';
 
                 <section class="content-header row">
                     <div class="error-page">
-                        <h2 class="headline text-warning"> 404</h2>
+                        <h2 class="headline text-danger">500</h2>
 
                         <div class="error-content">
-                            <h3><i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page not found.</h3>
+                            <h3><i class="fas fa-exclamation-triangle text-danger"></i> Oops! Something went wrong.</h3>
 
                             <p>
-                                We could not find the page you were looking for.
-                                Meanwhile, you may <a href="../bed-dashboard/index.php">return to dashboard</a>
+                                We will work on fixing that right away.
+                                Meanwhile, you may <a href="../bed-dashboard/index.php">return to dashboard</a> or other
+                                navigation.
                             </p>
                         </div>
                         <div class="mr-auto ml-auto mb-5">
-                            <center><img src="error.gif" class="zoom img img-bordered" alt="gif cartoon"
-                                    style="width: 500px;"> </center>
+                            <center><img src="cons.gif" class=" img img-bordered" alt="gif cartoon"
+                                    style="width: 500px;"></center>
                         </div>
-                        <!-- /.error-content -->
                     </div>
-
                     <!-- /.error-page -->
+
                 </section>
 
                 <!-- /.content -->

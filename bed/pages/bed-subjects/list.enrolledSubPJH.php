@@ -4,7 +4,7 @@ session_start();
 ob_start();
 
 require '../../includes/bed-session.php';
-if ($_SESSION['role'] == "Admission") {
+if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") {
     $stud_id = $_GET['stud_id'];
 
 
@@ -156,7 +156,7 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
                                     <div class="card-body">
                                         <?php if ($_SESSION['role'] == "Student") { ?>
                                         <form action="userData/ctrl.del.list.offeredSubPJH.php" method="POST">
-                                            <?php } elseif ($_SESSION['role'] == "Admission") { ?>
+                                            <?php } elseif ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") { ?>
                                             <form
                                                 action="userData/ctrl.del.list.offeredSubPJH.php?stud_id=<?php echo $stud_id; ?>"
                                                 method="POST">
@@ -177,17 +177,17 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
                                                     <tbody>
 
                                                         <?php $get_enrolled_sub = mysqli_query($conn, "SELECT *, CONCAT(teach.teacher_fname, ' ', LEFT(teach.teacher_mname,1), '. ', teach.teacher_lname) AS fullname FROM tbl_enrolled_subjects AS ensub
-                                                LEFT JOIN tbl_schedules AS sched ON sched.schedule_id = ensub.schedule_id
-                                                LEFT JOIN tbl_students AS stud ON stud.student_id = ensub.student_id
-                                                LEFT JOIN tbl_subjects AS sub ON sub.subject_id = sched.subject_id
-                                                LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
-                                                LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
-                                                WHERE stud.student_id = $stud_id AND sched.semester = '0'") or die(mysqli_error($conn));
+                                                         LEFT JOIN tbl_schedules AS sched ON sched.schedule_id = ensub.schedule_id
+                                                         LEFT JOIN tbl_students AS stud ON stud.student_id = ensub.student_id
+                                                         LEFT JOIN tbl_subjects AS sub ON sub.subject_id = sched.subject_id
+                                                         LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
+                                                         LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
+                                                         WHERE stud.student_id = $stud_id AND sched.semester = '0'") or die(mysqli_error($conn));
                                                         $index = 0;
                                                         while ($row = mysqli_fetch_array($get_enrolled_sub)) {
                                                         ?>
                                                         <tr>
-                                                            <td><?php if ($_SESSION['role'] == "Admission") { ?>
+                                                            <td><?php if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") { ?>
                                                                 <div
                                                                     class="custom-control custom-checkbox justify-content-center">
                                                                     <input type="text" name="enrolled_subID[]"
@@ -233,20 +233,19 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
                                                                         echo $row['fullname'];
                                                                     }  ?></td>
                                                         </tr>
-
+                                                        <?php } ?>
                                                     </tbody>
-                                                    <?php } ?>
                                                     <?php
-                                                $get_enrolled_sub = mysqli_query($conn, "SELECT COUNT(sub.subject_id) AS csub FROM tbl_enrolled_subjects AS ensub
+                                                    $get_enrolled_sub = mysqli_query($conn, "SELECT COUNT(sub.subject_id) AS csub FROM tbl_enrolled_subjects AS ensub
                                                 LEFT JOIN tbl_schedules AS sched ON sched.schedule_id = ensub.schedule_id
                                                 LEFT JOIN tbl_students AS stud ON stud.student_id = ensub.student_id
                                                 LEFT JOIN tbl_subjects AS sub ON sub.subject_id = sched.subject_id
                                                 LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
                                                 LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
                                                 WHERE stud.student_id = $stud_id AND sched.semester = '0'") or die(mysqli_error($conn));
-                                                $index = 0;
-                                                while ($row = mysqli_fetch_array($get_enrolled_sub)) {
-                                                    if (!empty($row['csub'])) { ?>
+                                                    $index = 0;
+                                                    while ($row = mysqli_fetch_array($get_enrolled_sub)) {
+                                                        if (!empty($row['csub'])) { ?>
 
                                                     <tfoot>
                                                         <tbody>
@@ -262,17 +261,22 @@ WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadye
                                                         </tbody>
                                                     </tfoot>
                                                     <?php }
-                                                } ?>
+                                                    } ?>
                                                 </table>
-                                                <?php if ($_SESSION['role'] == "Admission") { ?>
+                                                <?php if ($_SESSION['role'] == "Admission" || $_SESSION['role'] == "Accounting") { ?>
                                                 <hr>
                                                 <div class="row">
                                                     <div class="col-4">
-                                                        <a href="../bed-student/list.enrolledStud.php"
-                                                            class="btn btn-default bg-gray p-2"><i
-                                                                class="fa fa-arrow-circle-left">
-                                                            </i>
-                                                            Back</a>
+                                                        <?php if ($_SESSION['role'] == "Accounting") { ?>
+                                                        <a href="../bed-student/list.enrolledStud.php?search=<?php echo $_SESSION['search']; ?>&look="
+                                                            class="btn btn-default bg-gray p-2">
+                                                            <?php } else { ?>
+                                                            <a href="../bed-student/list.enrolledStud.php"
+                                                                class="btn btn-default bg-gray p-2">
+                                                                <?php } ?>
+                                                                <i class="fa fa-arrow-circle-left">
+                                                                </i>
+                                                                Back</a>
                                                     </div>
 
 
