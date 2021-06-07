@@ -124,7 +124,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                 <span class="input-group-text text-sm"><b>
                                                         Student No.</b></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Enter Student Number"
+                                            <input type="text" class="form-control" placeholder="Enter Student Number" value="<?php echo $row['stud_no']; ?>" 
                                               name="stud_no">
                                         </div>
 
@@ -132,21 +132,21 @@ $_SESSION['ao_id'] = $ao_id;
                                     </div>
                                 </div>
 
-                                <div class="bg-purple">
+                                <div class="bg-purple" hidden>
                                     <div class="card-header text-center">
                                         <h3 class="text-lg" style="margin-bottom: unset;">
                                             ACCOUNT DETAILS
                                         </h3>
                                     </div>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" hidden>
                                     <div class="form-group row mb-3 mt-3">
 
                                         <div class="input-group col-md-6 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><i class="fas fa-user"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Username"
+                                            <input type="text" class="form-control" placeholder="Username" value="<?php echo $row['username']; ?>"
                                                 name="username">
                                         </div>
 
@@ -154,7 +154,7 @@ $_SESSION['ao_id'] = $ao_id;
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><i class="fas fa-lock"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Password"
+                                            <input type="text" class="form-control" placeholder="Password" value="<?php echo $row['password']; ?>"
                                              name="password">
                                         </div>
 
