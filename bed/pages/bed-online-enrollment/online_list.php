@@ -80,7 +80,7 @@ require '../../includes/bed-session.php';
                                                             type="button"
                                                             class="btn bg-lightblue text-sm p-2 mb-md-2"><i
                                                                 class="fa fa-edit"></i>
-                                                            Update
+                                                            Approve
                                                         </a>
 
                                                         <!-- Button trigger modal -->
@@ -138,9 +138,9 @@ require '../../includes/bed-session.php';
                                                     <td><?php echo $row['status']; ?></td>
                                                     <td><a href="online_edit_senior.php<?php echo '?or_id=' . $id; ?>"
                                                             type="button"
-                                                            class="btn bg-lightblue text-sm p-2 mb-md-2"><i
+                                                            class="btn bg-green text-sm p-2 mb-md-2"><i
                                                                 class="fa fa-edit"></i>
-                                                            Update
+                                                            Approve
                                                         </a>
 
                                                         <!-- Button trigger modal -->
@@ -224,6 +224,113 @@ require '../../includes/bed-session.php';
             </script>";
             }
             unset($_SESSION['success-del']);
+
+            if (isset($_SESSION['success-studEdit'])) {
+                echo "<script>
+    $(function() {
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        }); 
+$('.swalDefaultSuccess') 
+Toast.fire({
+icon: 'success',
+title: 'Successfully Updated.'
+})
+}); 
+</script>";
+            } elseif (isset($_SESSION['no-img'])) {
+                echo "<script>
+            $(function() {
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                $('.swalDefaultError')
+                Toast.fire({
+                    icon: 'error',
+                    title:  'Upload Failed. Please try again.'
+                });
+            });
+            </script>";
+            } elseif (isset($_SESSION['no-pwd'])) {
+                echo "<script>
+            $(function() {
+                var Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                $('.swalDefaultError')
+                Toast.fire({
+                    icon: 'error',
+                    title:  'The Password field is required. Please try again.'
+                });
+            });
+            </script>";
+            } elseif (isset($_SESSION['double-studno'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'Student ID already exists.'
+    });
+});
+</script>";
+            } elseif (isset($_SESSION['double-lrn'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'LRN already exists.'
+    });
+});
+</script>";
+            } elseif (isset($_SESSION['lrn-studno'])) {
+                echo "<script>
+$(function() {
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+    $('.swalDefaultError')
+    Toast.fire({
+        icon: 'error',
+        title:  'Student ID and LRN are already exists.'
+    });
+});
+</script>";
+            }
+            unset($_SESSION['lrn-studno']);
+            unset($_SESSION['double-lrn']);
+            unset($_SESSION['double-studno']);
+            unset($_SESSION['no-pwd']);
+            unset($_SESSION['success-studEdit']);
+            unset($_SESSION['no-img']);
+
+
+
             ?>
             <!-- Page specific script -->
             <script>
