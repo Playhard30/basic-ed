@@ -5,8 +5,8 @@ ob_start();
 
 require '../../includes/bed-session.php';
 
-$ao_id = $_GET['ao_id'];
-$_SESSION['ao_id'] = $ao_id;
+$or_id = $_GET['or_id'];
+$_SESSION['or_id'] = $or_id;
 
 ?>
 
@@ -54,13 +54,12 @@ $_SESSION['ao_id'] = $ao_id;
                                     REGISTRATION FORM
                                 </h3>
                             </div>
-                            <form action="userData/ctrl.edit_admit_online.php" enctype="multipart/form-data" method="POST">
+                            <form action="userData/ctrl.admitonline.php" enctype="multipart/form-data" method="POST">
                             <?php
-                                $display_info = mysqli_query($conn, "SELECT *, CONCAT(tbl_admit_online.student_lname, ', ', tbl_admit_online.student_fname, ' ', tbl_admit_online.student_mname) AS fullname FROM tbl_admit_online
-                                    LEFT JOIN tbl_genders ON tbl_genders.gender_id = tbl_admit_online.gender_id
-                                    LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_admit_online.strand_id
-                                    LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_admit_online.grade_level_id
-                                    WHERE ao_id = '".$_GET['ao_id']."'") or die (mysqli_error($conn));
+                                $display_info = mysqli_query($conn, "SELECT *, CONCAT(tbl_online_reg.student_lname, ', ', tbl_online_reg.student_fname, ' ', tbl_online_reg.student_mname) AS fullname FROM tbl_online_reg
+                                    LEFT JOIN tbl_genders ON tbl_genders.gender_id = tbl_online_reg.gender_id
+                                    LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_online_reg.grade_level_id
+                                    WHERE or_id = '".$_GET['or_id']."'") or die (mysqli_error($conn));
 
                                 while ($row = mysqli_fetch_array($display_info)) {
                             ?>
@@ -109,74 +108,43 @@ $_SESSION['ao_id'] = $ao_id;
                                                         } ?>
                                             </select>
                                         </div>
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Strand</b></span>
-                                            </div>
-                                            <select class="form-control custom-select select2 select2-purple"
-                                                data-dropdown-css-class="select2-purple"
-                                                data-placeholder="Select Strand" name="strand">
-                                                <?php if (empty($row['strand_id'])) {
-                                                            echo '<option value="" disabled selected>Select Strand</option>';
-                                                            $get_strand = mysqli_query($conn, "SELECT * FROM tbl_strands");
-                                                            while ($row2 = mysqli_fetch_array($get_strand)) {
-                                                                echo '
-                                                <option value="' . $row2['strand_id'] .
-                                                                    '">' . $row2['strand_name'] . '</option>';
-                                                            }
-                                                        } else {
-                                                            echo '<option disabled>Select Strand</option>
-                                                        <option value="' . $row['strand_id'] .
-                                                                '" selected >' . $row['strand_name'] . '</option>';
-                                                            $get_strand = mysqli_query($conn, "SELECT * FROM tbl_strands WHERE strand_id NOT IN (" . $row['strand_id'] . ")");
-                                                            while ($row3 = mysqli_fetch_array($get_strand)) {
-                                                                echo '<option value="' . $row3['strand_id'] . '">'
-                                                                    . $row3['strand_name'] . '</option>';
-                                                            }
-                                                        } ?>
-                                            </select>
-                                        </div>
                                     </div>
 
                                     <div class="form-group row mb-3 mt-3 justify-content-center">   
                                         <div class="input-group col-md-6 mb-2 ">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                            LRN</b></span>
-                                            </div>
-                                            <input type="text" class="form-control" placeholder="Enter 11-digit lrn"wwww
-                                                   value="<?php echo $row['lrn']; ?>" name="lrn">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-sm"><b>
+                                                        LRN</b></span>
                                         </div>
+                                        <input type="text" class="form-control" placeholder="Enter 11-digit lrn"wwww
+                                               value="<?php echo $row['lrn']; ?>" name="lrn">
+                                        </div>
+
                                         <div class="input-group col-md-6 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><b>
                                                         Student No.</b></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Enter Student Number" value="<?php echo $row['stud_no']; ?>" 
+                                            <input type="text" class="form-control" placeholder="Enter Student Number"
                                               name="stud_no">
                                         </div>
-
-
                                     </div>
                                 </div>
-
-                                <div class="bg-purple" hidden>
+                            <div class="bg-purple">
                                     <div class="card-header text-center">
                                         <h3 class="text-lg" style="margin-bottom: unset;">
                                             ACCOUNT DETAILS
                                         </h3>
                                     </div>
                                 </div>
-                                <div class="card-body" hidden>
+                                <div class="card-body">
                                     <div class="form-group row mb-3 mt-3">
 
                                         <div class="input-group col-md-6 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><i class="fas fa-user"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Username" value="<?php echo $row['username']; ?>" 
+                                            <input type="text" class="form-control" placeholder="Username"
                                                 name="username">
                                         </div>
 
@@ -184,14 +152,14 @@ $_SESSION['ao_id'] = $ao_id;
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><i class="fas fa-lock"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Password" value="<?php echo $row['password']; ?>" 
+                                            <input type="text" class="form-control" placeholder="Password"
                                              name="password">
                                         </div>
 
                                     </div>
                                 </div>
                                 
-                                <div class="bg-purple">
+                            <div class="bg-purple">
                                     <div class="card-header text-center">
                                         <h3 class="text-lg" style="margin-bottom: unset;">
                                             PERSONAL DATA
@@ -244,7 +212,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                 <span class="input-group-text text-sm"><b>
                                                         Address</b></span>
                                             </div>
-                                            <input type="text" class="form-control" name="address" value="<?php echo $row['address']; ?>" placeholder="Unit number, house number, street name, barangay, city, province">
+                                            <input type="text" class="form-control" name="address" placeholder="Unit number, house number, street name, barangay, city, province" value="<?php echo $row['address']; ?>">
                                         </div>
 
 
@@ -603,7 +571,6 @@ $_SESSION['ao_id'] = $ao_id;
 
                                     </div>
                                 </div>
-
                             <?php } ?>
                                 <!-- /.card-body -->
 
