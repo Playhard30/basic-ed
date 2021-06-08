@@ -78,7 +78,7 @@ require '../../includes/bed-session.php';
                                                     <td><?php echo $row['status']; ?></td>
                                                     <td><a href="online_edit.php<?php echo '?or_id=' . $id; ?>"
                                                             type="button"
-                                                            class="btn bg-lightblue text-sm p-2 mb-md-2"><i
+                                                            class="btn bg-green text-sm p-2 mb-md-2"><i
                                                                 class="fa fa-edit"></i>
                                                             Approve
                                                         </a>

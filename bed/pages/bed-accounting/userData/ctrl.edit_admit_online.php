@@ -46,6 +46,7 @@ if (isset($_POST['submit'])) {
     $sch_address = mysqli_real_escape_string($conn, $_POST['sch_address']);
 
 
+
     $check_stud_studno = mysqli_query($conn, "SELECT * FROM tbl_students WHERE stud_no = '$stud_no'") or die(mysqli_error($conn));
     $check_stud_lrn = mysqli_query($conn, "SELECT * FROM tbl_students WHERE lrn = '$lrn'") or die(mysqli_error($conn));
 

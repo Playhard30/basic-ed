@@ -107,6 +107,8 @@ if (isset($_POST['submit'])) {
             $_SESSION['success'] = true;
             header('location: ../online_list.php'); }
 
+            
+
 } }
 ?>
 
