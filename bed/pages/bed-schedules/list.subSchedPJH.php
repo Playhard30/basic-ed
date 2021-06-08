@@ -168,7 +168,8 @@ if (isset($_GET['g1'])) {
                                                     <i class="fas fa-list-alt"></i> Nursery
                                                 </button>
 
-                                                <button class="btn btn-app bg-gray-light" value="Pre-Kinder" name="pkdr">
+                                                <button class="btn btn-app bg-gray-light" value="Pre-Kinder"
+                                                    name="pkdr">
                                                     <i class="fas fa-list-alt"></i> Pre-Kinder
                                                 </button>
 
@@ -196,17 +197,17 @@ if (isset($_GET['g1'])) {
                                             <tbody class="border-bottom">
                                                 <?php
                                                 if (!empty($grd_lvl)) {
-                                                    
+
                                                     $act_acad = $_SESSION['active_acadyears'];
                                                     $get_sched = mysqli_query($conn, "SELECT *, CONCAT(teach.teacher_fname, ' ', LEFT(teach.teacher_mname,1), '. ', teacher_lname) AS fullname FROM tbl_schedules AS sched
-                                                    LEFT JOIN tbl_subjects AS sub ON sub.subject_id = sched.subject_id
-                                                    LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
+                                                    LEFT JOIN tbl_subjects AS sub ON sub.subject_id = sched.subject_id             
                                                     LEFT JOIN tbl_grade_levels AS gl1 ON gl1.grade_level_id = sched.grade_level_id
+                                                    LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
                                                     LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
-                                                WHERE gl1.grade_level_id IN ('$grd_lvl') AND sched.semester = '0' AND sched.acadyear = '$act_acad' ORDER BY gl.grade_level ASC, sched.subject_id") or die(mysqli_error($conn));
+                                                WHERE gl1.grade_level IN ('$grd_lvl') AND sched.semester = '0' AND sched.acadyear = '$act_acad' ORDER BY gl.grade_level ASC, sched.subject_id") or die(mysqli_error($conn));
 
-                                    // 
-                                    // 
+                                                    // 
+                                                    // 
 
                                                 ?>
 

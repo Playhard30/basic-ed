@@ -98,12 +98,13 @@ $_SESSION['strand_n'] = $strand_name;
                                                 $get_offersub = mysqli_query($conn, "SELECT * FROM tbl_subjects_senior AS subsen LEFT JOIN tbl_strands AS strd ON strd.strand_id = subsen.strand_id 
                                                 LEFT JOIN tbl_semesters AS sem ON sem.semester_id = subsen.semester_id 
                                                 LEFT JOIN tbl_efacadyears AS eay ON eay.efacadyear_id = subsen.efacadyear_id
+                                                LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = subsen.grade_level_id
                                                 WHERE sem.semester NOT IN ('$active_sem') AND strd.strand_name = '$strand_name' AND eay.efacadyear = '$eay'");
                                                 while ($row = mysqli_fetch_array($get_offersub)) {
 
                                                 ?>
                                                 <option value="<?php echo $row['subject_id']; ?>">
-                                                    <?php echo $row['subject_code'] . ' - ', ' ' . $row['subject_description']; ?>
+                                                    <?php echo $row['subject_code'] . ' - ', ' ' . $row['subject_description'] . ' - (' . $row['semester'] . ') - (' . $row['grade_level'] . ')'; ?>
                                                 </option>
 
                                                 <?php } ?>
