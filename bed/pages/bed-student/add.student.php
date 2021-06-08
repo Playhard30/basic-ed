@@ -54,7 +54,31 @@ require '../../includes/bed-session.php';
                             <!-- form start -->
                             <form action="userData/ctrl.addStud.php" enctype="multipart/form-data" method="POST">
                                 <div class="card-body">
+                                <div class="form-group mb-4">
+                                        <label for="exampleInputFile"></label>
 
+
+                                        <div class="custom-file">
+                                            <div class="text-center">
+                                                <img class="img-fluid img-circle" src="../../../assets/img/user.png "
+                                                    alt="User profile picture" style="width: 145px; height: 145px;">
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="form-group mr-auto ml-auto col-md-4">
+                                                    <div class="input-group">
+                                                        <div class="custom-file">
+                                                            <input type="file" name="image" required
+                                                                class="custom-file-input" id="customFile">
+                                                            <label class="custom-file-label" for="customFile">Choose
+                                                                image</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row mb-4 mt-4 justify-content-center">
                                         <div class="input-group col-sm-5 mb-2">
                                             <div class="input-group-prepend">
