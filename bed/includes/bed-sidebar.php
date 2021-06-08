@@ -743,7 +743,33 @@
                         </p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tasks"></i>
+                        <p>
+                            Enrollment
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../bed-student/list.enrolledStud.php" class="nav-link">
+                                <i class="fa fa-ellipsis-h nav-icon"> </i>
+                                <p>
+                                    Pending Students
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../bed-online-enrollment/online_list.php" class="nav-link">
+                                <i class="fas fa-globe-asia nav-icon"> </i>
+                                <p>
+                                    Online Inquiries
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
