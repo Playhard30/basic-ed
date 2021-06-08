@@ -602,7 +602,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="../bed-schedules/list.subSchedPJH.php" class="nav-link">
                                 <i class="fa fa-list-alt nav-icon"> </i>
                                 <p>
                                     Primary - Junior
