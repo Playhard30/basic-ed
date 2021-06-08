@@ -54,16 +54,18 @@ $_SESSION['ao_id'] = $ao_id;
                                     REGISTRATION FORM
                                 </h3>
                             </div>
-                            <form action="userData/ctrl.edit_admit_online.php" enctype="multipart/form-data" method="POST">
-                            <?php
+                            <form action="userData/ctrl.edit_admit_online.php" enctype="multipart/form-data"
+                                method="POST">
+                                <?php
                                 $display_info = mysqli_query($conn, "SELECT *, CONCAT(tbl_admit_online.student_lname, ', ', tbl_admit_online.student_fname, ' ', tbl_admit_online.student_mname) AS fullname FROM tbl_admit_online
                                     LEFT JOIN tbl_genders ON tbl_genders.gender_id = tbl_admit_online.gender_id
                                     LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_admit_online.strand_id
                                     LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_admit_online.grade_level_id
-                                    WHERE ao_id = '".$_GET['ao_id']."'") or die (mysqli_error($conn));
+                                    
+                                    WHERE ao_id = '" . $_GET['ao_id'] . "'") or die(mysqli_error($conn));
 
                                 while ($row = mysqli_fetch_array($display_info)) {
-                            ?>
+                                ?>
                                 <div class="card-body">
                                     <div class="row mb-4 mt-4 justify-content-center">
                                         <div class="input-group col-md-4 mb-2">
@@ -74,7 +76,8 @@ $_SESSION['ao_id'] = $ao_id;
                                             <select class="form-control custom-select select2 select2-purple"
                                                 data-dropdown-css-class="select2-purple"
                                                 data-placeholder="Select Student Type" name="studtype">
-                                                <option value="<?php echo $row['stud_type']; ?>"><?php echo $row['stud_type']; ?></option>
+                                                <option value="<?php echo $row['stud_type']; ?>">
+                                                    <?php echo $row['stud_type']; ?></option>
                                                 <option value="New">New</option>
                                                 <option value="Old">Old</option>
                                             </select>
@@ -87,26 +90,26 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Grade</b></span>
                                             </div>
                                             <select class="form-control custom-select select2 select2-purple"
-                                                data-dropdown-css-class="select2-purple"
-                                                data-placeholder="Select Grade" name="grade">
+                                                data-dropdown-css-class="select2-purple" data-placeholder="Select Grade"
+                                                name="grade">
                                                 <?php if (empty($row['grade_level_id'])) {
-                                                            echo '<option value="" disabled selected>Select Gender</option>';
-                                                            $get_level = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
-                                                            while ($row2 = mysqli_fetch_array($get_level)) {
-                                                                echo '
+                                                        echo '<option value="" disabled selected>Select Gender</option>';
+                                                        $get_level = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
+                                                        while ($row2 = mysqli_fetch_array($get_level)) {
+                                                            echo '
                                                 <option value="' . $row2['grade_level_id'] .
-                                                                    '">' . $row2['grade_level'] . '</option>';
-                                                            }
-                                                        } else {
-                                                            echo '<option disabled>Select Gender</option>
+                                                                '">' . $row2['grade_level'] . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo '<option disabled>Select Gender</option>
                                                         <option value="' . $row['grade_level_id'] .
-                                                                '" selected >' . $row['grade_level'] . '</option>';
-                                                            $get_level = mysqli_query($conn, "SELECT * FROM tbl_grade_levels WHERE grade_level_id NOT IN (" . $row['grade_level_id'] . ")");
-                                                            while ($row3 = mysqli_fetch_array($get_level)) {
-                                                                echo '<option value="' . $row3['grade_level_id'] . '">'
-                                                                    . $row3['grade_level'] . '</option>';
-                                                            }
-                                                        } ?>
+                                                            '" selected >' . $row['grade_level'] . '</option>';
+                                                        $get_level = mysqli_query($conn, "SELECT * FROM tbl_grade_levels WHERE grade_level_id NOT IN (" . $row['grade_level_id'] . ")");
+                                                        while ($row3 = mysqli_fetch_array($get_level)) {
+                                                            echo '<option value="' . $row3['grade_level_id'] . '">'
+                                                                . $row3['grade_level'] . '</option>';
+                                                        }
+                                                    } ?>
                                             </select>
                                         </div>
 
@@ -119,43 +122,43 @@ $_SESSION['ao_id'] = $ao_id;
                                                 data-dropdown-css-class="select2-purple"
                                                 data-placeholder="Select Strand" name="strand">
                                                 <?php if (empty($row['strand_id'])) {
-                                                            echo '<option value="" disabled selected>Select Strand</option>';
-                                                            $get_strand = mysqli_query($conn, "SELECT * FROM tbl_strands");
-                                                            while ($row2 = mysqli_fetch_array($get_strand)) {
-                                                                echo '
+                                                        echo '<option value="" disabled selected>Select Strand</option>';
+                                                        $get_strand = mysqli_query($conn, "SELECT * FROM tbl_strands");
+                                                        while ($row2 = mysqli_fetch_array($get_strand)) {
+                                                            echo '
                                                 <option value="' . $row2['strand_id'] .
-                                                                    '">' . $row2['strand_name'] . '</option>';
-                                                            }
-                                                        } else {
-                                                            echo '<option disabled>Select Strand</option>
+                                                                '">' . $row2['strand_name'] . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo '<option disabled>Select Strand</option>
                                                         <option value="' . $row['strand_id'] .
-                                                                '" selected >' . $row['strand_name'] . '</option>';
-                                                            $get_strand = mysqli_query($conn, "SELECT * FROM tbl_strands WHERE strand_id NOT IN (" . $row['strand_id'] . ")");
-                                                            while ($row3 = mysqli_fetch_array($get_strand)) {
-                                                                echo '<option value="' . $row3['strand_id'] . '">'
-                                                                    . $row3['strand_name'] . '</option>';
-                                                            }
-                                                        } ?>
+                                                            '" selected >' . $row['strand_name'] . '</option>';
+                                                        $get_strand = mysqli_query($conn, "SELECT * FROM tbl_strands WHERE strand_id NOT IN (" . $row['strand_id'] . ")");
+                                                        while ($row3 = mysqli_fetch_array($get_strand)) {
+                                                            echo '<option value="' . $row3['strand_id'] . '">'
+                                                                . $row3['strand_name'] . '</option>';
+                                                        }
+                                                    } ?>
                                             </select>
                                         </div>
                                     </div>
 
-                                    <div class="form-group row mb-3 mt-3 justify-content-center">   
+                                    <div class="form-group row mb-3 mt-3 justify-content-center">
                                         <div class="input-group col-md-6 mb-2 ">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><b>
-                                                            LRN</b></span>
+                                                        LRN</b></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Enter 11-digit lrn"wwww
-                                                   value="<?php echo $row['lrn']; ?>" name="lrn">
+                                            <input type="text" class="form-control" placeholder="Enter 11-digit lrn"
+                                                wwww value="<?php echo $row['lrn']; ?>" name="lrn">
                                         </div>
                                         <div class="input-group col-md-6 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><b>
                                                         Student No.</b></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Enter Student Number" value="<?php echo $row['stud_no']; ?>" 
-                                              name="stud_no">
+                                            <input type="text" class="form-control" placeholder="Enter Student Number"
+                                                value="<?php echo $row['stud_no']; ?>" name="stud_no">
                                         </div>
 
 
@@ -174,23 +177,25 @@ $_SESSION['ao_id'] = $ao_id;
 
                                         <div class="input-group col-md-6 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><i class="fas fa-user"></i></span>
+                                                <span class="input-group-text text-sm"><i
+                                                        class="fas fa-user"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Username" value="<?php echo $row['username']; ?>" 
-                                                name="username">
+                                            <input type="text" class="form-control" placeholder="Username"
+                                                value="<?php echo $row['username']; ?>" name="username">
                                         </div>
 
                                         <div class="input-group col-md-6 mb-2">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><i class="fas fa-lock"></i></span>
+                                                <span class="input-group-text text-sm"><i
+                                                        class="fas fa-lock"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Password" value="<?php echo $row['password']; ?>" 
-                                             name="password">
+                                            <input type="text" class="form-control" placeholder="Password"
+                                                value="<?php echo $row['password']; ?>" name="password">
                                         </div>
 
                                     </div>
                                 </div>
-                                
+
                                 <div class="bg-purple">
                                     <div class="card-header text-center">
                                         <h3 class="text-lg" style="margin-bottom: unset;">
@@ -198,9 +203,9 @@ $_SESSION['ao_id'] = $ao_id;
                                         </h3>
                                     </div>
                                 </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            
+                                <!-- /.card-header -->
+                                <!-- form start -->
+
 
                                 <!-- PERSONAL DATA -->
 
@@ -214,7 +219,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Lastname</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Lastname"
-                                             value="<?php echo $row['student_lname']; ?>" name="lastname">
+                                                value="<?php echo $row['student_lname']; ?>" name="lastname">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -223,7 +228,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Firstname</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Firstname"
-                                             value="<?php echo $row['student_fname']; ?>"  name="firstname">
+                                                value="<?php echo $row['student_fname']; ?>" name="firstname">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -232,7 +237,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Middlename</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Middlename"
-                                             value="<?php echo $row['student_mname']; ?>" name="midname">
+                                                value="<?php echo $row['student_mname']; ?>" name="midname">
                                         </div>
 
                                     </div>
@@ -244,7 +249,9 @@ $_SESSION['ao_id'] = $ao_id;
                                                 <span class="input-group-text text-sm"><b>
                                                         Address</b></span>
                                             </div>
-                                            <input type="text" class="form-control" name="address" value="<?php echo $row['address']; ?>" placeholder="Unit number, house number, street name, barangay, city, province">
+                                            <input type="text" class="form-control" name="address"
+                                                value="<?php echo $row['address']; ?>"
+                                                placeholder="Unit number, house number, street name, barangay, city, province">
                                         </div>
 
 
@@ -267,7 +274,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Place of Birth</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="place_birth"
-                                              value="<?php echo $row['place_birth']; ?>"  placeholder="city, province">
+                                                value="<?php echo $row['place_birth']; ?>" placeholder="city, province">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -276,7 +283,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Age</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="age"
-                                           value="<?php echo $row['age']; ?>" placeholder="00 years old">
+                                                value="<?php echo $row['age']; ?>" placeholder="00 years old">
                                         </div>
 
                                     </div>
@@ -291,24 +298,24 @@ $_SESSION['ao_id'] = $ao_id;
                                             <select class="form-control custom-select select2 select2-purple"
                                                 data-dropdown-css-class="select2-purple"
                                                 data-placeholder="Select Gender" name="gender">
-                                                        <?php if (empty($row['gender_id'])) {
-                                                            echo '<option value="" disabled selected>Select Gender</option>';
-                                                            $get_gender = mysqli_query($conn, "SELECT * FROM tbl_genders");
-                                                            while ($row2 = mysqli_fetch_array($get_gender)) {
-                                                                echo '
+                                                <?php if (empty($row['gender_id'])) {
+                                                        echo '<option value="" disabled selected>Select Gender</option>';
+                                                        $get_gender = mysqli_query($conn, "SELECT * FROM tbl_genders");
+                                                        while ($row2 = mysqli_fetch_array($get_gender)) {
+                                                            echo '
                                                 <option value="' . $row2['gender_id'] .
-                                                                    '">' . $row2['gender_name'] . '</option>';
-                                                            }
-                                                        } else {
-                                                            echo '<option disabled>Select Gender</option>
+                                                                '">' . $row2['gender_name'] . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo '<option disabled>Select Gender</option>
                                                         <option value="' . $row['gender_id'] .
-                                                                '" selected >' . $row['gender_name'] . '</option>';
-                                                            $get_gender = mysqli_query($conn, "SELECT * FROM tbl_genders WHERE gender_id NOT IN (" . $row['gender_id'] . ")");
-                                                            while ($row3 = mysqli_fetch_array($get_gender)) {
-                                                                echo '<option value="' . $row3['gender_id'] . '">'
-                                                                    . $row3['gender_name'] . '</option>';
-                                                            }
-                                                        } ?>
+                                                            '" selected >' . $row['gender_name'] . '</option>';
+                                                        $get_gender = mysqli_query($conn, "SELECT * FROM tbl_genders WHERE gender_id NOT IN (" . $row['gender_id'] . ")");
+                                                        while ($row3 = mysqli_fetch_array($get_gender)) {
+                                                            echo '<option value="' . $row3['gender_id'] . '">'
+                                                                . $row3['gender_name'] . '</option>';
+                                                        }
+                                                    } ?>
                                             </select>
 
                                         </div>
@@ -318,7 +325,8 @@ $_SESSION['ao_id'] = $ao_id;
                                                 <span class="input-group-text text-sm"><b>
                                                         Nationality</b></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Nationality"  value="<?php echo $row['nationality']; ?>" name="nationality">
+                                            <input type="text" class="form-control" placeholder="Nationality"
+                                                value="<?php echo $row['nationality']; ?>" name="nationality">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2">
@@ -327,7 +335,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Religion</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Religion"
-                                             value="<?php echo $row['religion']; ?>" name="religion">
+                                                value="<?php echo $row['religion']; ?>" name="religion">
                                         </div>
 
                                     </div>
@@ -340,7 +348,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Landline No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Landline Number"
-                                              value="<?php echo $row['landline']; ?>" name="landline">
+                                                value="<?php echo $row['landline']; ?>" name="landline">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
@@ -349,7 +357,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Cell Phone No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Cellphone Number"
-                                             value="<?php echo $row['cellphone']; ?>" name="cellphone">
+                                                value="<?php echo $row['cellphone']; ?>" name="cellphone">
                                         </div>
 
                                     </div>
@@ -362,7 +370,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Email Address</b></span>
                                             </div>
                                             <input type="email" class="form-control" placeholder="example@gmail.com"
-                                             value="<?php echo $row['email']; ?>" name="email">
+                                                value="<?php echo $row['email']; ?>" name="email">
                                         </div>
                                     </div>
                                 </div>
@@ -387,7 +395,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Name of Father</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Fullname"
-                                               value="<?php echo $row['fname']; ?>"  name="fname">
+                                                value="<?php echo $row['fname']; ?>" name="fname">
                                         </div>
 
                                         <div class="input-group col-md-6 mb-2">
@@ -396,7 +404,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         F. Occupation</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Father Occupation"
-                                             value="<?php echo $row['focc']; ?>" name="focc">
+                                                value="<?php echo $row['focc']; ?>" name="focc">
                                         </div>
 
                                     </div>
@@ -409,7 +417,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Contact No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Contact Number"
-                                             value="<?php echo $row['fcontact']; ?>" name="fcontact">
+                                                value="<?php echo $row['fcontact']; ?>" name="fcontact">
                                         </div>
 
                                     </div>
@@ -422,7 +430,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Name of Mother</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Fullname"
-                                             value="<?php echo $row['mname']; ?>" name="mname">
+                                                value="<?php echo $row['mname']; ?>" name="mname">
                                         </div>
 
                                         <div class="input-group col-md-6 mb-2">
@@ -431,7 +439,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         M. Occupation</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Father Occupation"
-                                            value="<?php echo $row['mocc']; ?>" name="mocc">
+                                                value="<?php echo $row['mocc']; ?>" name="mocc">
                                         </div>
 
                                     </div>
@@ -444,7 +452,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Contact No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Contact Number"
-                                             value="<?php echo $row['mcontact']; ?>" name="mcontact">
+                                                value="<?php echo $row['mcontact']; ?>" name="mcontact">
                                         </div>
 
                                     </div>
@@ -458,7 +466,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Monthly Income</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Family Income"
-                                             value="<?php echo $row['month_inc']; ?>" name="month_inc">
+                                                value="<?php echo $row['month_inc']; ?>" name="month_inc">
                                         </div>
 
                                         <div class="input-group col-md-4 mb-2 ml-auto mr-auto">
@@ -467,7 +475,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         No. of Siblings</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Number of Siblings"
-                                             value="<?php echo $row['no_siblings']; ?>" name="no_sib">
+                                                value="<?php echo $row['no_siblings']; ?>" name="no_sib">
                                         </div>
 
                                     </div>
@@ -481,7 +489,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Guardian N.</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Guardian Name"
-                                             value="<?php echo $row['guardname']; ?>" name="guardname">
+                                                value="<?php echo $row['guardname']; ?>" name="guardname">
                                         </div>
 
                                     </div>
@@ -495,7 +503,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Address</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="gaddress"
-                                               value="<?php echo $row['gaddress']; ?>" 
+                                                value="<?php echo $row['gaddress']; ?>"
                                                 placeholder="Unit number, house number, street name, barangay, city, province">
                                         </div>
 
@@ -510,8 +518,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         Contact No.</b></span>
                                             </div>
                                             <input type="text" class="form-control" name="gcontact"
-                                            value="<?php echo $row['gcontact']; ?>"
-                                                 placeholder="Contact Number">
+                                                value="<?php echo $row['gcontact']; ?>" placeholder="Contact Number">
                                         </div>
 
                                     </div>
@@ -540,8 +547,7 @@ $_SESSION['ao_id'] = $ao_id;
                                                         SCH. Last Attended</b></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="School Last Attended"
-                                            value="<?php echo $row['last_sch']; ?>"
-                                                name="last_attend">
+                                                value="<?php echo $row['last_sch']; ?>" name="last_attend">
                                         </div>
 
                                     </div>
@@ -559,23 +565,23 @@ $_SESSION['ao_id'] = $ao_id;
                                                 data-dropdown-css-class="select2-purple"
                                                 data-placeholder="Select Grade Level" name="prev_grade_level">
                                                 <?php if (empty($row['prev_grade_level'])) {
-                                                            echo '<option value="None" selected>Select Grade Level</option>';
-                                                            $get_glevel = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
-                                                            while ($row2 = mysqli_fetch_array($get_glevel)) {
-                                                                echo '<option value="' . $row2['grade_level'] . '">'
-                                                                    . $row2['grade_level'] . '</option>';
-                                                            }
-                                                        } else {
-                                                            echo '<option disabled>Select Grade Level</option>
-                                                        <option value="' . $row['prev_grade_level'] . '" selected>'
-                                                                . $row['prev_grade_level'] . '</option>';
-                                                            $get_glevel = mysqli_query($conn, "SELECT * FROM tbl_grade_levels WHERE grade_level NOT IN ('" . $row['prev_grade_level'] . "') ");
-                                                            while ($row3 = mysqli_fetch_array($get_glevel)) {
-                                                                echo '<option value="' . $row3['grade_level'] . '">'
-                                                                    . $row3['grade_level'] . '</option>';
-                                                            }
+                                                        echo '<option value="None" selected>Select Grade Level</option>';
+                                                        $get_glevel = mysqli_query($conn, "SELECT * FROM tbl_grade_levels");
+                                                        while ($row2 = mysqli_fetch_array($get_glevel)) {
+                                                            echo '<option value="' . $row2['grade_level'] . '">'
+                                                                . $row2['grade_level'] . '</option>';
                                                         }
-                                                        ?>
+                                                    } else {
+                                                        echo '<option disabled>Select Grade Level</option>
+                                                        <option value="' . $row['prev_grade_level'] . '" selected>'
+                                                            . $row['prev_grade_level'] . '</option>';
+                                                        $get_glevel = mysqli_query($conn, "SELECT * FROM tbl_grade_levels WHERE grade_level NOT IN ('" . $row['prev_grade_level'] . "') ");
+                                                        while ($row3 = mysqli_fetch_array($get_glevel)) {
+                                                            echo '<option value="' . $row3['grade_level'] . '">'
+                                                                . $row3['grade_level'] . '</option>';
+                                                        }
+                                                    }
+                                                    ?>
                                             </select>
                                         </div>
 
@@ -604,7 +610,7 @@ $_SESSION['ao_id'] = $ao_id;
                                     </div>
                                 </div>
 
-                            <?php } ?>
+                                <?php } ?>
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
