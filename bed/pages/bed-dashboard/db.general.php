@@ -168,7 +168,7 @@
                          <h3 class="text-white"><?php echo $row['total_stud']; ?></h3>
                          <?php } ?>
 
-                         <p><small>Total No. of</small> Enrolled Grade 3<br> Students </p>
+                         <p><small>Total No. of</small> Enrolled Students <br>in Grade 3</p>
                      </div>
                      <div class="icon">
                          <i class="fas fa-book-reader"></i>
@@ -178,7 +178,7 @@
              </div>
              <div class="col-lg-3 col-6">
                  <!-- small box -->
-                 <div class="small-box bg-blue">
+                 <div class="small-box bg-navy">
                      <div class="inner">
                          <?php $str_count = mysqli_query($conn, "SELECT count(student_id) AS total_stud FROM tbl_schoolyears
                          WHERE ay_id = '$ay_id' AND remark = 'Approved' AND grade_level_id = '7' ") or die(mysqli_error($conn));
@@ -186,7 +186,7 @@
                          <h3 class="text-white"><?php echo $row['total_stud']; ?></h3>
                          <?php } ?>
 
-                         <p><small>Total No. of</small> Enrolled Grade 4<br> Students </p>
+                         <p><small>Total No. of</small> Enrolled Students <br>in Grade 4</p>
                      </div>
                      <div class="icon">
                          <i class="fas fa-book-reader"></i>
@@ -196,7 +196,7 @@
              </div>
              <div class="col-lg-3 col-6">
                  <!-- small box -->
-                 <div class="small-box bg-blue">
+                 <div class="small-box bg-olive">
                      <div class="inner">
                          <?php $str_count = mysqli_query($conn, "SELECT count(student_id) AS total_stud FROM tbl_schoolyears
                          WHERE ay_id = '$ay_id' AND remark = 'Approved' AND grade_level_id = '8' ") or die(mysqli_error($conn));
@@ -204,7 +204,7 @@
                          <h3 class="text-white"><?php echo $row['total_stud']; ?></h3>
                          <?php } ?>
 
-                         <p><small>Total No. of</small> Enrolled Grade 5<br> Students </p>
+                         <p><small>Total No. of</small> Enrolled Students <br>in Grade 5</p>
                      </div>
                      <div class="icon">
                          <i class="fas fa-book-reader"></i>
