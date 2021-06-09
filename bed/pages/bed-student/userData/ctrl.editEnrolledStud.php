@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION['update-success'] = true;
                 header('location: ../edit.enrolledStud.php?stud_id=' . $_SESSION['student_id']);
             } else {
-                $update = mysqli_query($conn, "UPDATE tbl_schoolyears SET grade_level_id = '$grade_level', strand_id = '$strand_id', stud_type = '$stud_type', section = '$section' WHERE ay_id = '$acadyear' AND semester_id = '$sem' AND student_id = '$stud_id'") or die(mysqli_error($conn));
+                $update = mysqli_query($conn, "UPDATE tbl_schoolyears SET grade_level_id = '$grade_level', strand_id = '$strand_id', stud_type = '$stud_type', section = '$section', semester_id = '$sem' WHERE ay_id = '$acadyear' AND (semester_id = '$sem' OR semester_id = '0') AND student_id = '$stud_id'") or die(mysqli_error($conn));
                 $_SESSION['update-success'] = true;
                 header('location: ../edit.enrolledStud.php?stud_id=' . $_SESSION['student_id']);
             }
@@ -69,11 +69,11 @@ if (isset($_POST['submit'])) {
         $result = mysqli_num_rows($double_stud);
 
         if ($result > 0) {
-            $update = mysqli_query($conn, "UPDATE tbl_schoolyears SET strand_id = '' WHERE student_id = $stud_id AND ay_id = '$acadyear'") or die(mysqli_error($conn));
+            $update = mysqli_query($conn, "UPDATE tbl_schoolyears SET strand_id = '', semester_id = '' WHERE student_id = $stud_id AND ay_id = '$acadyear'") or die(mysqli_error($conn));
             $_SESSION['update-success'] = true;
             header('location: ../edit.enrolledStud.php?stud_id=' . $_SESSION['student_id']);
         } else {
-            $update = mysqli_query($conn, "UPDATE tbl_schoolyears SET grade_level_id = '$grade_level', stud_type = '$stud_type', strand_id = '', section = '$section' WHERE student_id = $stud_id AND ay_id = '$acadyear'") or die(mysqli_error($conn));
+            $update = mysqli_query($conn, "UPDATE tbl_schoolyears SET grade_level_id = '$grade_level', stud_type = '$stud_type', strand_id = '', section = '$section', semester_id = '' WHERE student_id = $stud_id AND ay_id = '$acadyear' AND (semester_id = '$sem' OR semester_id = '0')") or die(mysqli_error($conn));
             $_SESSION['update-success'] = true;
             header('location: ../edit.enrolledStud.php?stud_id=' . $_SESSION['student_id']);
         }

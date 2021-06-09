@@ -63,7 +63,7 @@ $_SESSION['student_id'] = $stud_id;
                             LEFT JOIN tbl_semesters AS sem ON sem.semester_id = sy.semester_id
                             LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id =sy.grade_level_id
                             LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id  
-                            WHERE sy.student_id = '$stud_id' AND (sem.semester = '$_SESSION[active_semester]' OR sy.semester_id = '0')") or die(mysqli_error($conn));
+                            WHERE sy.student_id = '$stud_id' AND ay.academic_year = '$_SESSION[active_acadyears]' AND (sem.semester = '$_SESSION[active_semester]' OR sy.semester_id = '0')") or die(mysqli_error($conn));
                             while ($row = mysqli_fetch_array($get_enrolled_stud)) {
                             ?>
                             <form action="userData/ctrl.editEnrolledStud.php" enctype="multipart/form-data"
@@ -73,9 +73,10 @@ $_SESSION['student_id'] = $stud_id;
                                     <input type="text" name="stud_id" value="<?php echo $row['student_id']; ?>" hidden>
 
                                     <input type="text" name="acadyear" value="<?php echo $row['ay_id']; ?>" hidden>
-
-                                    <input type="text" name="sem" value="<?php echo $row['semester_id']; ?>" hidden>
-
+                                    <?php $get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters");
+                                        while ($row2 = mysqli_fetch_array($get_sem)) { ?>
+                                    <input type="text" name="sem" value="<?php echo $row2['semester_id']; ?>" hidden>
+                                    <?php } ?>
                                     <div class="row mb-4 mt-4 justify-content-center">
                                         <div class="input-group col-md-4 mb-2">
                                             <div class="input-group-prepend">
