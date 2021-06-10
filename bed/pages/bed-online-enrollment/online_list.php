@@ -75,12 +75,19 @@ require '../../includes/bed-session.php';
                                                     <td><?php echo $row['grade_level']; ?></td>
                                                     <td><?php echo $row['email']; ?></td>
                                                     <td><?php echo $row['stud_type']; ?></td>
-                                                    <td><?php echo $row['status']; ?></td>
+                                                    <td><?php echo $row['remark']; ?></td>
                                                     <td><a href="online_edit.php<?php echo '?or_id=' . $id; ?>"
                                                             type="button"
                                                             class="btn bg-green text-sm p-2 mb-md-2"><i
                                                                 class="fa fa-edit"></i>
                                                             Approve
+                                                        </a>
+
+                                                        <a href="../bed-forms/pre_en_online.php<?php echo '?or_id=' . $id; ?>"
+                                                            type="button"
+                                                            class="btn bg-blue text-sm p-2 mb-md-2"><i
+                                                                class="fa fa-edit"></i>
+                                                            Pre-enrollment Form
                                                         </a>
 
                                                         <!-- Button trigger modal -->
@@ -135,13 +142,21 @@ require '../../includes/bed-session.php';
                                                     <td><?php echo $row['grade_level'].' - '. $row['strand_name'] ?></td>
                                                     <td><?php echo $row['email']; ?></td>
                                                     <td><?php echo $row['stud_type']; ?></td>
-                                                    <td><?php echo $row['status']; ?></td>
+                                                    <td><?php echo $row['remark']; ?></td>
                                                     <td><a href="online_edit_senior.php<?php echo '?or_id=' . $id; ?>"
                                                             type="button"
                                                             class="btn bg-green text-sm p-2 mb-md-2"><i
                                                                 class="fa fa-edit"></i>
                                                             Approve
                                                         </a>
+
+                                                        <a href="../bed-forms/pre_en_online_senior.php<?php echo '?or_id=' . $id; ?>"
+                                                            type="button"
+                                                            class="btn bg-blue text-sm p-2 mb-md-2"><i
+                                                                class="fa fa-edit"></i>
+                                                            Pre-enrollment Form
+                                                        </a>
+
 
                                                         <!-- Button trigger modal -->
                                                         <a type="button" class="btn bg-red text-sm p-2 mb-md-2"
