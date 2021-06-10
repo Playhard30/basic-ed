@@ -59,7 +59,7 @@ require '../../includes/bed-session.php';
                                                     <th>Grade</th>
                                                     <th>Email</th>
                                                     <th>Student Type</th>
-                                                    <th>Status</th>
+                                                    <th>Remark</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -81,7 +81,7 @@ require '../../includes/bed-session.php';
 													?>
                                                     <td><?php echo $row['email']; ?></td>
                                                     <td><?php echo $row['stud_type']; ?></td>
-                                                    <td><?php echo $row['status']; ?></td>
+                                                    <td><?php echo $row['remark']; ?></td>
 
                                                     <td>
                                                     	<?php  if (empty($row['strand_id'])){ ?>
