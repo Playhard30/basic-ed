@@ -111,6 +111,107 @@
                      <a href="#" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
                  </div>
              </div>
+             <div class="col-lg-3 col-6">
+             </div>
+             <div class="col-lg-3 col-6">
+             </div>
+             <div class="col-lg-3 col-6">
+             </div>                   
+             <div class="col-lg-3 col-6">
+                 <!-- small box -->
+                 <div class="small-box bg-maroon">
+                     <div class="inner">
+                         <?php $str_count = mysqli_query($conn, "SELECT count(student_id) AS total_stud FROM tbl_schoolyears
+                         WHERE ay_id = '$ay_id' AND remark = 'Approved' AND strand_id = '2' AND grade_level_id = '14' ") or die(mysqli_error($conn));
+                            while ($row = mysqli_fetch_array($str_count)) { ?>
+                         <h3 class="text-white"><?php echo $row['total_stud']; ?></h3>
+                         <?php } ?>
+
+                         <p><small>Total No. of</small> Enrolled Grade 11 Students <br> in (GAS)</p>
+                     </div>
+                     <div class="icon">
+                         <i class="fab fa-black-tie"></i>
+                     </div>
+                     <a href="list.EnrolledGASg11.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                 </div>
+             </div>
+             <div class="col-lg-3 col-6">
+                 <!-- small box -->
+                 <div class="small-box bg-maroon">
+                     <div class="inner">
+                         <?php $str_count = mysqli_query($conn, "SELECT count(student_id) AS total_stud FROM tbl_schoolyears
+                         WHERE ay_id = '$ay_id' AND remark = 'Approved' AND strand_id = '2' AND grade_level_id = '15' ") or die(mysqli_error($conn));
+                            while ($row = mysqli_fetch_array($str_count)) { ?>
+                         <h3 class="text-white"><?php echo $row['total_stud']; ?></h3>
+                         <?php } ?>
+
+                         <p><small>Total No. of</small> Enrolled Grade 12 Students <br> in (GAS)</p>
+                     </div>
+                     <div class="icon">
+                         <i class="fab fa-black-tie"></i>
+                     </div>
+                     <a href="list.EnrolledGASg12.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                 </div>
+             </div>
+             <div class="col-lg-3 col-6">
+             </div>
+             <div class="col-lg-3 col-6">
+             </div>
+ 
+             <div class="col-lg-3 col-6">
+                 <!-- small box -->
+                 <div class="small-box bg-blue">
+                     <div class="inner">
+                         <?php $str_count = mysqli_query($conn, "SELECT count(student_id) AS total_stud FROM tbl_schoolyears
+                         WHERE ay_id = '$ay_id' AND remark = 'Approved' AND grade_level_id = '6' ") or die(mysqli_error($conn));
+                            while ($row = mysqli_fetch_array($str_count)) { ?>
+                         <h3 class="text-white"><?php echo $row['total_stud']; ?></h3>
+                         <?php } ?>
+
+                         <p><small>Total No. of</small> Enrolled Students <br>in Grade 3</p>
+                     </div>
+                     <div class="icon">
+                         <i class="fas fa-book-reader"></i>
+                     </div>
+                     <a href="list.Enrolledg3.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                 </div>
+             </div>
+             <div class="col-lg-3 col-6">
+                 <!-- small box -->
+                 <div class="small-box bg-navy">
+                     <div class="inner">
+                         <?php $str_count = mysqli_query($conn, "SELECT count(student_id) AS total_stud FROM tbl_schoolyears
+                         WHERE ay_id = '$ay_id' AND remark = 'Approved' AND grade_level_id = '7' ") or die(mysqli_error($conn));
+                            while ($row = mysqli_fetch_array($str_count)) { ?>
+                         <h3 class="text-white"><?php echo $row['total_stud']; ?></h3>
+                         <?php } ?>
+
+                         <p><small>Total No. of</small> Enrolled Students <br>in Grade 4</p>
+                     </div>
+                     <div class="icon">
+                         <i class="fas fa-book-reader"></i>
+                     </div>
+                     <a href="list.Enrolledg4.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                 </div>
+             </div>
+             <div class="col-lg-3 col-6">
+                 <!-- small box -->
+                 <div class="small-box bg-olive">
+                     <div class="inner">
+                         <?php $str_count = mysqli_query($conn, "SELECT count(student_id) AS total_stud FROM tbl_schoolyears
+                         WHERE ay_id = '$ay_id' AND remark = 'Approved' AND grade_level_id = '8' ") or die(mysqli_error($conn));
+                            while ($row = mysqli_fetch_array($str_count)) { ?>
+                         <h3 class="text-white"><?php echo $row['total_stud']; ?></h3>
+                         <?php } ?>
+
+                         <p><small>Total No. of</small> Enrolled Students <br>in Grade 5</p>
+                     </div>
+                     <div class="icon">
+                         <i class="fas fa-book-reader"></i>
+                     </div>
+                     <a href="list.Enrolledg5.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                 </div>
+             </div>
              <!-- ./col -->
              <div class="col-lg-3 col-6">
              </div>
