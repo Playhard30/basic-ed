@@ -54,12 +54,12 @@ $_SESSION['or_id'] = $or_id;
                                     REGISTRATION FORM
                                 </h3>
                             </div>
-                            <form action="userData/ctrl.admitonline_senior.php" enctype="multipart/form-data" method="POST">
+                            <form action="userData/ctrl.admitonline.php" enctype="multipart/form-data" method="POST">
                             <?php
-                                $display_info = mysqli_query($conn, "SELECT *, CONCAT(tbl_online_reg_senior.student_lname, ', ', tbl_online_reg_senior.student_fname, ' ', tbl_online_reg_senior.student_mname) AS fullname FROM tbl_online_reg_senior
-                                    LEFT JOIN tbl_genders ON tbl_genders.gender_id = tbl_online_reg_senior.gender_id
-                                    LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_online_reg_senior.strand_id
-                                    LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_online_reg_senior.grade_level_id
+                                $display_info = mysqli_query($conn, "SELECT *, CONCAT(tbl_online_reg.student_lname, ', ', tbl_online_reg.student_fname, ' ', tbl_online_reg.student_mname) AS fullname FROM tbl_online_reg
+                                    LEFT JOIN tbl_genders ON tbl_genders.gender_id = tbl_online_reg.gender_id
+                                    LEFT JOIN tbl_strands ON tbl_strands.strand_id = tbl_online_reg.strand_id
+                                    LEFT JOIN tbl_grade_levels ON tbl_grade_levels.grade_level_id = tbl_online_reg.grade_level_id
                                     WHERE or_id = '".$_GET['or_id']."'") or die (mysqli_error($conn));
 
                                 while ($row = mysqli_fetch_array($display_info)) {

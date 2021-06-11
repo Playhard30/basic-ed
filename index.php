@@ -229,14 +229,14 @@ session_start();
             <div class="center">
                 <ul class="menu uppercase">
                     <li><a href="home.php">HOME</a></li>
-                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#Enroll">Enroll Now</a></li>
                     <li><a href="#kto12">K to 12 PROGRAM</a></li>
                     <li><a href="#">CONTACT US</a></li>
                 </ul>
             </div>
             <div class="right">
                 <ul class="menu trim">
-                    <li><a href="#" target="_blank"><svg>
+                    <li><a href="https://www.facebook.com/mysfacbacoor" target="_blank"><svg>
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facebook"></use>
                             </svg></a></li>
                     <li><a href="#" target="_blank"><svg>
@@ -260,7 +260,7 @@ session_start();
     </nav>
 
     <!-- Sidebar -->
-    <nav class="sidebar" data-sidebar-id="1">
+    <!-- <nav class="sidebar" data-sidebar-id="1">
         <div class="close"><svg>
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use>
             </svg></div>
@@ -295,7 +295,7 @@ session_start();
                         </svg></a></li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
 
 
@@ -339,7 +339,7 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="background" style="background-image:url(assets/img/background/bgn-9.png)"></div>
+        <div class="background" style="background-image:url(assets/img/background/2.jpg)"></div>
     </section>
 
     <!-- Popup Video -->
@@ -361,40 +361,40 @@ session_start();
             </div>
         </div>
     </div> -->
-    <section class="slide fade-6 kenBurns fromLeft">
+    <section class="slide fade-6 kenBurns fromLeft" id="Enroll">
         <div class="content">
             <div class="container">
                 <div class="wrap">
 
                     <div class="fix-12-12">
                         <div class="fix-8-12 left toRight">
-                            <h1 class="ae-1">Enroll Now| <b>Be one of us</b></h1>
+                            <h1 class="ae-1">Enroll Now | <b>Be one of us</b></h1>
                             <p class="ae-2 h4"><span class="opacity-8"></span></p>
                             <ul class="flex">
                                 <li class="col-6-12 ae-3">
                                     <h3 class="margin-top-3">Pre-School</h3>
                                     <a href="bed/pages/bed-online-enrollment/online_enrollment_ps.php"
                                         data-toggle="tooltip" title="Nursery, Pre-Kinder and Kinder"><img
-                                            src="assets/img/image-89-1.jpg" class="wide rounded"
+                                            src="assets/img/a4.jpg" class="wide rounded"
                                             alt="Video Thumbnail" /></a>
                                 </li>
                                 <li class="col-6-12 ae-4">
                                     <h3 class="margin-top-3">Elementary</h3>
                                     <a href="bed/pages/bed-online-enrollment/online_enrollment_gs.php"
-                                        data-toggle="tooltip" title="Grade 1 to 6"><img src="assets/img/image-89-1.jpg"
+                                        data-toggle="tooltip" title="Grade 1 to 6"><img src="assets/img/a2.jpg"
                                             class="wide rounded" alt="Video Thumbnail" /></a>
                                 </li>
                                 <li class="col-6-12 ae-5">
                                     <h3 class="margin-top-3">Junior High School</h3>
                                     <a href="bed/pages/bed-online-enrollment/online_enrollment_jhs.php"
-                                        data-toggle="tooltip" title="Grade 7 to 10"><img src="assets/img/image-89-1.jpg"
+                                        data-toggle="tooltip" title="Grade 7 to 10"><img src="assets/img/a3.jpg"
                                             class="wide rounded" alt="Video Thumbnail" /></a>
                                 </li>
                                 <li class="col-6-12 ae-6">
                                     <h3 class="margin-top-3">Senior High School</h3>
                                     <a href="bed/pages/bed-online-enrollment/online_enrollment_shs.php"
                                         data-toggle="tooltip" title="Grade 11 and Grade 12"><img
-                                            src="assets/img/image-89-1.jpg" class="wide rounded"
+                                            src="assets/img/a1.jpg" class="wide rounded"
                                             alt="Video Thumbnail" /></a>
                                 </li>
                             </ul>
@@ -404,7 +404,7 @@ session_start();
                 </div>
             </div>
         </div>
-        <div class="background" style="background-image:url(assets/img/background/bg-3.jpg)"></div>
+        <div class="background" style="background-image:url(assets/img/background/1.jpg)"></div>
     </section>
 
     <!-- Slide 2 (#15) -->
@@ -431,18 +431,18 @@ session_start();
                                     students are properly guided in their day-to-day interactions. There is room for
                                     initiative,
                                     discussion and opportunities for incidental learning.</span></p>
-                            <a class="button blue gradient crop ae-3">More</a>
+                            <a class="button blue gradient crop ae-3" href="Kto12.php">More</a>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-        <div class="background" style="background-image:url(assets/img/background/bg-3.jpg)"></div>
+        <div class="background" style="background-image:url(assets/img/background/5.jpg)"></div>
     </section>
 
     <!-- Slide 3 (#14) -->
-    <section class="slide fade-6 kenBurns fromRight">
+    <!-- <section class="slide fade-6 kenBurns fromRight">
         <div class="content">
             <div class="container">
                 <div class="wrap">
@@ -462,10 +462,10 @@ session_start();
             </div>
         </div>
         <div class="background" style="background-image:url(assets/img/background/img-14.jpg)"></div>
-    </section>
+    </section> -->
 
     <!-- Slide 4 (#89) -->
-    <section class="slide fade-6 kenBurns">
+    <!-- <section class="slide fade-6 kenBurns">
         <div class="content">
             <div class="container">
                 <div class="wrap">
@@ -517,7 +517,7 @@ session_start();
             </div>
         </div>
         <div class="background" style="background-image:url(assets/img/background/img-89.jpg)"></div>
-    </section>
+    </section> -->
 
     <!-- Popup Video
     <div class="popup autoplay" data-popup-id="89-3">
@@ -542,7 +542,7 @@ session_start();
 
 
     <!-- Slide 5 (#85) -->
-    <section class="slide fade-6 kenBurns">
+    <!-- <section class="slide fade-6 kenBurns">
         <div class="content">
             <div class="container">
                 <div class="wrap">
@@ -594,10 +594,9 @@ session_start();
             </div>
         </div>
         <div class="background" style="background-image:url(assets/img/background/img-85.jpg)"></div>
-    </section>
-
-    <!-- Slide 6 (#95) -->
-    <section class="slide fade-6 kenBurns">
+    </section> 
+ -->    <!-- Slide 6 (#95)
+   <!<section class="slide fade-6 kenBurns">
         <div class="content">
             <div class="container">
                 <div class="wrap">
@@ -620,14 +619,13 @@ session_start();
             </div>
         </div>
         <div class="background" style="background-image:url(assets/img/background/img-95.jpg)"></div>
-    </section>
+    </section> -->
 
     <!-- Panel Bottom #15 -->
     <nav class="panel bottom lastSlideOnly">
         <div class="sections">
-            <div class="center"><a href="#" class="opacity-8">Available <svg style="height:21px;">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#apple"></use>
-                    </svg> iPhone</a></div>
+            <div class="center">
+                <a href="#" class="opacity-8">Go to top</a></div>
         </div>
     </nav>
 

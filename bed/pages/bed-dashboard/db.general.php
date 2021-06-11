@@ -227,6 +227,27 @@
                  </div>
              </div>
          </div>
+         <div class="row">
+             <div class="col-lg-3 col-6">
+                 <!-- small box -->
+                 <div class="small-box bg-gray">
+                     <div class="inner">
+                         <?php $stud_count = mysqli_query($conn, "SELECT count(or_id) AS total_stud FROM tbl_online_reg WHERE remark = 'Pending'") or die(mysqli_error($conn));
+                            while ($row = mysqli_fetch_array($stud_count)) { ?>
+                         <h3 class="text-white"><?php echo $row['total_stud']; ?></h3>
+                         <?php } ?>
+
+                         <p><small>Total No. of</small> Online Inquiries</p>
+                     </div>
+                     <div class="icon">
+                         <i class="fas fa-globe"></i>
+                     </div>
+                     <a href="../bed-online-enrollment/online_list.php" class="small-box-footer">View Details <i class="fas fa-arrow-circle-right"></i></a>
+                 </div>
+            </div>
+         </div>
+
+        
 
          <!-- /.row -->
          <!-- Main row -->

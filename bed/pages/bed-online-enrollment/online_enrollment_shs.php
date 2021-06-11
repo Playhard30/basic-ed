@@ -86,28 +86,12 @@ session_start();
 
                             <div class="card-header text-center">
                                 <h3 class="text-lg" style="margin-bottom: unset;">
-                                    REGISTRATION FORM
+                                    REGISTRATION FORM - SENIOR HIGH SCHOOL
                                 </h3>
                             </div>
                             <form action="userData/ctrl.addonline_senior.php" enctype="multipart/form-data" method="POST">
                                 <div class="card-body">
-                                    <div class="form-group row mb-3 mt-3">
-
-                                        <div class="input-group col-md-4 mb-2">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-sm"><b>
-                                                        Student Type</b></span>
-                                            </div>
-                                            <select class="form-control custom-select select2 select2-purple"
-                                                data-dropdown-css-class="select2-purple"
-                                                data-placeholder="Select Student Type" name="studtype">
-                                                <option selected disabled></option>
-                                                <option value="New">New Student</option>
-                                                <option value="Old">Old Student</option>
-                                            </select>
-
-                                        </div>
-
+                                    <div class="form-group row mb-3 mt-3 justify-content-center">
                                         <div class="input-group col-md-4 mb-2">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text text-sm"><b>
