@@ -5,6 +5,13 @@ require '../../includes/conn.php';
 
 $stud_id = $_GET['stud_id'];
 
+if (!empty($_GET['glvl_id'])) {
+    $glvl_id = $_GET['glvl_id'];
+}
+
+
+
+
 $get_ay = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears AS aay
 LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = aay.ay_id");
 while ($row = mysqli_fetch_array($get_ay)) {
@@ -23,7 +30,7 @@ $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
 WHERE student_id = '$stud_id' AND semester_id = '0' AND ay_id = '$ay_id'") or die(mysqli_error($conn));
 $result = mysqli_num_rows($get_level_id);
 if ($result > 0) {
-    header('location: all_forms.php?stud_id=' . $stud_id);
+    header('location: all_forms.php?stud_id=' . $stud_id . '&glvl_id=' . $glvl_id);
 } else {
 
     $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
@@ -101,7 +108,11 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(35, 4, $row['grade_level'], 'B', 0, 'C');
     $pdf->Cell(20, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'SECTION: ', 0, 0);
-    $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    if (!empty($row['section'])) {
+        $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    } else {
+        $pdf->Cell(40, 4, 'TBA', 'B', 1, 'C');
+    }
     $pdf->Cell(20, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'STRAND: ', 0, 0);
     $pdf->Cell(35, 4, $row['strand_name'], 'B', 0, 'C');
@@ -159,13 +170,13 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(5, 5, '', 0, 0);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Cell(27, 3, 'PLACE OF BIRTH:', 0, 0);
-    $pdf->Cell(30, 3, $row['place_birth'], 'B', 0, 'C');
     $fontsize = 11;
     $tempFontSize = $fontsize;
-    $cellwidth = 48;
+    $cellwidth = 27;
     while ($pdf->GetStringWidth($row['place_birth']) > $cellwidth) {
         $pdf->SetFontSize($tempFontSize -= 0.1);
     }
+    $pdf->Cell(30, 3, $row['place_birth'], 'B', 0, 'C');
 
 
     $pdf->Cell(10, 5, '', 0, 0);
@@ -696,7 +707,11 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(35, 4, $row['grade_level'], 'B', 0, 'C');
     $pdf->Cell(20, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'SECTION: ', 0, 0);
-    $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    if (!empty($row['section'])) {
+        $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    } else {
+        $pdf->Cell(40, 4, 'TBA', 'B', 1, 'C');
+    }
     $pdf->Cell(20, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'STRAND: ', 0, 0);
     $pdf->Cell(35, 4, $row['strand_name'], 'B', 0, 'C');
@@ -754,13 +769,13 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(5, 5, '', 0, 0);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Cell(27, 3, 'PLACE OF BIRTH:', 0, 0);
-    $pdf->Cell(30, 3, $row['place_birth'], 'B', 0, 'C');
     $fontsize = 11;
     $tempFontSize = $fontsize;
-    $cellwidth = 48;
+    $cellwidth = 27;
     while ($pdf->GetStringWidth($row['place_birth']) > $cellwidth) {
         $pdf->SetFontSize($tempFontSize -= 0.1);
     }
+    $pdf->Cell(30, 3, $row['place_birth'], 'B', 0, 'C');
 
 
     $pdf->Cell(10, 5, '', 0, 0);
@@ -1032,7 +1047,11 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(35, 4, $row['grade_level'], 'B', 0, 'C');
     $pdf->Cell(15, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'SECTION: ', 0, 0);
-    $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    if (!empty($row['section'])) {
+        $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    } else {
+        $pdf->Cell(40, 4, 'TBA', 'B', 1, 'C');
+    }
     $pdf->Cell(15, 5, '', 0, 0);
     $pdf->Cell(17, 4, 'STRAND: ', 0, 0);
     $pdf->Cell(35, 4, $row['strand_name'], 'B', 0, 'C');
@@ -1075,7 +1094,7 @@ while ($row = mysqli_fetch_array($get_stud)) {
     LEFT JOIN tbl_subjects_senior AS sub ON sub.subject_id = sched.subject_id
     LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
     LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
-    WHERE stud.student_id = '$stud_id' AND sched.semester = '$sem' AND sched.acadyear = '$acad'") or die(mysqli_error($conn));
+    WHERE stud.student_id = '$stud_id' AND sched.semester = '$sem' AND sched.acadyear = '$acad' AND sub.strand_id = '$row[strand_id]'") or die(mysqli_error($conn));
     $y = $pdf->Gety();
     $xy = 3;
     $i = 1;

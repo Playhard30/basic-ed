@@ -2,52 +2,19 @@
 require('../bed-fpdf/fpdf.php');
 require '../../includes/conn.php';
 
+if (!empty($_GET['stud_id'])) {
+    $stud_id = $_GET['stud_id'];
 
-$stud_id = $_GET['stud_id'];
-
-$get_ay = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears AS aay
-LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = aay.ay_id");
-while ($row = mysqli_fetch_array($get_ay)) {
-    $ay_id = $row['ay_id'];
-    $acad = $row['academic_year'];
-}
-
-$get_sem = mysqli_query($conn, "SELECT * FROM tbl_active_semesters AS asem
-LEFT JOIN tbl_semesters AS sem ON sem.semester_id = asem.semester_id");
-while ($row = mysqli_fetch_array($get_sem)) {
-    $sem_id = $row['semester_id'];
-    $sem = $row['semester'];
-}
-
-$get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
-WHERE student_id = '$stud_id' AND semester_id = '0' AND ay_id = '$ay_id'") or die(mysqli_error($conn));
-$result = mysqli_num_rows($get_level_id);
-
-if ($result > 0) {
-    header('location: ../bed-404/page404.php');
+    $get_stud = mysqli_query($conn, "SELECT * FROM tbl_students AS stud
+    LEFT JOIN tbl_genders AS gen ON gen.gender_id = stud.gender_id
+    WHERE student_id = '$stud_id'") or die(mysqli_error($conn));
 } else {
-
-    $get_level_id = mysqli_query($conn, "SELECT * FROM tbl_schoolyears
-WHERE student_id = '$stud_id' AND semester_id = '$sem_id' AND ay_id = '$ay_id'") or die(mysqli_error($conn));
-    $result2 = mysqli_num_rows($get_level_id);
-
-    if ($result2 > 0) {
-    } else {
-        header('location: ../bed-404/page404.php');
-    }
+    header('location: ../bed-404/page404.php');
 }
 
 
 
-$get_stud = mysqli_query($conn, "SELECT *, CONCAT(stud.student_fname, ' ', (stud.student_mname), ' ', stud.student_lname) AS fullname 
-FROM tbl_schoolyears AS sy
-LEFT JOIN tbl_students AS stud ON stud.student_id = sy.student_id
-LEFT JOIN tbl_genders AS gen ON gen.gender_id = stud.gender_id
-LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sy.grade_level_id
-LEFT JOIN tbl_strands AS std ON std.strand_id = sy.strand_id 
-LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = sy.ay_id
-LEFT JOIN tbl_semesters AS sem ON sem.semester_id = sy.semester_id
-WHERE sy.student_id = $stud_id AND sy.ay_id = '$ay_id' AND sy.semester_id = '$sem_id'") or die(mysqli_error($conn));
+
 while ($row = mysqli_fetch_array($get_stud)) {
 
 
@@ -89,7 +56,7 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->SetFont('Arial', 'B', '10');
     $pdf->Rect(10, 30, 75, 8);
     $pdf->Cell(45, 5, 'Level applied for:', 0, 0);
-    $pdf->Cell(2, 5, $row['grade_level'], '', 1, 'C');
+    $pdf->Cell(2, 5, '', '', 1, 'C');
 
 
     $pdf->Ln(2);
@@ -108,7 +75,7 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Ln(1);
     $pdf->SetFont('Arial', 'B', '10');
     $pdf->Cell(95, 3, '', 0, 0, 'L');
-    $pdf->Cell(50, 3, $row['academic_year'], 'B', 1, 'C');
+    $pdf->Cell(50, 3, '', 'B', 1, 'C');
     $pdf->Cell(240, 5, 'SCHOOL YEAR', 0, 1, 'C');
 
     $pdf->Ln(5);

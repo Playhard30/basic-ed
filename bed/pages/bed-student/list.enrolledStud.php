@@ -125,6 +125,7 @@ require '../../includes/bed-session.php';
                                                             $sy_id = $row['sy_id'];
                                                             $_SESSION['stud_no'] = $row['stud_no'];
                                                             $_SESSION['orig_id'] = $row['student_id'];
+                                                            $glvl_id = $row['grade_level_id'];
 
 
 
@@ -246,7 +247,7 @@ require '../../includes/bed-session.php';
                                                                 Subjects
                                                             </a>
 
-                                                            <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id; ?>"
+                                                            <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id . '&glvl_id=' . $glvl_id; ?>"
                                                                 type="button"
                                                                 class=" btn bg-maroon text-sm p-2 mb-md-2"><i
                                                                     class="fa fa-eye"></i>
@@ -356,24 +357,24 @@ require '../../includes/bed-session.php';
                                                 method="POST">
 
 
-                                                <div class="btn-group">
+                                                <div class="btn-group dropleft">
                                                     <?php if ($_SESSION['role'] == "Accounting") {
                                                             if ($row['remark'] == 'Confirmed' || $row['remark'] == 'Disapproved') {
                                                                 echo '<button type="submit"
-                                                                class="btn btn-success text-sm p-2 mb-md-2"
+                                                                class="btn btn-success text-sm p-2 mb-2"
                                                                 name="sub_remark"><i class="fas fa-check"> </i>
                                                                   Approve</button>
                                                                 <button type="button"
-                                                                class="btn btn-success text-sm p-2 mb-md-2 dropdown-toggle dropdown-hover dropdown-icon"
+                                                                class="btn btn-success text-sm p-2 mb-2 dropdown-toggle dropdown-hover dropdown-icon"
                                                                 data-toggle="dropdown">
                                                                 <span class="sr-only">Options</span>
                                                             </button>';
                                                             } else if ($row['remark'] == 'Approved') {
-                                                                echo ' <button type="submit" class="btn bg-orange text-sm  p-2 mb-md-2"
+                                                                echo ' <button type="submit" class="btn bg-orange text-sm  p-2 mb-2"
                                                                             name="sub_remark" style="color: white !important;"><i
                                                                                 class="fas fa-times"></i> Disapprove</button>
                                                                         <button type="button"
-                                                                            class="btn bg-orange text-sm p-2 mb-md-2 dropdown-toggle dropdown-hover dropdown-icon"
+                                                                            class="btn bg-orange text-sm p-2 mb-2 dropdown-toggle dropdown-hover dropdown-icon"
                                                                             style="color: white !important;" data-toggle="dropdown">
                                                                             <span class="sr-only">Options</span>
                                                                         </button>';
@@ -381,21 +382,21 @@ require '../../includes/bed-session.php';
                                                         } else {
                                                             if ($row['remark'] == 'Pending' || $row['remark'] == 'Canceled') {
                                                                 echo '<button type="submit"
-                                                                class="btn btn-success text-sm p-2 mb-md-2"
+                                                                class="btn btn-success text-sm p-2 mb-2"
                                                                 name="sub_remark"><i class="fas fa-check"></i>
                                                                 Confirm</button>
                                                                 <button type="button"
-                                                                class="btn btn-success text-sm p-2 mb-md-2 dropdown-toggle dropdown-hover dropdown-icon"
+                                                                class="btn btn-success text-sm p-2 mb-2 dropdown-toggle dropdown-hover dropdown-icon"
                                                                 data-toggle="dropdown">
                                                                 <span class="sr-only">Options</span>
                                                             </button>';
                                                             } elseif ($row['remark'] == 'Confirmed' || $row['remark'] == 'Disapproved') {
-                                                                echo ' <button type="submit" class="btn bg-orange text-sm  p-2 mb-md-2"
+                                                                echo ' <button type="submit" class="btn bg-orange text-sm  p-2 mb-2"
                                                                         name="sub_remark" style="color: white !important;"><i
                                                                             class="fas fa-times"></i>
                                                                         Cancel</button>
                                                                     <button type="button"
-                                                                        class="btn bg-orange text-sm p-2 mb-md-2 dropdown-toggle dropdown-hover dropdown-icon"
+                                                                        class="btn bg-orange text-sm p-2 mb-2 dropdown-toggle dropdown-hover dropdown-icon"
                                                                         style="color: white !important;" data-toggle="dropdown">
                                                                         <span class="sr-only">Options</span>
                                                                     </button>';
@@ -404,31 +405,36 @@ require '../../includes/bed-session.php';
 
                                             </form>
 
-                                            <div class="dropdown-menu dropdown-menu-right text-center" role="menu">
+                                            <div class="dropdown-menu dropdown-menu-left text-center" role="menu">
                                                 <a href="edit.enrolledStud.php?<?php echo 'stud_id=' . $id; ?>"
-                                                    type="button" class=" btn bg-lightblue text-sm p-2 mb-md-2"><i
+                                                    type="button" class=" btn bg-lightblue text-sm p-2 mb-2"><i
                                                         class="fa fa-edit"></i>
                                                     Update
                                                 </a>
 
                                                 <a href="../bed-subjects/list.enrolledSubSH.php?<?php echo 'stud_id=' . $id; ?>"
-                                                    type="button" class=" btn bg-gray text-sm p-2 mb-md-2"><i
+                                                    type="button" class=" btn bg-gray text-sm p-2 mb-2"><i
                                                         class="fa fa-eye"></i>
                                                     Subjects
                                                 </a>
 
-                                                <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id; ?>"
-                                                    type="button" class=" btn bg-maroon text-sm p-2 mb-md-2"><i
+                                                <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id . '&glvl_id=' . $glvl_id; ?>"
+                                                    type="button" class=" btn bg-maroon text-sm p-2 mb-2"><i
                                                         class="fa fa-eye"></i>
-                                                    Registration
+                                                    Reg Form
                                                 </a>
 
+                                                <a href="../bed-forms/pre-en-data.php?<?php echo 'stud_id=' . $id; ?>"
+                                                    type="button" class=" btn bg-purple text-sm p-2 mb-2"><i
+                                                        class="fa fa-eye"></i>
+                                                    Pre-Enroll
+                                                </a>
 
 
                                                 <!-- Button trigger modal -->
                                                 <div class="dropdown-divider"></div>
-                                                <a type="button" class="btn bg-red text-sm p-2 mb-md-2"
-                                                    data-toggle="modal" data-target="#exampleModal<?php echo $id ?>"><i
+                                                <a type="button" class="btn bg-red text-sm p-2 mb-2" data-toggle="modal"
+                                                    data-target="#exampleModal<?php echo $id ?>"><i
                                                         class="fa fa-trash"></i>
                                                     Delete
                                                 </a>

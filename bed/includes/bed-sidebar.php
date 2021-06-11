@@ -309,7 +309,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="../bed-forms/pre-en-plain.php" class="nav-link">
                                 <i class="fa fa-file-pdf nav-icon"></i>
                                 <p> Pre-Enrollment</p>
                             </a>
@@ -317,7 +317,7 @@
                         <li class="nav-item">
                             <a href="../bed-forms/allformsnodata.php" class="nav-link">
                                 <i class="fa fa-file-pdf nav-icon"></i>
-                                <p> Registration</p>
+                                <p> Reg Form</p>
                             </a>
                         </li>
 

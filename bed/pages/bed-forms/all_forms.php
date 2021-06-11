@@ -4,6 +4,7 @@ require '../../includes/conn.php';
 
 
 $stud_id = $_GET['stud_id'];
+$glvl_id = $_GET['glvl_id'];
 
 $get_ay = mysqli_query($conn, "SELECT * FROM tbl_active_acadyears AS aay
 LEFT JOIN tbl_acadyears AS ay ON ay.ay_id = aay.ay_id");
@@ -30,7 +31,7 @@ WHERE student_id = '$stud_id' AND semester_id = '$sem_id' AND ay_id = '$ay_id'")
     $result2 = mysqli_num_rows($get_level_id);
 
     if ($result2 > 0) {
-        header('location: all_formsSH.php?stud_id=' . $stud_id);
+        header('location: all_formsSH.php?stud_id=' . $stud_id . '&glvl_id=' . $glvl_id);
     } else {
         header('location: ../bed-404/page404.php');
     }
@@ -100,7 +101,12 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(35, 4, $row['grade_level'], 'B', 0, 'C');
     $pdf->Cell(20, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'SECTION: ', 0, 0);
-    $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    if (!empty($row['section'])) {
+        $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    } else {
+        $pdf->Cell(40, 4, 'TBA', 'B', 1, 'C');
+    }
+
     $pdf->Cell(20, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'STRAND: ', 0, 0);
     $pdf->Cell(35, 4, '', 'B', 0, 'C');
@@ -158,14 +164,13 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(5, 5, '', 0, 0);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Cell(27, 3, 'PLACE OF BIRTH:', 0, 0);
-    $pdf->Cell(30, 3, $row['place_birth'], 'B', 0, 'C');
     $fontsize = 11;
     $tempFontSize = $fontsize;
-    $cellwidth = 48;
+    $cellwidth = 27;
     while ($pdf->GetStringWidth($row['place_birth']) > $cellwidth) {
         $pdf->SetFontSize($tempFontSize -= 0.1);
     }
-
+    $pdf->Cell(30, 3, $row['place_birth'], 'B', 0, 'C');
 
     $pdf->Cell(10, 5, '', 0, 0);
     $pdf->Cell(15, 3, 'GENDER:', 0, 0);
@@ -697,7 +702,11 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(35, 4, $row['grade_level'], 'B', 0, 'C');
     $pdf->Cell(20, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'SECTION: ', 0, 0);
-    $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    if (!empty($row['section'])) {
+        $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    } else {
+        $pdf->Cell(40, 4, 'TBA', 'B', 1, 'C');
+    }
     $pdf->Cell(20, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'STRAND: ', 0, 0);
     $pdf->Cell(35, 4, $row['strand_name'], 'B', 0, 'C');
@@ -755,14 +764,13 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(5, 5, '', 0, 0);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Cell(27, 3, 'PLACE OF BIRTH:', 0, 0);
-    $pdf->Cell(30, 3, $row['place_birth'], 'B', 0, 'C');
     $fontsize = 11;
     $tempFontSize = $fontsize;
-    $cellwidth = 48;
+    $cellwidth = 27;
     while ($pdf->GetStringWidth($row['place_birth']) > $cellwidth) {
         $pdf->SetFontSize($tempFontSize -= 0.1);
     }
-
+    $pdf->Cell(30, 3, $row['place_birth'], 'B', 0, 'C');
 
     $pdf->Cell(10, 5, '', 0, 0);
     $pdf->Cell(15, 3, 'GENDER:', 0, 0);
@@ -1033,7 +1041,11 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(35, 4, $row['grade_level'], 'B', 0, 'C');
     $pdf->Cell(15, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'SECTION: ', 0, 0);
-    $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    if (!empty($row['section'])) {
+        $pdf->Cell(40, 4, utf8_decode($row['section']), 'B', 1, 'C');
+    } else {
+        $pdf->Cell(40, 4, 'TBA', 'B', 1, 'C');
+    }
     $pdf->Cell(15, 5, '', 0, 0);
     $pdf->Cell(17, 4, 'STRAND: ', 0, 0);
     $pdf->Cell(35, 4, $row['strand_name'], 'B', 0, 'C');
@@ -1076,7 +1088,7 @@ while ($row = mysqli_fetch_array($get_stud)) {
     LEFT JOIN tbl_subjects AS sub ON sub.subject_id = sched.subject_id
     LEFT JOIN tbl_grade_levels AS gl ON gl.grade_level_id = sub.grade_level_id
     LEFT JOIN tbl_teachers AS teach ON teach.teacher_id = sched.teacher_id
-    WHERE stud.student_id = '$stud_id' AND sched.semester = '0'") or die(mysqli_error($conn));
+    WHERE stud.student_id = '$stud_id' AND sched.semester = '0' AND sched.grade_level_id = '$glvl_id'") or die(mysqli_error($conn));
 
     $y = $pdf->Gety();
     $xy = 3;
@@ -1093,10 +1105,10 @@ while ($row = mysqli_fetch_array($get_stud)) {
         $fontsize = 6;
         $tempFontSize = $fontsize;
         $cellwidth = 32;
-        while ($pdf->GetStringWidth($row2['subject_description'] . "ssssssss") > $cellwidth) {
+        while ($pdf->GetStringWidth($row2['subject_description']) > $cellwidth) {
             $pdf->SetFontSize($tempFontSize -= 0.1);
         }
-        $pdf->Cell(33, 3, $row2['subject_description'] . "ssssssss", 0, 0, 'C');
+        $pdf->Cell(33, 3, $row2['subject_description'], 0, 0, 'C');
         $pdf->Cell(11, 3, '', 0, 0, 'C');
 
         $fontsize = 6;

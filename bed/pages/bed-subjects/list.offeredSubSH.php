@@ -120,6 +120,7 @@ if ($_SESSION['role'] == "Student") {
                                                         <th>Code</th>
                                                         <th>Description</th>
                                                         <th>Grade Level</th>
+                                                        <th>Strand</th>
                                                         <th>Semester</th>
                                                         <th>Unit(s)</th>
                                                         <th>Days</th>
@@ -176,6 +177,7 @@ if ($_SESSION['role'] == "Student") {
                                                         <td><?php echo $row['subject_code']; ?></td>
                                                         <td><?php echo $row['subject_description']; ?></td>
                                                         <td><?php echo $row['grade_level']; ?></td>
+                                                        <td><?php echo $row['strand_name']; ?></td>
                                                         <td><?php echo $row['semester']; ?></td>
                                                         <td><?php echo $row['total_units']; ?></td>
                                                         <td><?php echo $row['day']; ?></td>
