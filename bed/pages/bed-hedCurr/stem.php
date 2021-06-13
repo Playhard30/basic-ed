@@ -62,7 +62,7 @@ $pdf->SetFont('Arial', '', 10, 'C');
 // dummy cell
 $pdf->Cell(50);
 // //cell(width,height,text,border,end line,[align])
-$pdf->Cell(90, 4, '(Effective Academic Year 2018-2019)', 0, 1, 'C');
+$pdf->Cell(90, 4, '(Effective Academic Year 2019-2021)', 0, 1, 'C');
 // Line break
 $pdf->Ln(4);
 
@@ -188,12 +188,30 @@ $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 1);
 
-// LAST LINE PER SEM
 $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(15, 4, 'CHL', 0, 0);
 $pdf->Cell(15, 4, '111', 0, 0);
-$pdf->Cell(90, 4, 'Christioan Living 1', 0, 0);
+$pdf->Cell(90, 4, 'Franciscan Orientation', 0, 0);
+$pdf->Cell(10, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 0, 1);
+
+$pdf->Cell(5, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 'B', 0);
+$pdf->Cell(15, 4, 'BIO', 0, 0);
+$pdf->Cell(15, 4, '111', 0, 0);
+$pdf->Cell(90, 4, 'General Biology 1', 0, 0);
+$pdf->Cell(10, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 0, 1);
+
+// LAST LINE PER SEM
+$pdf->Cell(5, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 'B', 0);
+$pdf->Cell(15, 4, 'RES', 0, 0);
+$pdf->Cell(15, 4, '121', 0, 0);
+$pdf->Cell(90, 4, 'Qualitative Research in Daily Life', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(9, 4, '', 'B', 0);
 $pdf->Cell(7, 4, '', 'B', 1);
@@ -284,17 +302,6 @@ $pdf->Cell(10, 4, '', 0, 1);
 
 $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'RES', 0, 0);
-$pdf->Cell(15, 4, '121', 0, 0);
-$pdf->SetFont('Arial', '', '9');
-$pdf->Cell(90, 4, 'Qualitative Research in Daily Life', 0, 0);
-$pdf->SetFont('Arial', '', '9');
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 1);
-
-$pdf->Cell(5, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(15, 4, 'PEH', 0, 0);
 $pdf->Cell(15, 4, '121', 0, 0);
 $pdf->Cell(90, 4, 'Physical Education and Health 2', 0, 0);
@@ -306,7 +313,7 @@ $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(15, 4, 'CHL', 0, 0);
 $pdf->Cell(15, 4, '121', 0, 0);
-$pdf->Cell(90, 4, 'Christian Living', 0, 0);
+$pdf->Cell(90, 4, 'Franciscan Orientation', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 1);
@@ -315,7 +322,25 @@ $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(15, 4, 'BIO', 0, 0);
 $pdf->Cell(15, 4, '121', 0, 0);
-$pdf->Cell(90, 4, 'General Biology 1', 0, 0);
+$pdf->Cell(90, 4, 'General Biology 2', 0, 0);
+$pdf->Cell(10, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 0, 1);
+
+$pdf->Cell(5, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 'B', 0);
+$pdf->Cell(15, 4, 'CHE', 0, 0);
+$pdf->Cell(15, 4, '121', 0, 0);
+$pdf->Cell(90, 4, 'General Chemistry 2', 0, 0);
+$pdf->Cell(10, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 0, 1);
+
+$pdf->Cell(5, 4, '', 0, 0);
+$pdf->Cell(10, 4, '', 'B', 0);
+$pdf->Cell(15, 4, 'PHI', 0, 0);
+$pdf->Cell(15, 4, '211', 0, 0);
+$pdf->Cell(90, 4, 'Introduction to Philosophy of the Human Person', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 1);
@@ -323,12 +348,13 @@ $pdf->Cell(10, 4, '', 0, 1);
 // LAST LINE PER SEM
 $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'CHE', 0, 0);
-$pdf->Cell(15, 4, '121', 0, 0);
-$pdf->Cell(90, 4, 'General Chemistry 2', 0, 0);
+$pdf->Cell(15, 4, 'ENG', 0, 0);
+$pdf->Cell(15, 4, '211', 0, 0);
+$pdf->Cell(90, 4, 'English for Academic and Professional Purposes', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(9, 4, '', 'B', 0);
 $pdf->Cell(7, 4, '', 'B', 1);
+
 
 
 
@@ -369,38 +395,11 @@ $pdf->Cell(10, 4, '', 0, 1);
 
 $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'PHY', 0, 0);
-$pdf->Cell(15, 4, '211', 0, 0);
-$pdf->Cell(90, 4, 'Introduction to Philosophy of the Human Person', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 1);
-
-$pdf->Cell(5, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(15, 4, 'PEH', 0, 0);
 $pdf->Cell(15, 4, '211', 0, 0);
 $pdf->SetFont('Arial', '', '9');
 $pdf->Cell(90, 4, 'Physical Education and Health 3', 0, 0);
 $pdf->SetFont('Arial', '', '9');
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 1);
-
-$pdf->Cell(5, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'CHL', 0, 0);
-$pdf->Cell(15, 4, '211', 0, 0);
-$pdf->Cell(90, 4, 'Christian Living 3', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 1);
-
-$pdf->Cell(5, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'ENG', 0, 0);
-$pdf->Cell(15, 4, '211', 0, 0);
-$pdf->Cell(90, 4, 'English for Academic and Professional Purposes', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 1);
@@ -427,31 +426,23 @@ $pdf->Cell(10, 4, '', 0, 1);
 
 $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'ENT', 0, 0);
+$pdf->Cell(15, 4, 'PHY', 0, 0);
 $pdf->Cell(15, 4, '211', 0, 0);
-$pdf->Cell(90, 4, 'Entrepreneurship', 0, 0);
+$pdf->Cell(90, 4, 'General Physics 1', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 1);
 
-$pdf->Cell(5, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'BIO', 0, 0);
-$pdf->Cell(15, 4, '211', 0, 0);
-$pdf->Cell(90, 4, 'General Biology 2', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 1);
 
 // LAST LINE PER SEM
 $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'PHY', 0, 0);
-$pdf->Cell(15, 4, '211', 0, 0);
-$pdf->Cell(90, 4, 'General Physics 1', 0, 0);
+$pdf->Cell(15, 4, 'COM', 0, 0);
+$pdf->Cell(15, 4, '221', 0, 0);
+$pdf->Cell(90, 4, 'Media and Information Literacy', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(9, 4, '', 'B', 0);
-$pdf->Cell(7, 4, '', 'B', 1);
+$pdf->Cell(10, 4, '', 'B', 0);
 
 $pdf->Cell(20, 5, '', 0, 0);
 
@@ -476,27 +467,9 @@ $pdf->SetFont('Arial', '', '9');
 // SUBJECTS
 $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'COM', 0, 0);
-$pdf->Cell(15, 4, '221', 0, 0);
-$pdf->Cell(90, 4, 'Media', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 1);
-
-$pdf->Cell(5, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(15, 4, 'PEH', 0, 0);
 $pdf->Cell(15, 4, '221', 0, 0);
 $pdf->Cell(90, 4, 'Physical Education and Health 4', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 0, 1);
-
-$pdf->Cell(5, 4, '', 0, 0);
-$pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'CHL', 0, 0);
-$pdf->Cell(15, 4, '221', 0, 0);
-$pdf->Cell(90, 4, 'Christian Living 4', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 0, 1);
@@ -536,9 +509,9 @@ $pdf->Cell(10, 4, '', 0, 1);
 // LAST LINE PER SEM
 $pdf->Cell(5, 4, '', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
-$pdf->Cell(15, 4, 'RES', 0, 0);
-$pdf->Cell(15, 4, '222', 0, 0);
-$pdf->Cell(90, 4, 'Capstone Project', 0, 0);
+$pdf->Cell(15, 4, 'ENT', 0, 0);
+$pdf->Cell(15, 4, '211', 0, 0);
+$pdf->Cell(90, 4, 'Entrepreneurship', 0, 0);
 $pdf->Cell(10, 4, '', 'B', 0);
 $pdf->Cell(9, 4, '', 'B', 0);
 $pdf->Cell(7, 4, '', 'B', 1);
