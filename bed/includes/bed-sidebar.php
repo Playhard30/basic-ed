@@ -712,14 +712,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="../bed-accounting/approve_online_inq.php" class="nav-link">
-                        <i class="nav-icon fas fa-id-card"></i>
-                        <p>
-                            Online Inquiries
-                        </p>
-                    </a>
-                </li>
+               
                 ';
 
                     //END ACCOUNTING

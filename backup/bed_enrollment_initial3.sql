@@ -11,7 +11,7 @@
  Target Server Version : 100417
  File Encoding         : 65001
 
- Date: 10/06/2021 12:19:00
+ Date: 13/06/2021 18:57:16
 */
 
 SET NAMES utf8mb4;
@@ -260,48 +260,11 @@ CREATE TABLE `tbl_enrolled_subjects`  (
   `schedule_id` int(12) NULL DEFAULT NULL,
   `student_id` int(12) NULL DEFAULT NULL,
   PRIMARY KEY (`enrolled_sub_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 124 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 153 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_enrolled_subjects
 -- ----------------------------
-INSERT INTO `tbl_enrolled_subjects` VALUES (72, 35, 5);
-INSERT INTO `tbl_enrolled_subjects` VALUES (76, 177, 21);
-INSERT INTO `tbl_enrolled_subjects` VALUES (77, 176, 21);
-INSERT INTO `tbl_enrolled_subjects` VALUES (78, 175, 21);
-INSERT INTO `tbl_enrolled_subjects` VALUES (79, 174, 21);
-INSERT INTO `tbl_enrolled_subjects` VALUES (81, 172, 21);
-INSERT INTO `tbl_enrolled_subjects` VALUES (82, 171, 21);
-INSERT INTO `tbl_enrolled_subjects` VALUES (84, 173, 21);
-INSERT INTO `tbl_enrolled_subjects` VALUES (85, 170, 21);
-INSERT INTO `tbl_enrolled_subjects` VALUES (86, 178, 21);
-INSERT INTO `tbl_enrolled_subjects` VALUES (89, 70, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (90, 69, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (91, 68, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (92, 67, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (93, 66, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (94, 65, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (95, 64, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (96, 63, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (97, 62, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (98, 169, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (99, 168, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (100, 167, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (101, 166, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (102, 165, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (103, 164, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (104, 163, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (105, 162, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (106, 161, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (108, 71, 23);
-INSERT INTO `tbl_enrolled_subjects` VALUES (109, 178, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (117, 177, 22);
-INSERT INTO `tbl_enrolled_subjects` VALUES (118, 169, 13);
-INSERT INTO `tbl_enrolled_subjects` VALUES (119, 168, 13);
-INSERT INTO `tbl_enrolled_subjects` VALUES (120, 71, 5);
-INSERT INTO `tbl_enrolled_subjects` VALUES (121, 70, 5);
-INSERT INTO `tbl_enrolled_subjects` VALUES (122, 69, 5);
-INSERT INTO `tbl_enrolled_subjects` VALUES (123, 68, 5);
 
 -- ----------------------------
 -- Table structure for tbl_genders
@@ -407,19 +370,14 @@ CREATE TABLE `tbl_online_reg`  (
   `sch_address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `academic_year` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `semester` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `remark` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `strand_id` int(12) NULL DEFAULT NULL,
   PRIMARY KEY (`or_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_online_reg
 -- ----------------------------
-INSERT INTO `tbl_online_reg` VALUES (13, 'Old', 5, '1232131231', 'da', 'fac', 'd', 'dasd', '', '', '', 1, '', '', '', '', 'as@as.com', '', '', '', '', '', '', '', '', '', '', '', '', 'Nursery', '', '', '', '', 'For Approval');
-INSERT INTO `tbl_online_reg` VALUES (15, 'Old', 2, '111111111111', 'sd', 'sdasd', 'asdasdasdas', 'asdasds', '', '', '', 2, '', '', '', '', '1as@1as.com', '', '', '', '', '', '', '', '', '', '', '', '', 'Nursery', '', '', '', '', 'Pending');
-INSERT INTO `tbl_online_reg` VALUES (19, 'New', 3, '', 'Lorenzo ', 'Gutierrez', 'Nani', 'blk2 lot 17 phase 2a Casimiro Westville Homes Ligas 3 Bacoor Cavite', '09/09/2000', 'San Juan, Metro Manila', '20', 1, 'Filipino', 'Catholic', '123456789101', '09212198817', 'jamestorres0909@gmail.com', 'Flemejo Torres', 'OFW', '09212198817', 'Shirley Torres', 'House Wife', '09212198817', '30,000', '5', 'Shirley Torres', 'blk2 lot 17 phase 2a Casimiro Westville Homes Ligas 3 Bacoor Cavite', '09212198817', 'System Technology Institute', 'Nursery', '2020-2021', 'Tirona Highway', '2021-2022', 'Second Semester', 'Pending');
-INSERT INTO `tbl_online_reg` VALUES (20, 'New', 3, '', 'Lorenzo ', 'Gutierrez', 'Oñas', 'blk2 lot 17 phase 2a Casimiro Westville Homes Ligas 3 Bacoor Cavite', '09/09/2000', 'San Juan, Metro Manila', '20', 1, 'Filipino', 'Catholic', '', '09212198817', 'LorenzoOmai@gmail.com', 'Flemejo Torres', 'OFW', '09212198817', 'Shirley Torres', 'House Wife', '09212198817', '30,000', '5', 'Shirley Torres', 'blk2 lot 17 phase 2a Casimiro Westville Homes Ligas 3 Bacoor Cavite', '09212198817', 'System Technology Institute', 'Nursery', '2020-2021', 'Tirona Highway', '2021-2022', 'Second Semester', 'Pending');
-INSERT INTO `tbl_online_reg` VALUES (21, 'New', 3, '', 'Arthuro', 'Gutierrez', 'Oñas', 'blk2 lot 17 phase 2a Casimiro Westville Homes Ligas 3 Bacoor Cavite', '09/09/2000', 'San Juan, Metro Manila', '20', 1, 'Filipino', 'Catholic', '', '09212198817', 'jamestorres0909@gmail.com', 'Flemejo Torres', 'OFW', '09212198817', 'Shirley Torres', 'House Wife', '09212198817', '30,000', '5', 'Shirley Torres', 'blk2 lot 17 phase 2a Casimiro Westville Homes Ligas 3 Bacoor Cavite', '09212198817', 'System Technology Institute', 'Pre-Kinder', '2020-2021', 'Tirona Highway', '2021-2022', 'First Semester', 'Pending');
-INSERT INTO `tbl_online_reg` VALUES (22, 'New', 6, '', 'Gerald', 'Funtanar', 'Oñas', 'blk2 lot 17 phase 2a Casimiro Westville Homes Ligas 3 Bacoor Cavite', '09/09/2000', 'San Juan, Metro Manila', '20', 1, 'Filipino', 'Catholic', '', '09212198817', 'jamestorres0909@gmail.com', 'Flemejo Torres', 'OFW', '09212198817', 'Shirley Torres', 'House Wife', '09212198817', '30,000', '5', 'Shirley Torres', 'blk2 lot 17 phase 2a Casimiro Westville Homes Ligas 3 Bacoor Cavite', '09212198817', 'System Technology Institute', 'Grade 2', '2020-2021', 'Tirona Highway', '2021-2022', 'First Semester', 'For Approval');
 
 -- ----------------------------
 -- Table structure for tbl_online_reg_senior
@@ -468,9 +426,6 @@ CREATE TABLE `tbl_online_reg_senior`  (
 -- ----------------------------
 -- Records of tbl_online_reg_senior
 -- ----------------------------
-INSERT INTO `tbl_online_reg_senior` VALUES (16, 'New', 0, 2, 'asdasdasdas', '', '', '', '', '', '', '', 0, '', '', '', '', 'as@as.com', '', '', '', '', '', '', '', '', '', '', '', '', 'Nursery', '', '', '', '', 'Pending');
-INSERT INTO `tbl_online_reg_senior` VALUES (18, 'Old', 0, 1, '', '', '', '', '', '', '', '', 0, '', '', '', '', 'z@z.com', '', '', '', '', '', '', '', '', '', '', '', '', 'Nursery', '', '', '2020-2021', 'First Semester', 'Pending');
-INSERT INTO `tbl_online_reg_senior` VALUES (19, 'New', 14, 2, '12345678900', 'Lorenzo Elia', 'Gutierrez', 'O.', 'RA 7h 21m 23s | Dec +23° 30′ 43″', '04-07-2000', 'Mars', '21', 1, 'Marsian', 'Marsian', '09', '09', 'MARS@MARS.COM', 'beep', 'beep', 'beep', 'beep', 'beep', 'beep', '123', '123', 'beep', 'beep', 'beep', 'beep', 'Grade 11', 'beep', 'beep', '2020-2021', 'First Semester', 'Approved');
 
 -- ----------------------------
 -- Table structure for tbl_principals
@@ -546,7 +501,7 @@ CREATE TABLE `tbl_schedules`  (
   `acadyear` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `grade_level_id` int(12) NULL DEFAULT NULL,
   PRIMARY KEY (`schedule_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 259 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 261 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_schedules
@@ -761,6 +716,8 @@ INSERT INTO `tbl_schedules` VALUES (249, 122, '', 'TBA', 'TBA', 'TBA', '0', '202
 INSERT INTO `tbl_schedules` VALUES (250, 123, '', 'TBA', 'TBA', 'TBA', '0', '2021-2022 ', 13);
 INSERT INTO `tbl_schedules` VALUES (251, 124, '', 'TBA', 'TBA', 'TBA', '0', '2021-2022 ', 13);
 INSERT INTO `tbl_schedules` VALUES (252, 125, '', 'TBA', 'TBA', 'TBA', '0', '2021-2022 ', 13);
+INSERT INTO `tbl_schedules` VALUES (259, 82, '1', 'TBA', 'TBA', 'TBA', 'First Semester ', '2021-2022', NULL);
+INSERT INTO `tbl_schedules` VALUES (260, 42, '4', 'TBA', 'TBA', 'TBA', '0', '2021-2022', 4);
 
 -- ----------------------------
 -- Table structure for tbl_schoolyears
@@ -778,12 +735,11 @@ CREATE TABLE `tbl_schoolyears`  (
   `remark` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `section` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`sy_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_schoolyears
 -- ----------------------------
-INSERT INTO `tbl_schoolyears` VALUES (12, 2, 14, 2, 1, 5, '22-May-21', 'New', 'Canceled', 'Mabini');
 
 -- ----------------------------
 -- Table structure for tbl_semesters
@@ -854,15 +810,84 @@ CREATE TABLE `tbl_students`  (
   `mcontact` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `month_inc` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `no_siblings` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `guardname` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `guardname` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `gaddress` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `gcontact` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `last_sch` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `prev_grade_level` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `sch_year` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `sch_address` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `fage` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `mage` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `flandline` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `mlandline` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `femail` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `memail` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `feduc_attain` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `meduc_attain` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `flast_sch_att` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `mlast_sch_att` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `femployer` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `memployer` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `fbus_ad` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `mbus_ad` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `fof_ph_no` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `mof_ph_no` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `fmonth_inc` float(100, 0) NULL DEFAULT NULL,
+  `mmonth_inc` float(100, 0) NULL DEFAULT NULL,
+  `grelation` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `gtel_no` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `gemail` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib1_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib2_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib3_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib4_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib5_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib6_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib7_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib1_age` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib2_age` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib3_age` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib4_age` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib5_age` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib6_age` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib7_age` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib1_civ` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib2_civ` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib3_civ` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib4_civ` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib5_civ` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib6_civ` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib7_civ` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib1_sch` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib2_sch` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib3_sch` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib4_sch` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib5_sch` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib6_sch` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib7_sch` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib1_educbg` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib2_educbg` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib3_educbg` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib4_educbg` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib5_educbg` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib6_educbg` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sib7_educbg` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `talent` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `spec` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `other` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `honor` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `acad_c` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sport_c` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `sch_m` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `comrel_m` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `acr` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `prov` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `syear` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date_ap` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `app_grade_level` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`student_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tbl_students

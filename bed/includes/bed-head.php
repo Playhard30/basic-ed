@@ -102,6 +102,14 @@ table.dataTable tbody td {
     vertical-align: middle;
 }
 
+.focs:focus {
+    border-bottom-color: #6f42c1 !important;
+}
+
+.focss:focus {
+    border-color: #6f42c1 !important;
+}
+
 #scroll {
 
     position: fixed;

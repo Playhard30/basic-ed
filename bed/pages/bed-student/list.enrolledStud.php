@@ -247,14 +247,25 @@ require '../../includes/bed-session.php';
                                                                 Subjects
                                                             </a>
 
-                                                            <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id . '&glvl_id=' . $glvl_id; ?>"
-                                                                type="button"
-                                                                class=" btn bg-maroon text-sm p-2 mb-md-2"><i
+                                                            <a href="../bed-forms/pre-en-data.php?<?php echo 'stud_id=' . $id; ?>"
+                                                                type="button" class=" btn bg-purple text-sm p-2 mb-2"><i
                                                                     class="fa fa-eye"></i>
-                                                                Registration
+                                                                Pre-Enroll
                                                             </a>
 
-
+                                                            <?php if (!empty($glvl_id)) { ?>
+                                                            <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id . '&glvl_id=' . $glvl_id; ?>"
+                                                                type="button" class=" btn bg-maroon text-sm p-2 mb-2"><i
+                                                                    class="fa fa-eye"></i>
+                                                                Reg Form
+                                                            </a>
+                                                            <?php } else { ?>
+                                                            <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id; ?>"
+                                                                type="button" class=" btn bg-maroon text-sm p-2 mb-2"><i
+                                                                    class="fa fa-eye"></i>
+                                                                Reg Form
+                                                            </a>
+                                                            <?php } ?>
 
                                                             <!-- Button trigger modal -->
                                                             <div class="dropdown-divider"></div>
@@ -318,6 +329,7 @@ require '../../includes/bed-session.php';
                                                         $sy_id = $row['sy_id'];
                                                         $_SESSION['stud_no'] = $row['stud_no'];
                                                         $_SESSION['orig_id'] = $row['student_id'];
+                                                        $glvl_id = $row['grade_level_id'];
 
                                 ?>
                                     <tr>
@@ -418,17 +430,25 @@ require '../../includes/bed-session.php';
                                                     Subjects
                                                 </a>
 
-                                                <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id . '&glvl_id=' . $glvl_id; ?>"
-                                                    type="button" class=" btn bg-maroon text-sm p-2 mb-2"><i
-                                                        class="fa fa-eye"></i>
-                                                    Reg Form
-                                                </a>
-
                                                 <a href="../bed-forms/pre-en-data.php?<?php echo 'stud_id=' . $id; ?>"
                                                     type="button" class=" btn bg-purple text-sm p-2 mb-2"><i
                                                         class="fa fa-eye"></i>
                                                     Pre-Enroll
                                                 </a>
+
+                                                <?php if (!empty($glvl_id)) { ?>
+                                                <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id . '&glvl_id=' . $glvl_id; ?>"
+                                                    type="button" class=" btn bg-maroon text-sm p-2 mb-2"><i
+                                                        class="fa fa-eye"></i>
+                                                    Reg Form
+                                                </a>
+                                                <?php } else { ?>
+                                                <a href="../bed-forms/all_formsSH.php?<?php echo 'stud_id=' . $id; ?>"
+                                                    type="button" class=" btn bg-maroon text-sm p-2 mb-2"><i
+                                                        class="fa fa-eye"></i>
+                                                    Reg Form
+                                                </a>
+                                                <?php } ?>
 
 
                                                 <!-- Button trigger modal -->

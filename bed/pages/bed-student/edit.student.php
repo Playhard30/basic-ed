@@ -75,9 +75,10 @@ require '../../includes/bed-session.php';
                                                 <div class="form-group mr-auto ml-auto col-md-4">
                                                     <div class="input-group">
                                                         <div class="custom-file">
-                                                            <input type="file" name="image" class="custom-file-input"
-                                                                id="customFile">
-                                                            <label class="custom-file-label" for="customFile">Choose
+                                                            <input type="file" name="image"
+                                                                class="custom-file-input focss" id="customFile">
+                                                            <label class="custom-file-label focss"
+                                                                for="customFile">Choose
                                                                 image</label>
                                                         </div><button type="submit" name="upload"
                                                             class="btn bg-purple btn-default"><i
@@ -95,7 +96,7 @@ require '../../includes/bed-session.php';
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="firstname"
+                                            <input type="text" class="form-control focss" name="firstname"
                                                 placeholder="Firstname" value="<?php echo $row['student_fname']; ?>">
                                         </div>
 
@@ -104,7 +105,7 @@ require '../../includes/bed-session.php';
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="lastname"
+                                            <input type="text" class="form-control focss" name="lastname"
                                                 placeholder="Lastname" value="<?php echo $row['student_lname']; ?>">
                                         </div>
 
@@ -112,7 +113,7 @@ require '../../includes/bed-session.php';
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-keyboard"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="midname"
+                                            <input type="text" class="form-control focss" name="midname"
                                                 placeholder="Middlename" value="<?php echo $row['student_mname']; ?>">
                                         </div>
                                     </div>
@@ -123,7 +124,7 @@ require '../../includes/bed-session.php';
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                             </div>
-                                            <input type="email" class="form-control" name="email"
+                                            <input type="email" class="form-control focss" name="email"
                                                 placeholder="Email Address" value="<?php echo $row['email']; ?>">
                                         </div>
 
@@ -131,7 +132,7 @@ require '../../includes/bed-session.php';
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" name="username"
+                                            <input type="text" class="form-control focss" name="username"
                                                 placeholder="Username" value="<?php echo $row['username']; ?>" required>
                                         </div>
                                     </div>
@@ -142,7 +143,7 @@ require '../../includes/bed-session.php';
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                             </div>
-                                            <input type="password" class="form-control" name="password"
+                                            <input type="password" class="form-control focss" name="password"
                                                 placeholder="Password">
                                         </div>
 
@@ -151,7 +152,7 @@ require '../../includes/bed-session.php';
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                             </div>
-                                            <input type="password" class="form-control" name="password2"
+                                            <input type="password" class="form-control focss" name="password2"
                                                 placeholder="Confirm Password">
                                         </div>
                                     </div>

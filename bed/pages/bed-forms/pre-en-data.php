@@ -55,8 +55,8 @@ while ($row = mysqli_fetch_array($get_stud)) {
 
     $pdf->SetFont('Arial', 'B', '10');
     $pdf->Rect(10, 30, 75, 8);
-    $pdf->Cell(45, 5, 'Level applied for:', 0, 0);
-    $pdf->Cell(2, 5, '', '', 1, 'C');
+    $pdf->Cell(43, 5, 'Level applied for:', 0, 0);
+    $pdf->Cell(2, 5, $row['app_grade_level'], 0, 1, 'C');
 
 
     $pdf->Ln(2);
@@ -69,13 +69,13 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Ln(2);
     $pdf->SetFont('Arial', 'B', '10');
     $pdf->Rect(10, 40, 75, 8);
-    $pdf->Cell(75, 5, 'Date of Application:', 0, 0);
-    $pdf->Cell(2, 5, '', '', 1, 'C');
+    $pdf->Cell(20, 5, 'Date of Application:', 0, 0);
+    $pdf->Cell(50, 5, $row['date_ap'], 0, 1, 'C');
     $pdf->Rect(100, 35, 60, 24);
     $pdf->Ln(1);
     $pdf->SetFont('Arial', 'B', '10');
     $pdf->Cell(95, 3, '', 0, 0, 'L');
-    $pdf->Cell(50, 3, '', 'B', 1, 'C');
+    $pdf->Cell(50, 3, $row['syear'], 'B', 1, 'C');
     $pdf->Cell(240, 5, 'SCHOOL YEAR', 0, 1, 'C');
 
     $pdf->Ln(5);
@@ -136,7 +136,15 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Ln(2);
     $pdf->SetFont('Arial', 'B', 8);
     $pdf->Cell(28, 4, 'Provincial Address: ', 0, 0);
-    $pdf->Cell(167, 4, '', 'B', 0, 'C');
+    $pdf->SetFont('Arial', 'B', 9);
+    $fontsize = 8;
+    $tempFontSize = $fontsize;
+    $cellwidth = 165;
+    while ($pdf->GetStringWidth($row['prov']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(167, 4, $row['prov'], 'B', 0, 'L');
+
     $pdf->Cell(10, 5, '', 0, 1);
     $pdf->Ln(2);
     $pdf->SetFont('Arial', 'B', 8);
@@ -169,7 +177,7 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(46, 4, $row['nationality'], 'B', 0, 'C');
     $pdf->Cell(3, 2, '', 0, 0);
     $pdf->Cell(11.5, 4, 'ACR #', 0, 0);
-    $pdf->Cell(42, 4, '', 'B', 0, 'C');
+    $pdf->Cell(42, 4, $row['acr'], 'B', 0, 'C');
     $pdf->Cell(10, 5, '', 0, 1);
 
     $pdf->Ln(2);
@@ -227,55 +235,55 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(65, 7, utf8_decode($row['mname']), 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'AGE', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 1, 'C');
+    $pdf->Cell(65, 7, $row['fage'], 1, 0, 'C');
+    $pdf->Cell(65, 7, $row['mage'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'E-mail ADDRESS', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 1, 'C');
+    $pdf->Cell(65, 7, $row['femail'], 1, 0, 'C');
+    $pdf->Cell(65, 7, $row['memail'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'LANDLINE NO.', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 1, 'C');
+    $pdf->Cell(65, 7, $row['flandline'], 1, 0, 'C');
+    $pdf->Cell(65, 7, $row['mlandline'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'CELLPHONE NO.', 1, 0, 'C');
     $pdf->Cell(65, 7, $row['fcontact'], 1, 0, 'C');
     $pdf->Cell(65, 7, $row['mcontact'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'EDUCATIONAL ATTAINMENT', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 1, 'C');
+    $pdf->Cell(65, 7, $row['feduc_attain'], 1, 0, 'C');
+    $pdf->Cell(65, 7, $row['meduc_attain'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'LAST SCHOOL ATTENDED', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 1, 'C');
+    $pdf->Cell(65, 7, $row['flast_sch_att'], 1, 0, 'C');
+    $pdf->Cell(65, 7, $row['mlast_sch_att'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'OCCUPATION', 1, 0, 'C');
     $pdf->Cell(65, 7, $row['focc'], 1, 0, 'C');
     $pdf->Cell(65, 7, $row['mocc'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'EMPLOYER(Name of Company)', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 1, 'C');
+    $pdf->Cell(65, 7, $row['femployer'], 1, 0, 'C');
+    $pdf->Cell(65, 7, $row['memployer'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'BUSINESS ADDRESS', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 1, 'C');
+    $pdf->Cell(65, 7, $row['fbus_ad'], 1, 0, 'C');
+    $pdf->Cell(65, 7, $row['mbus_ad'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'OFFICE PHONE NUMBER', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 1, 'C');
+    $pdf->Cell(65, 7, $row['fof_ph_no'], 1, 0, 'C');
+    $pdf->Cell(65, 7, $row['mof_ph_no'], 1, 1, 'C');
 
     $pdf->Cell(65, 7, 'AVERAGE MONTHLY INCOME', 1, 0, 'C');
-    $pdf->Cell(65, 7, $row['month_inc'], 1, 0, 'C');
-    $pdf->Cell(65, 7, '', 1, 1, 'C');
+    $pdf->Cell(65, 7, $row['fmonth_inc'], 1, 0, 'C');
+    $pdf->Cell(65, 7, $row['mmonth_inc'], 1, 1, 'C');
 
     $pdf->Ln(3);
     $pdf->Cell(70, 4, 'GUARDIANS NAME(if child not living with parents)', 0, 0);
     $pdf->Cell(65, 4, $row['guardname'], 'B', 0, 'C');
     $pdf->Cell(5, 5, '', 0, 0);
     $pdf->Cell(18, 4, 'Relationship', 0, 0);
-    $pdf->Cell(37, 4, '', 'B', 1, 'C');
+    $pdf->Cell(37, 4, $row['grelation'], 'B', 1, 'C');
     $pdf->Ln(3);
     $pdf->Cell(33, 4, 'GUARDIANS ADDRESS', 0, 0);
     $fontsize = 8;
@@ -287,19 +295,19 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(162, 4, $row['gaddress'], 'B', 1, 'L');
     $pdf->Ln(3);
     $pdf->Cell(30, 4, 'GUARDIANS TEL.NO.', 0, 0);
-    $pdf->Cell(33, 4, $row['gcontact'], 'B', 0, 'C');
+    $pdf->Cell(33, 4, $row['gtel_no'], 'B', 0, 'C');
     $pdf->Cell(5, 5, '', 0, 0);
     $pdf->Cell(23, 4, 'CELLPHONE NO.', 0, 0);
-    $pdf->Cell(33, 4, $row['cellphone'], 'B', 0, 'C');
+    $pdf->Cell(33, 4, $row['gcontact'], 'B', 0, 'C');
     $pdf->Cell(2, 5, '', 0, 0);
     $pdf->Cell(26, 4, 'E-mail ADDRESS:', 0, 0);
     $fontsize = 9;
     $tempFontSize = $fontsize;
     $cellwidth = 48;
-    while ($pdf->GetStringWidth($row['email']) > $cellwidth) {
+    while ($pdf->GetStringWidth($row['gemail']) > $cellwidth) {
         $pdf->SetFontSize($tempFontSize -= 0.1);
     }
-    $pdf->Cell(40, 4, $row['email'], 'B', 0, 'C');
+    $pdf->Cell(40, 4, $row['gemail'], 'B', 0, 'C');
 
 
     $pdf->Ln(10);
@@ -315,48 +323,132 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(40, 7, 'SCHOOL', 1, 0, 'C');
     $pdf->Cell(56, 7, 'EDUCATIONAL BACKGROUND', 1, 1, 'C');
 
-    // sqaure for the siblings//
-    $pdf->Cell(52, 6, '', 1, 0, 'C');
-    $pdf->Cell(18, 6, '', 1, 0, 'C');
-    $pdf->Cell(37, 6, '', 1, 0, 'C');
-    $pdf->Cell(40, 6, '', 1, 0, 'C');
-    $pdf->Cell(56, 6, '', 1, 1, 'C');
+    // square for the siblings//
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 50;
+    while ($pdf->GetStringWidth($row['sib1_name']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(52, 6, utf8_decode($row['sib1_name']), 1, 0, 'C');
+    $pdf->Cell(18, 6, $row['sib1_age'], 1, 0, 'C');
+    $pdf->Cell(37, 6, $row['sib1_civ'], 1, 0, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 39;
+    while ($pdf->GetStringWidth($row['sib1_sch']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(40, 6, $row['sib1_sch'], 1, 0, 'C');
+    $pdf->Cell(56, 6, $row['sib1_educbg'], 1, 1, 'C');
 
-    $pdf->Cell(52, 6, '', 1, 0, 'C');
-    $pdf->Cell(18, 6, '', 1, 0, 'C');
-    $pdf->Cell(37, 6, '', 1, 0, 'C');
-    $pdf->Cell(40, 6, '', 1, 0, 'C');
-    $pdf->Cell(56, 6, '', 1, 1, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 50;
+    while ($pdf->GetStringWidth($row['sib2_name']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(52, 6, utf8_decode($row['sib2_name']), 1, 0, 'C');
+    $pdf->Cell(18, 6, $row['sib2_age'], 1, 0, 'C');
+    $pdf->Cell(37, 6, $row['sib2_civ'], 1, 0, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 39;
+    while ($pdf->GetStringWidth($row['sib2_sch']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(40, 6, $row['sib2_sch'], 1, 0, 'C');
+    $pdf->Cell(56, 6, $row['sib2_educbg'], 1, 1, 'C');
 
-    $pdf->Cell(52, 6, '', 1, 0, 'C');
-    $pdf->Cell(18, 6, '', 1, 0, 'C');
-    $pdf->Cell(37, 6, '', 1, 0, 'C');
-    $pdf->Cell(40, 6, '', 1, 0, 'C');
-    $pdf->Cell(56, 6, '', 1, 1, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 50;
+    while ($pdf->GetStringWidth($row['sib3_name']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(52, 6, utf8_decode($row['sib3_name']), 1, 0, 'C');
+    $pdf->Cell(18, 6, $row['sib3_age'], 1, 0, 'C');
+    $pdf->Cell(37, 6, $row['sib3_civ'], 1, 0, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 39;
+    while ($pdf->GetStringWidth($row['sib3_sch']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(40, 6, $row['sib3_sch'], 1, 0, 'C');
+    $pdf->Cell(56, 6, $row['sib3_educbg'], 1, 1, 'C');
 
-    $pdf->Cell(52, 6, '', 1, 0, 'C');
-    $pdf->Cell(18, 6, '', 1, 0, 'C');
-    $pdf->Cell(37, 6, '', 1, 0, 'C');
-    $pdf->Cell(40, 6, '', 1, 0, 'C');
-    $pdf->Cell(56, 6, '', 1, 1, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 50;
+    while ($pdf->GetStringWidth($row['sib4_name']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(52, 6, utf8_decode($row['sib4_name']), 1, 0, 'C');
+    $pdf->Cell(18, 6, $row['sib4_age'], 1, 0, 'C');
+    $pdf->Cell(37, 6, $row['sib4_civ'], 1, 0, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 39;
+    while ($pdf->GetStringWidth($row['sib4_sch']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(40, 6, $row['sib4_sch'], 1, 0, 'C');
+    $pdf->Cell(56, 6, $row['sib4_educbg'], 1, 1, 'C');
 
-    $pdf->Cell(52, 6, '', 1, 0, 'C');
-    $pdf->Cell(18, 6, '', 1, 0, 'C');
-    $pdf->Cell(37, 6, '', 1, 0, 'C');
-    $pdf->Cell(40, 6, '', 1, 0, 'C');
-    $pdf->Cell(56, 6, '', 1, 1, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 50;
+    while ($pdf->GetStringWidth($row['sib5_name']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(52, 6, utf8_decode($row['sib5_name']), 1, 0, 'C');
+    $pdf->Cell(18, 6, $row['sib5_age'], 1, 0, 'C');
+    $pdf->Cell(37, 6, $row['sib5_civ'], 1, 0, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 39;
+    while ($pdf->GetStringWidth($row['sib5_sch']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(40, 6, $row['sib5_sch'], 1, 0, 'C');
+    $pdf->Cell(56, 6, $row['sib5_educbg'], 1, 1, 'C');
 
-    $pdf->Cell(52, 6, '', 1, 0, 'C');
-    $pdf->Cell(18, 6, '', 1, 0, 'C');
-    $pdf->Cell(37, 6, '', 1, 0, 'C');
-    $pdf->Cell(40, 6, '', 1, 0, 'C');
-    $pdf->Cell(56, 6, '', 1, 1, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 50;
+    while ($pdf->GetStringWidth($row['sib6_name']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(52, 6, utf8_decode($row['sib6_name']), 1, 0, 'C');
+    $pdf->Cell(18, 6, $row['sib6_age'], 1, 0, 'C');
+    $pdf->Cell(37, 6, $row['sib6_civ'], 1, 0, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 39;
+    while ($pdf->GetStringWidth($row['sib6_sch']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(40, 6, $row['sib6_sch'], 1, 0, 'C');
+    $pdf->Cell(56, 6, $row['sib6_educbg'], 1, 1, 'C');
 
-    $pdf->Cell(52, 6, '', 1, 0, 'C');
-    $pdf->Cell(18, 6, '', 1, 0, 'C');
-    $pdf->Cell(37, 6, '', 1, 0, 'C');
-    $pdf->Cell(40, 6, '', 1, 0, 'C');
-    $pdf->Cell(56, 6, '', 1, 1, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 50;
+    while ($pdf->GetStringWidth($row['sib7_name']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(52, 6, utf8_decode($row['sib7_name']), 1, 0, 'C');
+    $pdf->Cell(18, 6, $row['sib7_age'], 1, 0, 'C');
+    $pdf->Cell(37, 6, $row['sib7_civ'], 1, 0, 'C');
+    $fontsize = 9;
+    $tempFontSize = $fontsize;
+    $cellwidth = 39;
+    while ($pdf->GetStringWidth($row['sib7_sch']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(40, 6, $row['sib7_sch'], 1, 0, 'C');
+    $pdf->Cell(56, 6, $row['sib7_educbg'], 1, 1, 'C');
 
 
 
@@ -371,19 +463,84 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->SetFont('Arial', 'B', 14);
     $pdf->Cell(200, 7, 'EDUCATIONAL BACKGROUND', 1, 1, 'C');
     //square for checking line dancing//
-    $pdf->Rect(20, 56, 5, 4);
-    $pdf->Rect(43, 56, 5, 4);
-    $pdf->Rect(64, 56, 5, 4);
-    $pdf->Rect(88, 56, 5, 4);
-    $pdf->Rect(114, 56, 5, 4);
-    $pdf->Rect(133, 56, 5, 4);
-    // sqaure line draw//
-    $pdf->Rect(20, 62, 5, 4);
-    $pdf->Rect(43, 62, 5, 4);
-    $pdf->Rect(64, 62, 5, 4);
-    //square line other//
-    $pdf->Rect(20, 68, 5, 4);
 
+    if (!empty($row['talent'])) {
+        $get_talent = $row['talent'];
+        $res_talent = explode(",", $get_talent);
+
+        if (in_array("Dancing", $res_talent)) {
+            $pdf->Rect(20, 56, 5, 4, 'F');
+        } else {
+            $pdf->Rect(20, 56, 5, 4);
+        }
+
+        if (in_array("Singing", $res_talent)) {
+            $pdf->Rect(43, 56, 5, 4, 'F');
+        } else {
+            $pdf->Rect(43, 56, 5, 4,);
+        }
+
+        if (in_array("Basketball", $res_talent)) {
+            $pdf->Rect(64, 56, 5, 4, 'F');
+        } else {
+            $pdf->Rect(64, 56, 5, 4);
+        }
+
+        if (in_array("Volleyball", $res_talent)) {
+            $pdf->Rect(88, 56, 5, 4, 'F');
+        } else {
+            $pdf->Rect(88, 56, 5, 4);
+        }
+
+        if (in_array("Chess", $res_talent)) {
+            $pdf->Rect(114, 56, 5, 4, 'F');
+        } else {
+            $pdf->Rect(114, 56, 5, 4);
+        }
+
+        if (in_array("Tennis", $res_talent)) {
+            $pdf->Rect(133, 56, 5, 4, 'F');
+        } else {
+            $pdf->Rect(133, 56, 5, 4);
+        }
+        // sqaure line draw//
+        if (in_array("Drawing", $res_talent)) {
+            $pdf->Rect(20, 62, 5, 4, 'F');
+        } else {
+            $pdf->Rect(20, 62, 5, 4);
+        }
+
+        if (in_array("Painting", $res_talent)) {
+            $pdf->Rect(43, 62, 5, 4, 'F');
+        } else {
+            $pdf->Rect(43, 62, 5, 4);
+        }
+
+        if (in_array("Music", $res_talent)) {
+            $pdf->Rect(64, 62, 5, 4, 'F');
+        } else {
+            $pdf->Rect(64, 62, 5, 4);
+        }
+        //square line other//
+        if (in_array("Music", $res_talent)) {
+            $pdf->Rect(20, 68, 5, 4, 'F');
+        } else {
+            $pdf->Rect(20, 68, 5, 4);
+        }
+    } else {
+        $pdf->Rect(20, 56, 5, 4);
+        $pdf->Rect(43, 56, 5, 4);
+        $pdf->Rect(64, 56, 5, 4);
+        $pdf->Rect(88, 56, 5, 4);
+        $pdf->Rect(114, 56, 5, 4);
+        $pdf->Rect(133, 56, 5, 4);
+        // sqaure line draw//
+        $pdf->Rect(20, 62, 5, 4);
+        $pdf->Rect(43, 62, 5, 4);
+        $pdf->Rect(64, 62, 5, 4);
+        //square line other//
+        $pdf->Rect(20, 68, 5, 4);
+    }
     $pdf->Ln(3);
     $pdf->SetFont('Arial', 'B', 8);
     $pdf->Cell(38, 5, 'LAST SCHOOL ATTENDED', 0, 0);
@@ -402,22 +559,24 @@ while ($row = mysqli_fetch_array($get_stud)) {
 
     $pdf->Cell(2, 5, '', 0, 0);
     $pdf->Cell(18, 5, 'School Year', 0, 0);
-    $fontsize = 7;
-    $tempFontSize = $fontsize;
-    $cellwidth = 85;
-    while ($pdf->GetStringWidth($row['sch_address']) > $cellwidth) {
-        $pdf->SetFontSize($tempFontSize -= 0.1);
-    }
+
     $pdf->Cell(29, 5, $row['sch_year'], 'B', 1, 'C');
 
     $pdf->Ln(3);
     $pdf->Cell(34, 4, 'ADDRESS OF SCHOOL ', 0, 0);
-    $pdf->Cell(137, 4, '', 'B', 0, 'C');
+    $fontsize = 7;
+    $tempFontSize = $fontsize;
+    $cellwidth = 135;
+    while ($pdf->GetStringWidth($row['sch_address']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(137, 4, $row['sch_address'], 'B', 0, 'C');
+
     $pdf->Cell(10, 5, '', 0, 1);
 
     $pdf->Ln(2);
     $pdf->Cell(34, 4, 'HONORS and AWARDS', 0, 0);
-    $pdf->Cell(137, 4, '', 'B', 1, 'C');
+    $pdf->Cell(137, 4, $row['honor'], 'B', 1, 'C');
     $pdf->Ln(2);
     $pdf->Cell(34, 4, '', 0, 0);
     $pdf->Cell(137, 4, '', 'B', 1, 'C');
@@ -436,31 +595,37 @@ while ($row = mysqli_fetch_array($get_stud)) {
     $pdf->Cell(20, 4, 'Drawing', 0, 0);
     $pdf->Cell(20, 4, ' Painting', 0, 0);
     $pdf->Cell(50, 4, ' Playing musical instrument, Specify', 0, 0);
-    $pdf->Cell(72, 5, '', 'B', 1, 'C');
+    $pdf->Cell(72, 5, $row['spec'], 'B', 1, 'C');
 
     $pdf->Ln(2);
     $pdf->Cell(18, 4, '', 0, 0);
     $pdf->Cell(30, 4, 'Other, Please Specify', 0, 0);
-    $pdf->Cell(50, 5, '', 'B', 1, 'C');
+    $fontsize = 8;
+    $tempFontSize = $fontsize;
+    $cellwidth = 48;
+    while ($pdf->GetStringWidth($row['other']) > $cellwidth) {
+        $pdf->SetFontSize($tempFontSize -= 0.1);
+    }
+    $pdf->Cell(50, 5, $row['other'], 'B', 1, 'C');
 
     $pdf->Ln(2);
     $pdf->Cell(50, 4, 'ACADEMIC COMPETITIONS JOINED', 0, 0);
-    $pdf->Cell(130, 4, '', 'B', 1, 'C');
+    $pdf->Cell(130, 4, $row['acad_c'], 'B', 1, 'C');
 
     $pdf->Ln(2);
     $pdf->Cell(50, 4, 'SPORTS COMPETITIONS JOINED', 0, 0);
-    $pdf->Cell(130, 4, '', 'B', 1, 'C');
+    $pdf->Cell(130, 4, $row['sport_c'], 'B', 1, 'C');
 
     $pdf->Ln(2);
     $pdf->Cell(60, 4, 'MEMBERSHIP in SCHOOL ORGANIZATION', 0, 0);
-    $pdf->Cell(134, 4, '', 'B', 1, 'C');
+    $pdf->Cell(134, 4, $row['sch_m'], 'B', 1, 'C');
     $pdf->Ln(2);
     $pdf->Cell(60, 4, '', 0, 0);
     $pdf->Cell(134, 4, '', 'B', 1, 'C');
 
     $pdf->Ln(2);
     $pdf->Cell(84, 4, 'MEMBERSHIP in COMMUNITY / RELIGIOUS ORGANIZATION', 0, 0);
-    $pdf->Cell(110, 4, '', 'B', 1, 'C');
+    $pdf->Cell(110, 4, $row['comrel_m'], 'B', 1, 'C');
     $pdf->Ln(2);
     $pdf->Cell(84, 4, '', 0, 0);
     $pdf->Cell(110, 4, '', 'B', 1, 'C');
